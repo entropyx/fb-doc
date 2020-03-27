@@ -1,239 +1,10518 @@
 ---
-title: API Reference
-
-language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
-
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
-
-includes:
-  - errors
-
+title: Facebook API
+language_tabs:
+  - shell: Shell
+  - http: HTTP
+  - javascript: JavaScript
+  - javascript--nodejs: Node.JS
+  - ruby: Ruby
+  - python: Python
+  - java: Java
+  - go: Go
+toc_footers: []
+includes: []
 search: true
+highlight_theme: darkula
+headingLevel: 2
+
 ---
 
-# Introduction
+<h1 id="facebook-api">Facebook API v1.0.0</h1>
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+> Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+This is the entropy facebook api
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Base URLs:
 
-# Authentication
+* <a href="https://pending.entropy.tech/v1">https://pending.entropy.tech/v1</a>
 
-> To authorize, use this code:
+Email Karina: <a href="mailto:karina@entropy.tech">Support</a>
+<br>
+Email Alejandro: <a href="mailto:alejandro@entropy.tech">Support</a>
+<br>
+<h1 id="facebook-api-credentials">credentials</h1>
 
-```ruby
-require 'kittn'
+Entropy Facebook credentials resource
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+## post__organizations_{organizationId}_credentials
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
+> Code samples
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+# You can also use wget
+curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/credentials \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+POST https://pending.entropy.tech/v1/organizations/{organizationId}/credentials HTTP/1.1
+Host: pending.entropy.tech
+Content-Type: application/json
+Accept: application/json
+
 ```
 
 ```javascript
-const kittn = require('kittn');
+var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
 
-let api = kittn.authorize('meowmeowmeow');
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '{
+  "code": "string",
+  "state": "string"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+};
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
 
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
+```
 
 ```ruby
-require 'kittn'
+require 'rest-client'
+require 'json'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
 ```
 
 ```python
-import kittn
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials', params={
+
+}, headers = headers)
+
+print r.json()
+
 ```
 
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/credentials");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://pending.entropy.tech/v1/organizations/{organizationId}/credentials", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /organizations/{organizationId}/credentials`
+
+*Add credential to organization*
+
+> Body parameter
+
+```json
+{
+  "code": "string",
+  "state": "string"
+}
+```
+
+<h3 id="post__organizations_{organizationid}_credentials-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|body|body|object|true|none|
+|» code|body|string|false|none|
+|» state|body|string|false|none|
+
+> Example responses
+
+> 201 Response
+
+```json
+{
+  "id": 1,
+  "name": "My facebook credential"
+}
+```
+
+<h3 id="post__organizations_{organizationid}_credentials-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="post__organizations_{organizationid}_credentials-responseschema">Response Schema</h3>
+
+Status Code **201**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|integer|false|none|The credential ID.|
+|» name|string|false|none|The credential name.|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## get__organizations_{organizationId}_credentials
+
+> Code samples
+
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+# You can also use wget
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/credentials \
+  -H 'Accept: appplication/json'
+
+```
+
+```http
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/credentials HTTP/1.1
+Host: pending.entropy.tech
+Accept: appplication/json
+
 ```
 
 ```javascript
-const kittn = require('kittn');
+var headers = {
+  'Accept':'appplication/json'
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
 ```
 
-> The above command returns JSON structured like this:
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'appplication/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'appplication/json'
+}
+
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'appplication/json'
+}
+
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/credentials");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"appplication/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/credentials", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{organizationId}/credentials`
+
+*Get credentials by organization*
+
+<h3 id="get__organizations_{organizationid}_credentials-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+
+> Example responses
+
+> 200 Response
+
+> 401 Response
+
+```json
+{
+  "message": "Authentication is required for this operation."
+}
+```
+
+<h3 id="get__organizations_{organizationid}_credentials-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="get__organizations_{organizationid}_credentials-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|integer|false|none|The credential ID.|
+|» name|string|false|none|The credential name.|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## get__organizations_{organizationId}_credentials_{credentialId}
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId} \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId} HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{organizationId}/credentials/{credentialId}`
+
+*Get credential by credential id*
+
+<h3 id="get__organizations_{organizationid}_credentials_{credentialid}-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|credentialId|path|integer|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "id": 1,
+  "name": "My facebook credential"
+}
+```
+
+<h3 id="get__organizations_{organizationid}_credentials_{credentialid}-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="get__organizations_{organizationid}_credentials_{credentialid}-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|integer|false|none|The credential ID.|
+|» name|string|false|none|The credential name.|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## delete__organizations_{organizationId}_credentials_{credentialId}
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId} \
+  -H 'Accept: application/json'
+
+```
+
+```http
+DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId} HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}',
+  method: 'delete',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}',
+{
+  method: 'DELETE',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.delete 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("DELETE");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("DELETE", "https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`DELETE /organizations/{organizationId}/credentials/{credentialId}`
+
+*Delete credential by id*
+
+<h3 id="delete__organizations_{organizationid}_credentials_{credentialid}-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|credentialId|path|integer|true|none|
+
+> Example responses
+
+> 400 Response
+
+```json
+{
+  "message": "string"
+}
+```
+
+<h3 id="delete__organizations_{organizationid}_credentials_{credentialid}-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|No Content|None|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="delete__organizations_{organizationid}_credentials_{credentialid}-responseschema">Response Schema</h3>
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## put__organizations_{organizationId}_credentials_{credentialId}
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+PUT https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId} HTTP/1.1
+Host: pending.entropy.tech
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}',
+  method: 'put',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '{
+  "code": "string",
+  "state": "string"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}',
+{
+  method: 'PUT',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("PUT");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("PUT", "https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`PUT /organizations/{organizationId}/credentials/{credentialId}`
+
+*Update organization credential*
+
+> Body parameter
+
+```json
+{
+  "code": "string",
+  "state": "string"
+}
+```
+
+<h3 id="put__organizations_{organizationid}_credentials_{credentialid}-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|credentialId|path|integer|true|none|
+|body|body|object|true|none|
+|» code|body|string|false|none|
+|» state|body|string|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "id": 1,
+  "name": "My facebook credential"
+}
+```
+
+<h3 id="put__organizations_{organizationid}_credentials_{credentialid}-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="put__organizations_{organizationid}_credentials_{credentialid}-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|integer|false|none|The credential ID.|
+|» name|string|false|none|The credential name.|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## get__organizations_{organizationId}_credentials_{credentialId}_adaccounts
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{organizationId}/credentials/{credentialId}/adaccounts`
+
+*Retrieve adaccounts for credential*
+
+<h3 id="get__organizations_{organizationid}_credentials_{credentialid}_adaccounts-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|credentialId|path|integer|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "id": "act_123456789101112",
+    "name": "Perros y Gatos Co."
+  }
+]
+```
+
+<h3 id="get__organizations_{organizationid}_credentials_{credentialid}_adaccounts-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="get__organizations_{organizationid}_credentials_{credentialid}_adaccounts-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|string|false|none|The adaccount id.|
+|» name|string|false|none|The adaccounts name.|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+<h1 id="facebook-api-draft-strategies">draft strategies</h1>
+
+Entropy Facebook draft strategies resource
+
+## post__organizations_{organizationId}_draft-strategies_
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/ \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+POST https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/ HTTP/1.1
+Host: pending.entropy.tech
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '{
+  "account": {
+    "id": 1234567,
+    "external_id": "act_123456789101112",
+    "name": "Cat&Dogs Co."
+  },
+  "geo_locations": {
+    "countries": [
+      "MX"
+    ],
+    "regions": [
+      {
+        "key": "3843"
+      }
+    ],
+    "cities": [
+      {
+        "key": "2420605",
+        "radius": 10,
+        "distance_unit": "mile"
+      }
+    ],
+    "campaign_collections": [
+      {
+        "name": "Campaña de remarketing",
+        "budget": 100,
+        "objective": "CONVERSIONS",
+        "campaigns": [
+          {
+            "name": "RMKT Campaign",
+            "budget": 100,
+            "adsets": [
+              {
+                "name": "RMKT INTEREST 1",
+                "targeting": [
+                  "12345678901234"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /organizations/{organizationId}/draft-strategies/`
+
+*Create new Facebook draft strategy*
+
+This creates a new Facebook strategy
+
+> Body parameter
+
+```json
+{
+  "account": {
+    "id": 1234567,
+    "external_id": "act_123456789101112",
+    "name": "Cat&Dogs Co."
+  },
+  "geo_locations": {
+    "countries": [
+      "MX"
+    ],
+    "regions": [
+      {
+        "key": "3843"
+      }
+    ],
+    "cities": [
+      {
+        "key": "2420605",
+        "radius": 10,
+        "distance_unit": "mile"
+      }
+    ],
+    "campaign_collections": [
+      {
+        "name": "Campaña de remarketing",
+        "budget": 100,
+        "objective": "CONVERSIONS",
+        "campaigns": [
+          {
+            "name": "RMKT Campaign",
+            "budget": 100,
+            "adsets": [
+              {
+                "name": "RMKT INTEREST 1",
+                "targeting": [
+                  "12345678901234"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+<h3 id="post__organizations_{organizationid}_draft-strategies_-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|body|body|object|true|none|
+|» account|body|object|false|none|
+|»» id|body|integer|false|none|
+|»» external_id|body|string|false|none|
+|»» name|body|string|false|none|
+|» geo_locations|body|object|false|none|
+|»» countries|body|[string]|false|none|
+|»» regions|body|[object]|false|none|
+|»»» key|body|string|false|none|
+|»» cities|body|[object]|false|none|
+|»»» key|body|string|false|none|
+|»»» radius|body|integer|false|none|
+|»»» distance_unit|body|string|false|none|
+|»» campaign_collections|body|[object]|false|none|
+|»»» name|body|string|false|none|
+|»»» budget|body|integer|false|none|
+|»»» objective|body|string|false|none|
+|»»» campaigns|body|[object]|false|none|
+|»»»» name|body|string|false|none|
+|»»»» budget|body|integer|false|none|
+|»»»» adsets|body|[object]|false|none|
+|»»»»» name|body|string|false|none|
+|»»»»» targeting|body|[string]|false|none|
+
+> Example responses
+
+> 201 Response
+
+```json
+{
+  "id": "5e602dd4cf1ff689ff36d2b8"
+}
+```
+
+<h3 id="post__organizations_{organizationid}_draft-strategies_-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="post__organizations_{organizationid}_draft-strategies_-responseschema">Response Schema</h3>
+
+Status Code **201**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|string|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+
+## get__organizations_{organizationId}_draft-strategies_{draftStrategyId}
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId} \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId} HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{organizationId}/draft-strategies/{draftStrategyId}`
+
+*Retrieve Facebook campaign draft strategy*
+
+<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|draftStrategyId|path|string|true|The Draft Stratgy Id|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "account": {
+    "id": 1234567,
+    "external_id": "act_123456789101112",
+    "name": "Cat&Dogs Co."
+  },
+  "geo_locations": {
+    "countries": [
+      "MX"
+    ],
+    "regions": [
+      {
+        "key": "3843"
+      }
+    ],
+    "cities": [
+      {
+        "key": "2420605",
+        "radius": 10,
+        "distance_unit": "mile"
+      }
+    ],
+    "campaign_collections": [
+      {
+        "name": "Campaña de remarketing",
+        "budget": 100,
+        "objective": "CONVERSIONS",
+        "campaigns": [
+          {
+            "name": "RMKT Campaign",
+            "budget": 100,
+            "adsets": [
+              {
+                "name": "RMKT INTEREST 1",
+                "targeting": [
+                  "12345678901234"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» account|object|false|none|none|
+|»» id|integer|false|none|none|
+|»» external_id|string|false|none|none|
+|»» name|string|false|none|none|
+|» geo_locations|object|false|none|none|
+|»» countries|[string]|false|none|none|
+|»» regions|[object]|false|none|none|
+|»»» key|string|false|none|none|
+|»» cities|[object]|false|none|none|
+|»»» key|string|false|none|none|
+|»»» radius|integer|false|none|none|
+|»»» distance_unit|string|false|none|none|
+|»» campaign_collections|[object]|false|none|none|
+|»»» name|string|false|none|none|
+|»»» budget|integer|false|none|none|
+|»»» objective|string|false|none|none|
+|»»» campaigns|[object]|false|none|none|
+|»»»» name|string|false|none|none|
+|»»»» budget|integer|false|none|none|
+|»»»» adsets|[object]|false|none|none|
+|»»»»» name|string|false|none|none|
+|»»»»» targeting|[string]|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## delete__organizations_{organizationId}_draft-strategies_{draftStrategyId}
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId} \
+  -H 'Accept: application/json'
+
+```
+
+```http
+DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId} HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}',
+  method: 'delete',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}',
+{
+  method: 'DELETE',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.delete 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("DELETE");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("DELETE", "https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`DELETE /organizations/{organizationId}/draft-strategies/{draftStrategyId}`
+
+*Delete Facebook campaign draft strategy*
+
+<h3 id="delete__organizations_{organizationid}_draft-strategies_{draftstrategyid}-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|draftStrategyId|path|string|true|The Draft Stratgy Id|
+
+> Example responses
+
+> 204 Response
+
+```json
+{
+  "message": "strategy deleted"
+}
+```
+
+<h3 id="delete__organizations_{organizationid}_draft-strategies_{draftstrategyid}-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|No content|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="delete__organizations_{organizationid}_draft-strategies_{draftstrategyid}-responseschema">Response Schema</h3>
+
+Status Code **204**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|.|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+<h1 id="facebook-api-draft-ads">draft ads</h1>
+
+Entropy Facebook Draft Strategy Ads
+
+## post__organizations_{organizationId}_draft-strategies_{draftStrategyId}_ads
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+POST https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads HTTP/1.1
+Host: pending.entropy.tech
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '[
+  {
+    "name": "My draft ad",
+    "title": "My draft title",
+    "body": "Buy this product",
+    "url": "https://entropy.tech"
+  }
+]';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads`
+
+*Delete draft ads in draft strategy*
+
+> Body parameter
+
+```json
+[
+  {
+    "name": "My draft ad",
+    "title": "My draft title",
+    "body": "Buy this product",
+    "url": "https://entropy.tech"
+  }
+]
+```
+
+<h3 id="post__organizations_{organizationid}_draft-strategies_{draftstrategyid}_ads-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|draftStrategyId|path|string|true|The Draft Strategy Id|
+|body|body|array[object]|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "id": "5e602ac3cf1ff689ff36d2b5",
+    "name": "My draft ad",
+    "title": "My draft title",
+    "body": "Buy this ad product",
+    "visible_uri": "https://entropy.tech"
+  }
+]
+```
+
+<h3 id="post__organizations_{organizationid}_draft-strategies_{draftstrategyid}_ads-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Draft Ad Successfully Updated|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="post__organizations_{organizationid}_draft-strategies_{draftstrategyid}_ads-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|string|false|none|The draft ad Id.|
+|» name|string|false|none|The draft ad name.|
+|» title|string|false|none|The draft ad title.|
+|» body|string|false|none|The draft ad body.|
+|» visible_uri|string|false|none|The draft ad visible link.|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## get__organizations_{organizationId}_draft-strategies_{draftStrategyId}_ads
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads`
+
+*Delete draft ads in draft strategy*
+
+<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}_ads-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|draftStrategyId|path|string|true|The Draft Strategy Id|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "id": "5e602ac3cf1ff689ff36d2b5",
+  "name": "My draft ad",
+  "title": "My draft title",
+  "body": "Buy this ad product",
+  "uri": "https://entropy.tech"
+}
+```
+
+<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}_ads-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Draft Ad Successfully found|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}_ads-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|string|false|none|The draft ad Id.|
+|» name|string|false|none|The draft ad name.|
+|» title|string|false|none|The draft ad title.|
+|» body|string|false|none|The draft ad body.|
+|» uri|string|false|none|The draft ad visible link.|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## put__organizations_{organizationId}_draft-strategies_{draftStrategyId}_ads
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+PUT https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads HTTP/1.1
+Host: pending.entropy.tech
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
+  method: 'put',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '[
+  {
+    "id": "5e602ac3cf1ff689ff36d2b5",
+    "name": "My draft ad",
+    "title": "My draft title",
+    "body": "Buy this ad product",
+    "url": "https://entropy.tech"
+  }
+]';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
+{
+  method: 'PUT',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("PUT");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("PUT", "https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`PUT /organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads`
+
+*Update draft ads in draft strategy*
+
+> Body parameter
+
+```json
+[
+  {
+    "id": "5e602ac3cf1ff689ff36d2b5",
+    "name": "My draft ad",
+    "title": "My draft title",
+    "body": "Buy this ad product",
+    "url": "https://entropy.tech"
+  }
+]
+```
+
+<h3 id="put__organizations_{organizationid}_draft-strategies_{draftstrategyid}_ads-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|draftStrategyId|path|string|true|The Draft Strategy Id|
+|body|body|array[object]|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "id": "5e602ac3cf1ff689ff36d2b5",
+    "name": "My draft ad",
+    "title": "My draft title",
+    "body": "Buy this ad product",
+    "visible_uri": "https://entropy.tech"
+  }
+]
+```
+
+<h3 id="put__organizations_{organizationid}_draft-strategies_{draftstrategyid}_ads-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Draft Ad Successfully Updated|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="put__organizations_{organizationid}_draft-strategies_{draftstrategyid}_ads-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|string|false|none|The draft ad Id.|
+|» name|string|false|none|The draft ad name.|
+|» title|string|false|none|The draft ad title.|
+|» body|string|false|none|The draft ad body.|
+|» visible_uri|string|false|none|The draft ad visible link.|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## delete__organizations_{organizationId}_draft-strategies_{draftStrategyId}_ads
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads \
+  -H 'Accept: application/json'
+
+```
+
+```http
+DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
+  method: 'delete',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
+{
+  method: 'DELETE',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.delete 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("DELETE");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("DELETE", "https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`DELETE /organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads`
+
+*Delete draft ads in draft strategy*
+
+<h3 id="delete__organizations_{organizationid}_draft-strategies_{draftstrategyid}_ads-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|draftStrategyId|path|string|true|The Draft Strategy Id|
+
+> Example responses
+
+> 400 Response
+
+```json
+{
+  "message": "string"
+}
+```
+
+<h3 id="delete__organizations_{organizationid}_draft-strategies_{draftstrategyid}_ads-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|Draft Ad Successfully Deleted|None|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="delete__organizations_{organizationid}_draft-strategies_{draftstrategyid}_ads-responseschema">Response Schema</h3>
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+<h1 id="facebook-api-draft-locations">draft locations</h1>
+
+Entropy Facebook location resource
+
+## get__organizations_{organizationId}_draft-strategies_{draftStrategyId}_geo-locations
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geo-locations \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geo-locations HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geo-locations',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geo-locations',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geo-locations',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geo-locations', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geo-locations");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geo-locations", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{organizationId}/draft-strategies/{draftStrategyId}/geo-locations`
+
+*Retrieve Facebook campaign strategy locations*
+
+<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}_geo-locations-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|draftStrategyId|path|string|true|The Draft Stratgy Id|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "countries": [
+    "MX"
+  ],
+  "regions": [
+    {
+      "key": "3843"
+    }
+  ],
+  "cities": [
+    {
+      "key": "2420605",
+      "radius": 10,
+      "distance_unit": "mile"
+    }
+  ]
+}
+```
+
+<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}_geo-locations-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}_geo-locations-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» countries|[string]|false|none|none|
+|» regions|[object]|false|none|none|
+|»» key|string|false|none|none|
+|» cities|[object]|false|none|none|
+|»» key|string|false|none|none|
+|»» radius|integer|false|none|none|
+|»» distance_unit|string|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## put__organizations_{organizationId}_draft-strategies_{draftStrategyId}_geo-locations
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geo-locations \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+PUT https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geo-locations HTTP/1.1
+Host: pending.entropy.tech
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geo-locations',
+  method: 'put',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '{
+  "countries": [
+    "MX"
+  ],
+  "regions": [
+    {
+      "key": "3843"
+    }
+  ],
+  "cities": [
+    {
+      "key": "2420605",
+      "radius": 10,
+      "distance_unit": "mile"
+    }
+  ]
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geo-locations',
+{
+  method: 'PUT',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geo-locations',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geo-locations', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geo-locations");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("PUT");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("PUT", "https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geo-locations", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`PUT /organizations/{organizationId}/draft-strategies/{draftStrategyId}/geo-locations`
+
+*Update Facebook campaign draft strategy locations*
+
+> Body parameter
+
+```json
+{
+  "countries": [
+    "MX"
+  ],
+  "regions": [
+    {
+      "key": "3843"
+    }
+  ],
+  "cities": [
+    {
+      "key": "2420605",
+      "radius": 10,
+      "distance_unit": "mile"
+    }
+  ]
+}
+```
+
+<h3 id="put__organizations_{organizationid}_draft-strategies_{draftstrategyid}_geo-locations-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|none|
+|draftStrategyId|path|string|true|The Draft Stratgy Id|
+|body|body|object|true|none|
+|» countries|body|[string]|false|none|
+|» regions|body|[object]|false|none|
+|»» key|body|string|false|none|
+|» cities|body|[object]|false|none|
+|»» key|body|string|false|none|
+|»» radius|body|integer|false|none|
+|»» distance_unit|body|string|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "countries": [
+    "MX"
+  ],
+  "regions": [
+    {
+      "key": "3843"
+    }
+  ],
+  "cities": [
+    {
+      "key": "2420605",
+      "radius": 10,
+      "distance_unit": "mile"
+    }
+  ]
+}
+```
+
+<h3 id="put__organizations_{organizationid}_draft-strategies_{draftstrategyid}_geo-locations-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="put__organizations_{organizationid}_draft-strategies_{draftstrategyid}_geo-locations-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» countries|[string]|false|none|none|
+|» regions|[object]|false|none|none|
+|»» key|string|false|none|none|
+|» cities|[object]|false|none|none|
+|»» key|string|false|none|none|
+|»» radius|integer|false|none|none|
+|»» distance_unit|string|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+<h1 id="facebook-api-draft-creatives">draft creatives</h1>
+
+Entropy Facebook draft creatives resource
+
+## get__organizations_{organizationId}_draft-strategies_{draftStrategyId}_draft-creatives
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives`
+
+*Retrieve Facebook campaign strategy creatives*
+
+<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}_draft-creatives-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|draftStrategyId|path|string|true|The Draft Stratgy Id|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "id": "5e7bab8b5ecb9ea374bf8a65",
+    "name": "My Creative",
+    "creative_uri": "images.google.com/epy/creatives/123456ffdf"
+  }
+]
+```
+
+<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}_draft-creatives-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}_draft-creatives-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|string|false|none|Draft Creative id|
+|» name|string|false|none|none|
+|» creative_uri|string|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## post__organizations_{organizationId}_draft-strategies_{draftStrategyId}_draft-creatives
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+POST https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives HTTP/1.1
+Host: pending.entropy.tech
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '{
+  "name": "My Creative",
+  "creative_uri": "images.google.com/epy/creatives/123456ffdf"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives`
+
+*Create new Facebook campaign creative*
+
+This creates a new Facebook campaign creative
+
+> Body parameter
+
+```json
+{
+  "name": "My Creative",
+  "creative_uri": "images.google.com/epy/creatives/123456ffdf"
+}
+```
+
+<h3 id="post__organizations_{organizationid}_draft-strategies_{draftstrategyid}_draft-creatives-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|draftStrategyId|path|string|true|The Draft Strategy Id|
+|body|body|object|true|none|
+|» name|body|string|false|none|
+|» creative_uri|body|string|false|none|
+
+> Example responses
+
+> 201 Response
+
+```json
+{
+  "id": "5e7bab8b5ecb9ea374bf8a65",
+  "name": "My Creative",
+  "creative_uri": "images.google.com/epy/creatives/123456ffdf"
+}
+```
+
+<h3 id="post__organizations_{organizationid}_draft-strategies_{draftstrategyid}_draft-creatives-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="post__organizations_{organizationid}_draft-strategies_{draftstrategyid}_draft-creatives-responseschema">Response Schema</h3>
+
+Status Code **201**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|string|false|none|The draft creative Id.|
+|» name|string|false|none|none|
+|» creative_uri|string|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## get__organizations_{organizationId}_draft-strategies_{draftStrategyId}_draft-creatives_{draftCreativeId}
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId} \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId} HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}`
+
+*Retrieve Facebook campaign strategy creative*
+
+<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}_draft-creatives_{draftcreativeid}-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|draftStrategyId|path|string|true|The Draft Strategy Id|
+|draftCreativeId|path|string|true|The Draft Creative Id|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "id": "123456",
+  "name": "My Creative",
+  "creative_uri": "images.google.com/epy/creatives/123456ffdf"
+}
+```
+
+<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}_draft-creatives_{draftcreativeid}-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}_draft-creatives_{draftcreativeid}-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|string|false|none|The draft strategy ID.|
+|» name|string|false|none|none|
+|» creative_uri|string|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## delete__organizations_{organizationId}_draft-strategies_{draftStrategyId}_draft-creatives_{draftCreativeId}
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId} \
+  -H 'Accept: application/json'
+
+```
+
+```http
+DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId} HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}',
+  method: 'delete',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}',
+{
+  method: 'DELETE',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.delete 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("DELETE");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("DELETE", "https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`DELETE /organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}`
+
+*Delete Facebook draft creative*
+
+<h3 id="delete__organizations_{organizationid}_draft-strategies_{draftstrategyid}_draft-creatives_{draftcreativeid}-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|draftStrategyId|path|string|true|The Draft Strategy Id|
+|draftCreativeId|path|string|true|The Draft Creative Id|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "message": "creative deleted"
+}
+```
+
+<h3 id="delete__organizations_{organizationid}_draft-strategies_{draftstrategyid}_draft-creatives_{draftcreativeid}-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="delete__organizations_{organizationid}_draft-strategies_{draftstrategyid}_draft-creatives_{draftcreativeid}-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|.|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+<h1 id="facebook-api-draft-campaigns">draft campaigns</h1>
+
+Entropy Facebook draft campaigns
+
+## get__organizations_{organizationId}_draft-strategies_{draftStrategyId}_campaigns
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns`
+
+*Retrieve Facebook campaign set strategy*
+
+<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}_campaigns-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The organization Id|
+|draftStrategyId|path|string|true|The Draft Strategy Id|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "name": "Campaña de remarketing",
+    "budget": 100,
+    "objective": "CONVERSIONS",
+    "campaigns": [
+      {
+        "name": "RMKT Campaign",
+        "budget": 100,
+        "adsets": [
+          {
+            "name": "RMKT INTEREST 1",
+            "targeting": [
+              "12345678901234"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
+```
+
+<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}_campaigns-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}_campaigns-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» name|string|false|none|none|
+|» budget|integer|false|none|none|
+|» objective|string|false|none|none|
+|» campaigns|[object]|false|none|none|
+|»» name|string|false|none|none|
+|»» budget|integer|false|none|none|
+|»» adsets|[object]|false|none|none|
+|»»» name|string|false|none|none|
+|»»» targeting|[string]|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## put__organizations_{organizationId}_draft-strategies_{draftStrategyId}_campaigns
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+PUT https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns HTTP/1.1
+Host: pending.entropy.tech
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns',
+  method: 'put',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '[
+  {
+    "name": "Campaña de remarketing",
+    "budget": 100,
+    "objective": "CONVERSIONS",
+    "campaigns": [
+      {
+        "name": "RMKT Campaign",
+        "budget": 100,
+        "adsets": [
+          {
+            "name": "RMKT INTEREST 1",
+            "targeting": [
+              "12345678901234"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns',
+{
+  method: 'PUT',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("PUT");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("PUT", "https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`PUT /organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns`
+
+*Update Facebook campaign set strategy*
+
+> Body parameter
+
+```json
+[
+  {
+    "name": "Campaña de remarketing",
+    "budget": 100,
+    "objective": "CONVERSIONS",
+    "campaigns": [
+      {
+        "name": "RMKT Campaign",
+        "budget": 100,
+        "adsets": [
+          {
+            "name": "RMKT INTEREST 1",
+            "targeting": [
+              "12345678901234"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
+```
+
+<h3 id="put__organizations_{organizationid}_draft-strategies_{draftstrategyid}_campaigns-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|draftStrategyId|path|string|true|The Draft Stratgy Id|
+|body|body|array[object]|true|none|
+
+> Example responses
+
+> 202 Response
+
+```json
+[
+  {
+    "id": "321654",
+    "name": "RMT 10 1-7 dias",
+    "country_code": "MX",
+    "budget": 120
+  }
+]
+```
+
+<h3 id="put__organizations_{organizationid}_draft-strategies_{draftstrategyid}_campaigns-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|202|[Accepted](https://tools.ietf.org/html/rfc7231#section-6.3.3)|Accepted|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="put__organizations_{organizationid}_draft-strategies_{draftstrategyid}_campaigns-responseschema">Response Schema</h3>
+
+Status Code **202**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|string|false|none|none|
+|» name|string|false|none|none|
+|» country_code|string|false|none|none|
+|» budget|number|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+<h1 id="facebook-api-draft-budget">draft budget</h1>
+
+Entropy Facebook strategy generator
+
+## post__organizations_{organizationId}_strategy-proposal
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+POST https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal HTTP/1.1
+Host: pending.entropy.tech
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '{
+  "account": {
+    "id": 123456
+  },
+  "budget": 100
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /organizations/{organizationId}/strategy-proposal`
+
+*Generate Facebook Strategy Proposal*
+
+> Body parameter
+
+```json
+{
+  "account": {
+    "id": 123456
+  },
+  "budget": 100
+}
+```
+
+<h3 id="post__organizations_{organizationid}_strategy-proposal-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|body|body|object|true|none|
+|» account|body|object|false|none|
+|»» id|body|integer|false|none|
+|» budget|body|integer|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "name": "Campaña de remarketing",
+    "budget": 100,
+    "objective": "CONVERSIONS",
+    "campaigns": [
+      {
+        "name": "RMKT Campaign",
+        "budget": 100,
+        "adsets": [
+          {
+            "name": "RMKT INTEREST 1",
+            "targeting": [
+              "12345678901234"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
+```
+
+<h3 id="post__organizations_{organizationid}_strategy-proposal-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="post__organizations_{organizationid}_strategy-proposal-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» name|string|false|none|none|
+|» budget|integer|false|none|none|
+|» objective|string|false|none|none|
+|» campaigns|[object]|false|none|none|
+|»» name|string|false|none|none|
+|»» budget|integer|false|none|none|
+|»» adsets|[object]|false|none|none|
+|»»» name|string|false|none|none|
+|»»» targeting|[string]|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## put__organizations_{organizationId}_strategy-proposal
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+PUT https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal HTTP/1.1
+Host: pending.entropy.tech
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal',
+  method: 'put',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '{
+  "account": {
+    "id": 123456
+  },
+  "campaign_collections": [
+    {
+      "name": "RMKT - CAMPAIGNS",
+      "budget": 100,
+      "campaigns": [
+        {
+          "name": "RMKT Visits",
+          "budget": 100,
+          "adsets": [
+            {
+              "name": "RMKT Visits 0-7 days",
+              "targeting": {
+                "interests": [
+                  "1234567890112"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal',
+{
+  method: 'PUT',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("PUT");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("PUT", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`PUT /organizations/{organizationId}/strategy-proposal`
+
+*Generate Facebook Strategy Proposal*
+
+> Body parameter
+
+```json
+{
+  "account": {
+    "id": 123456
+  },
+  "campaign_collections": [
+    {
+      "name": "RMKT - CAMPAIGNS",
+      "budget": 100,
+      "campaigns": [
+        {
+          "name": "RMKT Visits",
+          "budget": 100,
+          "adsets": [
+            {
+              "name": "RMKT Visits 0-7 days",
+              "targeting": {
+                "interests": [
+                  "1234567890112"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+<h3 id="put__organizations_{organizationid}_strategy-proposal-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|body|body|object|true|none|
+|» account|body|object|false|none|
+|»» id|body|integer|false|none|
+|» campaign_collections|body|[object]|false|none|
+|»» name|body|string|false|none|
+|»» budget|body|number|false|none|
+|»» campaigns|body|[object]|false|none|
+|»»» name|body|string|false|none|
+|»»» budget|body|number|false|none|
+|»»» adsets|body|[object]|false|none|
+|»»»» name|body|string|false|none|
+|»»»» targeting|body|object|false|none|
+|»»»»» interests|body|[string]|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "name": "Campaña de remarketing",
+    "budget": 100,
+    "objective": "CONVERSIONS",
+    "campaigns": [
+      {
+        "name": "RMKT Campaign",
+        "budget": 100,
+        "adsets": [
+          {
+            "name": "RMKT INTEREST 1",
+            "targeting": [
+              "12345678901234"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
+```
+
+<h3 id="put__organizations_{organizationid}_strategy-proposal-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="put__organizations_{organizationid}_strategy-proposal-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» name|string|false|none|none|
+|» budget|integer|false|none|none|
+|» objective|string|false|none|none|
+|» campaigns|[object]|false|none|none|
+|»» name|string|false|none|none|
+|»» budget|integer|false|none|none|
+|»» adsets|[object]|false|none|none|
+|»»» name|string|false|none|none|
+|»»» targeting|[string]|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+<h1 id="facebook-api-strategy">strategy</h1>
+
+Entropy Facebook strategies resource
+
+## post__organizations_{organizationId}_strategies
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/strategies \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+POST https://pending.entropy.tech/v1/organizations/{organizationId}/strategies HTTP/1.1
+Host: pending.entropy.tech
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '{
+  "id": "5e7bab8b5ecb9ea374bf8a65"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategies");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategies", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /organizations/{organizationId}/strategies`
+
+*Create new Facebook strategy*
+
+> Body parameter
+
+```json
+{
+  "id": "5e7bab8b5ecb9ea374bf8a65"
+}
+```
+
+<h3 id="post__organizations_{organizationid}_strategies-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|body|body|object|true|none|
+|» id|body|string|false|none|
+
+> Example responses
+
+> 201 Response
+
+```json
+{
+  "id": "12341234"
+}
+```
+
+<h3 id="post__organizations_{organizationid}_strategies-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="post__organizations_{organizationid}_strategies-responseschema">Response Schema</h3>
+
+Status Code **201**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|string|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## get__organizations_{organizationId}_strategies
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/strategies \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/strategies HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategies");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategies", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{organizationId}/strategies`
+
+*Retrieve Facebook strategies*
+
+<h3 id="get__organizations_{organizationid}_strategies-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "name": "My facebook strategy",
+    "id": "12341234",
+    "budget": 600,
+    "status": "PAUSED"
+  }
+]
+```
+
+<h3 id="get__organizations_{organizationid}_strategies-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="get__organizations_{organizationid}_strategies-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» name|string|false|none|none|
+|» id|string|false|none|none|
+|» budget|integer|false|none|none|
+|» status|string|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## delete__organizations_{organizationId}_strategies_{strategyId}
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId} \
+  -H 'Accept: application/json'
+
+```
+
+```http
+DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId} HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}',
+  method: 'delete',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}',
+{
+  method: 'DELETE',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.delete 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("DELETE");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("DELETE", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`DELETE /organizations/{organizationId}/strategies/{strategyId}`
+
+*Delete  Facebook strategy*
+
+<h3 id="delete__organizations_{organizationid}_strategies_{strategyid}-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|strategyId|path|string|true|The strategy Id|
+
+> Example responses
+
+> 400 Response
+
+```json
+{
+  "message": "string"
+}
+```
+
+<h3 id="delete__organizations_{organizationid}_strategies_{strategyid}-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|No Content|None|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="delete__organizations_{organizationid}_strategies_{strategyid}-responseschema">Response Schema</h3>
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## put__organizations_{organizationId}_strategies_{strategyId}_status-paused
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-paused \
+  -H 'Accept: application/json'
+
+```
+
+```http
+PUT https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-paused HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-paused',
+  method: 'put',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-paused',
+{
+  method: 'PUT',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-paused',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-paused', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-paused");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("PUT");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("PUT", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-paused", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`PUT /organizations/{organizationId}/strategies/{strategyId}/status-paused`
+
+*Pause Facebook campaigns set strategy*
+
+<h3 id="put__organizations_{organizationid}_strategies_{strategyid}_status-paused-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|strategyId|path|string|true|The strategy Id|
+
+> Example responses
+
+> 400 Response
+
+```json
+{
+  "message": "string"
+}
+```
+
+<h3 id="put__organizations_{organizationid}_strategies_{strategyid}_status-paused-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|None|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="put__organizations_{organizationid}_strategies_{strategyid}_status-paused-responseschema">Response Schema</h3>
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## put__organizations_{organizationId}_strategies_{strategyId}_status-active
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-active \
+  -H 'Accept: application/json'
+
+```
+
+```http
+PUT https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-active HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-active',
+  method: 'put',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-active',
+{
+  method: 'PUT',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-active',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-active', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-active");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("PUT");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("PUT", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-active", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`PUT /organizations/{organizationId}/strategies/{strategyId}/status-active`
+
+*Pause Facebook strategy*
+
+<h3 id="put__organizations_{organizationid}_strategies_{strategyid}_status-active-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|strategyId|path|string|true|The strategy Id|
+
+> Example responses
+
+> 400 Response
+
+```json
+{
+  "message": "string"
+}
+```
+
+<h3 id="put__organizations_{organizationid}_strategies_{strategyid}_status-active-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|None|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="put__organizations_{organizationid}_strategies_{strategyid}_status-active-responseschema">Response Schema</h3>
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+<h1 id="facebook-api-strategy-campaigns">strategy campaigns</h1>
+
+Entropy Facebook strategy campaigns
+
+## get__organizations_{organizationId}_strategies_{strategyId}_campaigns
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{organizationId}/strategies/{strategyId}/campaigns`
+
+*Retrieve  Facebook campaigns set strategy by id*
+
+<h3 id="get__organizations_{organizationid}_strategies_{strategyid}_campaigns-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|strategyId|path|string|true|The strategy Id|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "name": "Campaña de remarketing",
+    "budget": 100,
+    "objective": "CONVERSIONS",
+    "campaigns": [
+      {
+        "name": "RMKT Campaign",
+        "budget": 100,
+        "adsets": [
+          {
+            "name": "RMKT INTEREST 1",
+            "targeting": [
+              "12345678901234"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
+```
+
+<h3 id="get__organizations_{organizationid}_strategies_{strategyid}_campaigns-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="get__organizations_{organizationid}_strategies_{strategyid}_campaigns-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» name|string|false|none|none|
+|» budget|integer|false|none|none|
+|» objective|string|false|none|none|
+|» campaigns|[object]|false|none|none|
+|»» name|string|false|none|none|
+|»» budget|integer|false|none|none|
+|»» adsets|[object]|false|none|none|
+|»»» name|string|false|none|none|
+|»»» targeting|[string]|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## put__organizations_{organizationId}_strategies_{strategyId}_campaigns
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+PUT https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns HTTP/1.1
+Host: pending.entropy.tech
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns',
+  method: 'put',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '[
+  {
+    "name": "RMKT - CAMPAIGNS",
+    "budget": 100,
+    "campaigns": [
+      {
+        "name": "RMKT Visits",
+        "budget": 100,
+        "adsets": [
+          {
+            "name": "RMKT Visits 0-7 days",
+            "targeting": {
+              "interests": [
+                "1234567890112"
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+]';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns',
+{
+  method: 'PUT',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("PUT");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("PUT", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`PUT /organizations/{organizationId}/strategies/{strategyId}/campaigns`
+
+*Update campaigns in facebook strategy*
+
+> Body parameter
+
+```json
+[
+  {
+    "name": "RMKT - CAMPAIGNS",
+    "budget": 100,
+    "campaigns": [
+      {
+        "name": "RMKT Visits",
+        "budget": 100,
+        "adsets": [
+          {
+            "name": "RMKT Visits 0-7 days",
+            "targeting": {
+              "interests": [
+                "1234567890112"
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
+```
+
+<h3 id="put__organizations_{organizationid}_strategies_{strategyid}_campaigns-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|strategyId|path|string|true|The strategy Id|
+|body|body|array[object]|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "name": "Campaña de remarketing",
+    "budget": 100,
+    "objective": "CONVERSIONS",
+    "campaigns": [
+      {
+        "name": "RMKT Campaign",
+        "budget": 100,
+        "adsets": [
+          {
+            "name": "RMKT INTEREST 1",
+            "targeting": [
+              "12345678901234"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
+```
+
+<h3 id="put__organizations_{organizationid}_strategies_{strategyid}_campaigns-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="put__organizations_{organizationid}_strategies_{strategyid}_campaigns-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» name|string|false|none|none|
+|» budget|integer|false|none|none|
+|» objective|string|false|none|none|
+|» campaigns|[object]|false|none|none|
+|»» name|string|false|none|none|
+|»» budget|integer|false|none|none|
+|»» adsets|[object]|false|none|none|
+|»»» name|string|false|none|none|
+|»»» targeting|[string]|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+<h1 id="facebook-api-strategy-creatives">strategy creatives</h1>
+
+## post__organizations_{organizationId}_strategies_{strategyId}_creatives
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+POST https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives HTTP/1.1
+Host: pending.entropy.tech
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '{
+  "name": "My Creative",
+  "creative_uri": "images.google.com/epy/creatives/123456ffdf"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /organizations/{organizationId}/strategies/{strategyId}/creatives`
+
+*Create new Facebook campaign creative*
+
+This creates a new Facebook campaign creative
+
+> Body parameter
+
+```json
+{
+  "name": "My Creative",
+  "creative_uri": "images.google.com/epy/creatives/123456ffdf"
+}
+```
+
+<h3 id="post__organizations_{organizationid}_strategies_{strategyid}_creatives-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|strategyId|path|string|true|The Strategy Id|
+|body|body|object|true|none|
+|» name|body|string|false|none|
+|» creative_uri|body|string|false|none|
+
+> Example responses
+
+> 201 Response
+
+```json
+{
+  "id": "5e602dd4cf1ff689ff36d2b8",
+  "name": "My Creative",
+  "creative_uri": "images.google.com/epy/creatives/123456ffdf"
+}
+```
+
+<h3 id="post__organizations_{organizationid}_strategies_{strategyid}_creatives-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="post__organizations_{organizationid}_strategies_{strategyid}_creatives-responseschema">Response Schema</h3>
+
+Status Code **201**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|string|false|none|The creative ID.|
+|» name|string|false|none|none|
+|» creative_uri|string|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## get__organizations_{organizationId}_strategies_{strategyId}_creatives
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{organizationId}/strategies/{strategyId}/creatives`
+
+*Retrieve Facebook campaign strategy creatives*
+
+<h3 id="get__organizations_{organizationid}_strategies_{strategyid}_creatives-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|strategyId|path|string|true|The  Strategy Id|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "id": 1234,
+    "name": "My Creative",
+    "creative_uri": "images.google.com/epy/creatives/123456ffdf"
+  }
+]
+```
+
+<h3 id="get__organizations_{organizationid}_strategies_{strategyid}_creatives-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="get__organizations_{organizationid}_strategies_{strategyid}_creatives-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|integer|false|none|The creative ID.|
+|» name|string|false|none|none|
+|» creative_uri|string|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## put__organizations_{organizationId}_strategies_{strategyId}_creatives_{creativeId}
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+PUT https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId} HTTP/1.1
+Host: pending.entropy.tech
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}',
+  method: 'put',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '{
+  "name": "My Second Creative",
+  "creative_uri": "images.google.com/epy/creatives/123456ffdf"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}',
+{
+  method: 'PUT',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("PUT");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("PUT", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`PUT /organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}`
+
+*Uploads Facebook campaign creative*
+
+This Uploads a Facebook campaign creative
+
+> Body parameter
+
+```json
+{
+  "name": "My Second Creative",
+  "creative_uri": "images.google.com/epy/creatives/123456ffdf"
+}
+```
+
+<h3 id="put__organizations_{organizationid}_strategies_{strategyid}_creatives_{creativeid}-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|strategyId|path|string|true|The Strategy Id|
+|creativeId|path|integer|true|The creative Id|
+|body|body|object|true|none|
+|» name|body|string|false|none|
+|» creative_uri|body|string|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "id": "123456",
+  "name": "My Creative",
+  "creative_uri": "images.google.com/epy/creatives/123456ffdf"
+}
+```
+
+<h3 id="put__organizations_{organizationid}_strategies_{strategyid}_creatives_{creativeid}-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Updated|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="put__organizations_{organizationid}_strategies_{strategyid}_creatives_{creativeid}-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|string|false|none|The creative ID.|
+|» name|string|false|none|none|
+|» creative_uri|string|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## get__organizations_{organizationId}_strategies_{strategyId}_creatives_{creativeId}
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId} \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId} HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}`
+
+*Retrieve Facebook campaign strategy creatives*
+
+<h3 id="get__organizations_{organizationid}_strategies_{strategyid}_creatives_{creativeid}-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|strategyId|path|string|true|The  Strategy Id|
+|creativeId|path|string|true|The  creative Id|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "id": "5e602dd4cf1ff689ff36d2b8",
+  "name": "My Creative",
+  "creative_uri": "images.google.com/epy/creatives/123456ffdf"
+}
+```
+
+<h3 id="get__organizations_{organizationid}_strategies_{strategyid}_creatives_{creativeid}-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="get__organizations_{organizationid}_strategies_{strategyid}_creatives_{creativeid}-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|string|false|none|The creative ID.|
+|» name|string|false|none|none|
+|» creative_uri|string|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## delete__organizations_{organizationId}_strategies_{strategyId}_creatives_{creativeId}
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId} \
+  -H 'Accept: application/json'
+
+```
+
+```http
+DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId} HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}',
+  method: 'delete',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}',
+{
+  method: 'DELETE',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.delete 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("DELETE");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("DELETE", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`DELETE /organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}`
+
+*Delete Facebook creative*
+
+<h3 id="delete__organizations_{organizationid}_strategies_{strategyid}_creatives_{creativeid}-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|strategyId|path|string|true|The Strategy Id|
+|creativeId|path|string|true|The Creative Id|
+
+> Example responses
+
+> 400 Response
+
+```json
+{
+  "message": "string"
+}
+```
+
+<h3 id="delete__organizations_{organizationid}_strategies_{strategyid}_creatives_{creativeid}-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|Creative Successfully deleted|None|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="delete__organizations_{organizationid}_strategies_{strategyid}_creatives_{creativeid}-responseschema">Response Schema</h3>
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+<h1 id="facebook-api-strategy-ads">strategy ads</h1>
+
+## post__organizations_{organizationId}_strategies_{strategyId}_ads
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+POST https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads HTTP/1.1
+Host: pending.entropy.tech
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '[
+  {
+    "name": "My ad name",
+    "title": "My ad title",
+    "body": "Buy this product",
+    "visible_uri": "https://entropy.tech",
+    "creative_id": "asdfasdfasdf",
+    "type": "dynamic_ad"
+  }
+]';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /organizations/{organizationId}/strategies/{strategyId}/ads`
+
+*Ads an ad in strategy*
+
+> Body parameter
+
+```json
+[
+  {
+    "name": "My ad name",
+    "title": "My ad title",
+    "body": "Buy this product",
+    "visible_uri": "https://entropy.tech",
+    "creative_id": "asdfasdfasdf",
+    "type": "dynamic_ad"
+  }
+]
+```
+
+<h3 id="post__organizations_{organizationid}_strategies_{strategyid}_ads-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|strategyId|path|string|true|The Strategy Id|
+|body|body|array[object]|true|none|
+
+> Example responses
+
+> 200 Response
 
 ```json
 [
   {
     "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "name": "My ad",
+    "title": "My ad title",
+    "body": "Buy this ad product",
+    "visible_uri": "https://entropy.tech"
   }
 ]
 ```
 
-This endpoint retrieves all kittens.
+<h3 id="post__organizations_{organizationid}_strategies_{strategyid}_ads-responses">Responses</h3>
 
-### HTTP Request
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Ad Successfully Created|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
 
-`GET http://example.com/api/kittens`
+<h3 id="post__organizations_{organizationid}_strategies_{strategyid}_ads-responseschema">Response Schema</h3>
 
-### Query Parameters
+Status Code **200**
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|integer|false|none|Ad id.|
+|» name|string|false|none|The ad name.|
+|» title|string|false|none|The ad title.|
+|» body|string|false|none|The ad body.|
+|» visible_uri|string|false|none|The ad visible link.|
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+Status Code **400**
 
-## Get a Specific Kitten
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
 
-```ruby
-require 'kittn'
+Status Code **401**
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
 
-```python
-import kittn
+Status Code **403**
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## get__organizations_{organizationId}_strategies_{strategyId}_ads
+
+> Code samples
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+# You can also use wget
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
 ```
 
 ```javascript
-const kittn = require('kittn');
+var headers = {
+  'Accept':'application/json'
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
 ```
 
-> The above command returns JSON structured like this:
+```javascript--nodejs
+const fetch = require('node-fetch');
 
-```json
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads',
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
 ```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
 
 ```ruby
-require 'kittn'
+require 'rest-client'
+require 'json'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
 ```
 
 ```python
-import kittn
+import requests
+headers = {
+  'Accept': 'application/json'
+}
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads', params={
+
+}, headers = headers)
+
+print r.json()
+
 ```
 
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{organizationId}/strategies/{strategyId}/ads`
+
+*Retrieves ads in strategy*
+
+<h3 id="get__organizations_{organizationid}_strategies_{strategyid}_ads-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|strategyId|path|string|true|The Strategy Id|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "id": 1,
+    "name": "My  ad",
+    "title": "My title",
+    "body": "Buy this product right now",
+    "visible_uri": "https://entropy.tech",
+    "creative_id": "asdfasdfasdf",
+    "type": "dynamic_ad"
+  }
+]
+```
+
+<h3 id="get__organizations_{organizationid}_strategies_{strategyid}_ads-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Ads Successfully found|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="get__organizations_{organizationid}_strategies_{strategyid}_ads-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|integer|false|none|The ad id.|
+|» name|string|false|none|The ad name.|
+|» title|string|false|none|The ad title.|
+|» body|string|false|none|The ad body.|
+|» visible_uri|string|false|none|The ad visible link.|
+|» creative_id|string|false|none|The ad creative id.|
+|» type|string|false|none|The ad type.|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## get__organizations_{organizationId}_strategies_{strategyId}_ads_{adId}
+
+> Code samples
+
 ```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
+# You can also use wget
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId} \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId} HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
 ```
 
 ```javascript
-const kittn = require('kittn');
+var headers = {
+  'Accept':'application/json'
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
 ```
 
-> The above command returns JSON structured like this:
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{organizationId}/strategies/{strategyId}/ads/{adId}`
+
+*Retrieves an ad in strategy*
+
+<h3 id="get__organizations_{organizationid}_strategies_{strategyid}_ads_{adid}-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|strategyId|path|string|true|The Strategy Id|
+|adId|path|integer|true|The ad Id|
+
+> Example responses
+
+> 200 Response
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "name": "My  ad",
+  "title": "My title",
+  "body": "Buy this product right now",
+  "visible_uri": "https://entropy.tech",
+  "creative_id": "asdfasdfasdf",
+  "type": "dynamic_ad"
 }
 ```
 
-This endpoint deletes a specific kitten.
+<h3 id="get__organizations_{organizationid}_strategies_{strategyid}_ads_{adid}-responses">Responses</h3>
 
-### HTTP Request
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Ad Successfully found|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
 
-`DELETE http://example.com/kittens/<ID>`
+<h3 id="get__organizations_{organizationid}_strategies_{strategyid}_ads_{adid}-responseschema">Response Schema</h3>
 
-### URL Parameters
+Status Code **200**
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» name|string|false|none|The ad name.|
+|» title|string|false|none|The ad title.|
+|» body|string|false|none|The ad body.|
+|» visible_uri|string|false|none|The ad visible link.|
+|» creative_id|string|false|none|Ad creative id.|
+|» type|string|false|none|Ad type|
 
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## put__organizations_{organizationId}_strategies_{strategyId}_ads_{adId}
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+PUT https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId} HTTP/1.1
+Host: pending.entropy.tech
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}',
+  method: 'put',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '{
+  "name": "My ad name",
+  "title": "My ad title",
+  "body": "Buy this product",
+  "visible_uri": "https://entropy.tech",
+  "creative_id": "asdfasdfasdf",
+  "type": "asdfasdfasdf"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}',
+{
+  method: 'PUT',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("PUT");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("PUT", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`PUT /organizations/{organizationId}/strategies/{strategyId}/ads/{adId}`
+
+*Updates an ad in strategy*
+
+> Body parameter
+
+```json
+{
+  "name": "My ad name",
+  "title": "My ad title",
+  "body": "Buy this product",
+  "visible_uri": "https://entropy.tech",
+  "creative_id": "asdfasdfasdf",
+  "type": "asdfasdfasdf"
+}
+```
+
+<h3 id="put__organizations_{organizationid}_strategies_{strategyid}_ads_{adid}-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|strategyId|path|string|true|The Strategy Id|
+|adId|path|string|true|The ad Id|
+|body|body|object|true|none|
+|» name|body|string|false|The ad name.|
+|» title|body|string|false|The ad title.|
+|» body|body|string|false|The ad body.|
+|» visible_uri|body|string|false|The ad visible link.|
+|» creative_id|body|string|false|The ad creative id|
+|» type|body|string|false|The ad type|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "My ad",
+  "title": "My ad title",
+  "body": "Buy this ad product",
+  "visible_uri": "https://entropy.tech",
+  "creative_id": "string"
+}
+```
+
+<h3 id="put__organizations_{organizationid}_strategies_{strategyid}_ads_{adid}-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Ad Successfully Created|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="put__organizations_{organizationid}_strategies_{strategyid}_ads_{adid}-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» name|string|false|none|The ad name.|
+|» title|string|false|none|The ad title.|
+|» body|string|false|none|The ad body.|
+|» visible_uri|string|false|none|The ad visible link.|
+|» creative_id|string|false|none|The ad creative id.|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## delete__organizations_{organizationId}_strategies_{strategyId}_ads_{adId}
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId} \
+  -H 'Accept: application/json'
+
+```
+
+```http
+DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId} HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}',
+  method: 'delete',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}',
+{
+  method: 'DELETE',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.delete 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("DELETE");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("DELETE", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`DELETE /organizations/{organizationId}/strategies/{strategyId}/ads/{adId}`
+
+*Deletes an ad in strategy*
+
+<h3 id="delete__organizations_{organizationid}_strategies_{strategyid}_ads_{adid}-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|strategyId|path|string|true|The Strategy Id|
+|adId|path|string|true|The ad Id|
+
+> Example responses
+
+> 400 Response
+
+```json
+{
+  "message": "string"
+}
+```
+
+<h3 id="delete__organizations_{organizationid}_strategies_{strategyid}_ads_{adid}-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|Ad Successfully deleted|None|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="delete__organizations_{organizationid}_strategies_{strategyid}_ads_{adid}-responseschema">Response Schema</h3>
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+<h1 id="facebook-api-strategy-locations">strategy locations</h1>
+
+## post__organizations_{organizationId}_strategies_{strategyId}_locations
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+POST https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations HTTP/1.1
+Host: pending.entropy.tech
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '{
+  "countries": [
+    "MX"
+  ],
+  "regions": [
+    {
+      "key": "3843"
+    }
+  ],
+  "cities": [
+    {
+      "key": "2420605",
+      "radius": 10,
+      "distance_unit": "mile"
+    }
+  ]
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /organizations/{organizationId}/strategies/{strategyId}/locations`
+
+*Creates locations in strategy*
+
+> Body parameter
+
+```json
+{
+  "countries": [
+    "MX"
+  ],
+  "regions": [
+    {
+      "key": "3843"
+    }
+  ],
+  "cities": [
+    {
+      "key": "2420605",
+      "radius": 10,
+      "distance_unit": "mile"
+    }
+  ]
+}
+```
+
+<h3 id="post__organizations_{organizationid}_strategies_{strategyid}_locations-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|strategyId|path|string|true|The Strategy Id|
+|body|body|object|true|none|
+|» countries|body|[string]|false|none|
+|» regions|body|[object]|false|none|
+|»» key|body|string|false|none|
+|» cities|body|[object]|false|none|
+|»» key|body|string|false|none|
+|»» radius|body|integer|false|none|
+|»» distance_unit|body|string|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "countries": [
+    "MX"
+  ],
+  "regions": [
+    {
+      "key": "3843"
+    }
+  ],
+  "cities": [
+    {
+      "key": "2420605",
+      "radius": 10,
+      "distance_unit": "mile"
+    }
+  ]
+}
+```
+
+<h3 id="post__organizations_{organizationid}_strategies_{strategyid}_locations-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Locations Successfully Created|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="post__organizations_{organizationid}_strategies_{strategyid}_locations-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» countries|[string]|false|none|none|
+|» regions|[object]|false|none|none|
+|»» key|string|false|none|none|
+|» cities|[object]|false|none|none|
+|»» key|string|false|none|none|
+|»» radius|integer|false|none|none|
+|»» distance_unit|string|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## get__organizations_{organizationId}_strategies_{strategyId}_locations
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{organizationId}/strategies/{strategyId}/locations`
+
+*Retrieves locations in strategy*
+
+<h3 id="get__organizations_{organizationid}_strategies_{strategyid}_locations-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|strategyId|path|string|true|The Strategy Id|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "countries": [
+    "MX"
+  ],
+  "regions": [
+    {
+      "key": "3843"
+    }
+  ],
+  "cities": [
+    {
+      "key": "2420605",
+      "radius": 10,
+      "distance_unit": "mile"
+    }
+  ]
+}
+```
+
+<h3 id="get__organizations_{organizationid}_strategies_{strategyid}_locations-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|locations found|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="get__organizations_{organizationid}_strategies_{strategyid}_locations-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» countries|[string]|false|none|none|
+|» regions|[object]|false|none|none|
+|»» key|string|false|none|none|
+|» cities|[object]|false|none|none|
+|»» key|string|false|none|none|
+|»» radius|integer|false|none|none|
+|»» distance_unit|string|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## put__organizations_{organizationId}_strategies_{strategyId}_locations
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+PUT https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations HTTP/1.1
+Host: pending.entropy.tech
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
+  method: 'put',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '{
+  "countries": [
+    "MX"
+  ],
+  "regions": [
+    {
+      "key": "3843"
+    }
+  ],
+  "cities": [
+    {
+      "key": "2420605",
+      "radius": 10,
+      "distance_unit": "mile"
+    }
+  ]
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
+{
+  method: 'PUT',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("PUT");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("PUT", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`PUT /organizations/{organizationId}/strategies/{strategyId}/locations`
+
+*Updates locations in strategy*
+
+> Body parameter
+
+```json
+{
+  "countries": [
+    "MX"
+  ],
+  "regions": [
+    {
+      "key": "3843"
+    }
+  ],
+  "cities": [
+    {
+      "key": "2420605",
+      "radius": 10,
+      "distance_unit": "mile"
+    }
+  ]
+}
+```
+
+<h3 id="put__organizations_{organizationid}_strategies_{strategyid}_locations-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|strategyId|path|string|true|The Strategy Id|
+|body|body|object|true|none|
+|» countries|body|[string]|false|none|
+|» regions|body|[object]|false|none|
+|»» key|body|string|false|none|
+|» cities|body|[object]|false|none|
+|»» key|body|string|false|none|
+|»» radius|body|integer|false|none|
+|»» distance_unit|body|string|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "countries": [
+    "MX"
+  ],
+  "regions": [
+    {
+      "key": "3843"
+    }
+  ],
+  "cities": [
+    {
+      "key": "2420605",
+      "radius": 10,
+      "distance_unit": "mile"
+    }
+  ]
+}
+```
+
+<h3 id="put__organizations_{organizationid}_strategies_{strategyid}_locations-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|locations successfully updates|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="put__organizations_{organizationid}_strategies_{strategyid}_locations-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» countries|[string]|false|none|none|
+|» regions|[object]|false|none|none|
+|»» key|string|false|none|none|
+|» cities|[object]|false|none|none|
+|»» key|string|false|none|none|
+|»» radius|integer|false|none|none|
+|»» distance_unit|string|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
+
+## delete__organizations_{organizationId}_strategies_{strategyId}_locations
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations \
+  -H 'Accept: application/json'
+
+```
+
+```http
+DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
+  method: 'delete',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
+{
+  method: 'DELETE',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.delete 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("DELETE");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("DELETE", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`DELETE /organizations/{organizationId}/strategies/{strategyId}/locations`
+
+*Deletes locations in strategy*
+
+<h3 id="delete__organizations_{organizationid}_strategies_{strategyid}_locations-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|strategyId|path|string|true|The Strategy Id|
+
+> Example responses
+
+> 400 Response
+
+```json
+{
+  "message": "string"
+}
+```
+
+<h3 id="delete__organizations_{organizationid}_strategies_{strategyid}_locations-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|locations deleted|None|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="delete__organizations_{organizationid}_strategies_{strategyid}_locations-responseschema">Response Schema</h3>
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<!-- <aside class="success">
+This operation does not require authentication
+</aside> -->
