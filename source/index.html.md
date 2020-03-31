@@ -408,6 +408,15 @@ func main() {
 
 > 200 Response
 
+```json
+[
+  {
+    "id": 1,
+    "name": "My facebook credential"
+  }
+]
+```
+
 > 401 Response
 
 ```json
