@@ -27,10 +27,8 @@ Base URLs:
 
 * <a href="https://pending.entropy.tech/v1">https://pending.entropy.tech/v1</a>
 
-Email Karina: <a href="mailto:karina@entropy.tech">Support</a>
-<br>
-Email Alejandro: <a href="mailto:alejandro@entropy.tech">Support</a>
-<br>
+Email: <a href="mailto:karina@entropy.tech">Support</a> 
+
 <h1 id="facebook-api-credentials">credentials</h1>
 
 Entropy Facebook credentials resource
@@ -162,7 +160,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -259,9 +257,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## get__organizations_{organizationId}_credentials
 
@@ -270,20 +268,20 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/credentials \
-  -H 'Accept: appplication/json'
+  -H 'Accept: application/json'
 
 ```
 
 ```http
 GET https://pending.entropy.tech/v1/organizations/{organizationId}/credentials HTTP/1.1
 Host: pending.entropy.tech
-Accept: appplication/json
+Accept: application/json
 
 ```
 
 ```javascript
 var headers = {
-  'Accept':'appplication/json'
+  'Accept':'application/json'
 
 };
 
@@ -303,7 +301,7 @@ $.ajax({
 const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'appplication/json'
+  'Accept':'application/json'
 
 };
 
@@ -326,7 +324,7 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'appplication/json'
+  'Accept' => 'application/json'
 }
 
 result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials',
@@ -340,7 +338,7 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'appplication/json'
+  'Accept': 'application/json'
 }
 
 r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials', params={
@@ -379,8 +377,8 @@ import (
 func main() {
 
     headers := map[string][]string{
-        "Accept": []string{"appplication/json"},
-
+        "Accept": []string{"application/json"},
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -415,14 +413,6 @@ func main() {
     "name": "My facebook credential"
   }
 ]
-```
-
-> 401 Response
-
-```json
-{
-  "message": "Authentication is required for this operation."
-}
 ```
 
 <h3 id="get__organizations_{organizationid}_credentials-responses">Responses</h3>
@@ -468,9 +458,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## get__organizations_{organizationId}_credentials_{credentialId}
 
@@ -589,7 +579,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -682,9 +672,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## delete__organizations_{organizationId}_credentials_{credentialId}
 
@@ -803,7 +793,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -888,9 +878,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## put__organizations_{organizationId}_credentials_{credentialId}
 
@@ -1019,7 +1009,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -1124,9 +1114,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## get__organizations_{organizationId}_credentials_{credentialId}_adaccounts
 
@@ -1245,7 +1235,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -1340,28 +1330,28 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 <h1 id="facebook-api-draft-strategies">draft strategies</h1>
 
 Entropy Facebook draft strategies resource
 
-## post__organizations_{organizationId}_draft-strategies_
+## post__organizations_{organizationId}_draft-strategies
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/ \
+curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-POST https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/ HTTP/1.1
+POST https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies HTTP/1.1
 Host: pending.entropy.tech
 Content-Type: application/json
 Accept: application/json
@@ -1376,7 +1366,7 @@ var headers = {
 };
 
 $.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/',
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies',
   method: 'post',
 
   headers: headers,
@@ -1390,11 +1380,7 @@ $.ajax({
 ```javascript--nodejs
 const fetch = require('node-fetch');
 const inputBody = '{
-  "account": {
-    "id": 1234567,
-    "external_id": "act_123456789101112",
-    "name": "Cat&Dogs Co."
-  },
+  "account_id": 1234567,
   "geo_locations": {
     "countries": [
       "MX"
@@ -1410,27 +1396,6 @@ const inputBody = '{
         "radius": 10,
         "distance_unit": "mile"
       }
-    ],
-    "campaign_collections": [
-      {
-        "name": "Campaña de remarketing",
-        "budget": 100,
-        "objective": "CONVERSIONS",
-        "campaigns": [
-          {
-            "name": "RMKT Campaign",
-            "budget": 100,
-            "adsets": [
-              {
-                "name": "RMKT INTEREST 1",
-                "targeting": [
-                  "12345678901234"
-                ]
-              }
-            ]
-          }
-        ]
-      }
     ]
   }
 }';
@@ -1440,7 +1405,7 @@ const headers = {
 
 };
 
-fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/',
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies',
 {
   method: 'POST',
   body: inputBody,
@@ -1463,7 +1428,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/',
+result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies',
   params: {
   }, headers: headers
 
@@ -1478,7 +1443,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/', params={
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies', params={
 
 }, headers = headers)
 
@@ -1487,7 +1452,7 @@ print r.json()
 ```
 
 ```java
-URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/");
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("POST");
 int responseCode = con.getResponseCode();
@@ -1516,11 +1481,11 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("POST", "https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/", data)
+    req, err := http.NewRequest("POST", "https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -1530,7 +1495,7 @@ func main() {
 
 ```
 
-`POST /organizations/{organizationId}/draft-strategies/`
+`POST /organizations/{organizationId}/draft-strategies`
 
 *Create new Facebook draft strategy*
 
@@ -1540,11 +1505,7 @@ This creates a new Facebook strategy
 
 ```json
 {
-  "account": {
-    "id": 1234567,
-    "external_id": "act_123456789101112",
-    "name": "Cat&Dogs Co."
-  },
+  "account_id": 1234567,
   "geo_locations": {
     "countries": [
       "MX"
@@ -1560,42 +1521,18 @@ This creates a new Facebook strategy
         "radius": 10,
         "distance_unit": "mile"
       }
-    ],
-    "campaign_collections": [
-      {
-        "name": "Campaña de remarketing",
-        "budget": 100,
-        "objective": "CONVERSIONS",
-        "campaigns": [
-          {
-            "name": "RMKT Campaign",
-            "budget": 100,
-            "adsets": [
-              {
-                "name": "RMKT INTEREST 1",
-                "targeting": [
-                  "12345678901234"
-                ]
-              }
-            ]
-          }
-        ]
-      }
     ]
   }
 }
 ```
 
-<h3 id="post__organizations_{organizationid}_draft-strategies_-parameters">Parameters</h3>
+<h3 id="post__organizations_{organizationid}_draft-strategies-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |organizationId|path|string|true|The Organization Id|
 |body|body|object|true|none|
-|» account|body|object|false|none|
-|»» id|body|integer|false|none|
-|»» external_id|body|string|false|none|
-|»» name|body|string|false|none|
+|» account_id|body|integer|false|none|
 |» geo_locations|body|object|false|none|
 |»» countries|body|[string]|false|none|
 |»» regions|body|[object]|false|none|
@@ -1604,16 +1541,6 @@ This creates a new Facebook strategy
 |»»» key|body|string|false|none|
 |»»» radius|body|integer|false|none|
 |»»» distance_unit|body|string|false|none|
-|»» campaign_collections|body|[object]|false|none|
-|»»» name|body|string|false|none|
-|»»» budget|body|integer|false|none|
-|»»» objective|body|string|false|none|
-|»»» campaigns|body|[object]|false|none|
-|»»»» name|body|string|false|none|
-|»»»» budget|body|integer|false|none|
-|»»»» adsets|body|[object]|false|none|
-|»»»»» name|body|string|false|none|
-|»»»»» targeting|body|[string]|false|none|
 
 > Example responses
 
@@ -1625,7 +1552,7 @@ This creates a new Facebook strategy
 }
 ```
 
-<h3 id="post__organizations_{organizationid}_draft-strategies_-responses">Responses</h3>
+<h3 id="post__organizations_{organizationid}_draft-strategies-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -1637,7 +1564,7 @@ This creates a new Facebook strategy
 |408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
 
-<h3 id="post__organizations_{organizationid}_draft-strategies_-responseschema">Response Schema</h3>
+<h3 id="post__organizations_{organizationid}_draft-strategies-responseschema">Response Schema</h3>
 
 Status Code **201**
 
@@ -1681,10 +1608,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
-
+</aside>
 
 ## get__organizations_{organizationId}_draft-strategies_{draftStrategyId}
 
@@ -1803,7 +1729,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -1834,49 +1760,10 @@ func main() {
 
 ```json
 {
-  "account": {
-    "id": 1234567,
-    "external_id": "act_123456789101112",
-    "name": "Cat&Dogs Co."
-  },
-  "geo_locations": {
-    "countries": [
-      "MX"
-    ],
-    "regions": [
-      {
-        "key": "3843"
-      }
-    ],
-    "cities": [
-      {
-        "key": "2420605",
-        "radius": 10,
-        "distance_unit": "mile"
-      }
-    ],
-    "campaign_collections": [
-      {
-        "name": "Campaña de remarketing",
-        "budget": 100,
-        "objective": "CONVERSIONS",
-        "campaigns": [
-          {
-            "name": "RMKT Campaign",
-            "budget": 100,
-            "adsets": [
-              {
-                "name": "RMKT INTEREST 1",
-                "targeting": [
-                  "12345678901234"
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
+  "account_id": 1,
+  "name": "My draft strategy",
+  "budget": 0,
+  "created_at": "2020-03-04 16:38:12.317086461 -0600 CST m=+5532.901298845"
 }
 ```
 
@@ -1898,28 +1785,10 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» account|object|false|none|none|
-|»» id|integer|false|none|none|
-|»» external_id|string|false|none|none|
-|»» name|string|false|none|none|
-|» geo_locations|object|false|none|none|
-|»» countries|[string]|false|none|none|
-|»» regions|[object]|false|none|none|
-|»»» key|string|false|none|none|
-|»» cities|[object]|false|none|none|
-|»»» key|string|false|none|none|
-|»»» radius|integer|false|none|none|
-|»»» distance_unit|string|false|none|none|
-|»» campaign_collections|[object]|false|none|none|
-|»»» name|string|false|none|none|
-|»»» budget|integer|false|none|none|
-|»»» objective|string|false|none|none|
-|»»» campaigns|[object]|false|none|none|
-|»»»» name|string|false|none|none|
-|»»»» budget|integer|false|none|none|
-|»»»» adsets|[object]|false|none|none|
-|»»»»» name|string|false|none|none|
-|»»»»» targeting|[string]|false|none|none|
+|» account_id|string|false|none|none|
+|» name|string|false|none|none|
+|» budget|integer|false|none|none|
+|» created_at|string|false|none|none|
 
 Status Code **400**
 
@@ -1957,9 +1826,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## delete__organizations_{organizationId}_draft-strategies_{draftStrategyId}
 
@@ -2078,7 +1947,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -2169,9 +2038,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 <h1 id="facebook-api-draft-ads">draft ads</h1>
 
@@ -2223,7 +2092,7 @@ const inputBody = '[
     "name": "My draft ad",
     "title": "My draft title",
     "body": "Buy this product",
-    "url": "https://entropy.tech"
+    "visible_uri:": "https://entropy.tech"
   }
 ]';
 const headers = {
@@ -2308,7 +2177,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -2334,7 +2203,7 @@ func main() {
     "name": "My draft ad",
     "title": "My draft title",
     "body": "Buy this product",
-    "url": "https://entropy.tech"
+    "visible_uri:": "https://entropy.tech"
   }
 ]
 ```
@@ -2423,9 +2292,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## get__organizations_{organizationId}_draft-strategies_{draftStrategyId}_ads
 
@@ -2544,7 +2413,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -2579,7 +2448,7 @@ func main() {
   "name": "My draft ad",
   "title": "My draft title",
   "body": "Buy this ad product",
-  "uri": "https://entropy.tech"
+  "visible_uri:": "https://entropy.tech"
 }
 ```
 
@@ -2605,7 +2474,7 @@ Status Code **200**
 |» name|string|false|none|The draft ad name.|
 |» title|string|false|none|The draft ad title.|
 |» body|string|false|none|The draft ad body.|
-|» uri|string|false|none|The draft ad visible link.|
+|» visible_uri:|string|false|none|The draft ad visible link.|
 
 Status Code **400**
 
@@ -2643,9 +2512,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## put__organizations_{organizationId}_draft-strategies_{draftStrategyId}_ads
 
@@ -2694,7 +2563,7 @@ const inputBody = '[
     "name": "My draft ad",
     "title": "My draft title",
     "body": "Buy this ad product",
-    "url": "https://entropy.tech"
+    "visible_uri": "https://entropy.tech"
   }
 ]';
 const headers = {
@@ -2779,7 +2648,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -2806,7 +2675,7 @@ func main() {
     "name": "My draft ad",
     "title": "My draft title",
     "body": "Buy this ad product",
-    "url": "https://entropy.tech"
+    "visible_uri": "https://entropy.tech"
   }
 ]
 ```
@@ -2895,9 +2764,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## delete__organizations_{organizationId}_draft-strategies_{draftStrategyId}_ads
 
@@ -3016,7 +2885,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -3101,9 +2970,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 <h1 id="facebook-api-draft-locations">draft locations</h1>
 
@@ -3226,7 +3095,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -3337,9 +3206,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## put__organizations_{organizationId}_draft-strategies_{draftStrategyId}_geo-locations
 
@@ -3481,7 +3350,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -3622,9 +3491,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 <h1 id="facebook-api-draft-creatives">draft creatives</h1>
 
@@ -3747,7 +3616,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -3844,9 +3713,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## post__organizations_{organizationId}_draft-strategies_{draftStrategyId}_draft-creatives
 
@@ -3975,7 +3844,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -4084,9 +3953,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## get__organizations_{organizationId}_draft-strategies_{draftStrategyId}_draft-creatives_{draftCreativeId}
 
@@ -4205,7 +4074,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -4301,9 +4170,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## delete__organizations_{organizationId}_draft-strategies_{draftStrategyId}_draft-creatives_{draftCreativeId}
 
@@ -4422,7 +4291,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -4514,13 +4383,250 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 <h1 id="facebook-api-draft-campaigns">draft campaigns</h1>
 
 Entropy Facebook draft campaigns
+
+## post__organizations_{organizationId}_draft-strategies_{draftStrategyId}_campaigns
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+POST https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns HTTP/1.1
+Host: pending.entropy.tech
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '{
+  "budget": 600
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+        
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns`
+
+*Create Facebook campaign set in strategy*
+
+> Body parameter
+
+```json
+{
+  "budget": 600
+}
+```
+
+<h3 id="post__organizations_{organizationid}_draft-strategies_{draftstrategyid}_campaigns-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The organization Id|
+|draftStrategyId|path|string|true|The Draft Strategy Id|
+|body|body|object|true|none|
+|» budget|body|integer|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "name": "Campañas de remarketing",
+    "budget": 10000,
+    "objective": "CONVERSIONS"
+  }
+]
+```
+
+<h3 id="post__organizations_{organizationid}_draft-strategies_{draftstrategyid}_campaigns-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="post__organizations_{organizationid}_draft-strategies_{draftstrategyid}_campaigns-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» name|string|false|none|none|
+|» budget|integer|false|none|none|
+|» objective|string|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
 
 ## get__organizations_{organizationId}_draft-strategies_{draftStrategyId}_campaigns
 
@@ -4639,7 +4745,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -4671,23 +4777,9 @@ func main() {
 ```json
 [
   {
-    "name": "Campaña de remarketing",
-    "budget": 100,
-    "objective": "CONVERSIONS",
-    "campaigns": [
-      {
-        "name": "RMKT Campaign",
-        "budget": 100,
-        "adsets": [
-          {
-            "name": "RMKT INTEREST 1",
-            "targeting": [
-              "12345678901234"
-            ]
-          }
-        ]
-      }
-    ]
+    "name": "Campañas de remarketing",
+    "budget": 10000,
+    "objective": "CONVERSIONS"
   }
 ]
 ```
@@ -4713,12 +4805,6 @@ Status Code **200**
 |» name|string|false|none|none|
 |» budget|integer|false|none|none|
 |» objective|string|false|none|none|
-|» campaigns|[object]|false|none|none|
-|»» name|string|false|none|none|
-|»» budget|integer|false|none|none|
-|»» adsets|[object]|false|none|none|
-|»»» name|string|false|none|none|
-|»»» targeting|[string]|false|none|none|
 
 Status Code **400**
 
@@ -4756,9 +4842,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## put__organizations_{organizationId}_draft-strategies_{draftStrategyId}_campaigns
 
@@ -4803,23 +4889,9 @@ $.ajax({
 const fetch = require('node-fetch');
 const inputBody = '[
   {
-    "name": "Campaña de remarketing",
-    "budget": 100,
-    "objective": "CONVERSIONS",
-    "campaigns": [
-      {
-        "name": "RMKT Campaign",
-        "budget": 100,
-        "adsets": [
-          {
-            "name": "RMKT INTEREST 1",
-            "targeting": [
-              "12345678901234"
-            ]
-          }
-        ]
-      }
-    ]
+    "name": "Campañas de remarketing",
+    "budget": 20000,
+    "objective": "CONVERSIONS"
   }
 ]';
 const headers = {
@@ -4904,7 +4976,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -4927,23 +4999,9 @@ func main() {
 ```json
 [
   {
-    "name": "Campaña de remarketing",
-    "budget": 100,
-    "objective": "CONVERSIONS",
-    "campaigns": [
-      {
-        "name": "RMKT Campaign",
-        "budget": 100,
-        "adsets": [
-          {
-            "name": "RMKT INTEREST 1",
-            "targeting": [
-              "12345678901234"
-            ]
-          }
-        ]
-      }
-    ]
+    "name": "Campañas de remarketing",
+    "budget": 20000,
+    "objective": "CONVERSIONS"
   }
 ]
 ```
@@ -4958,15 +5016,15 @@ func main() {
 
 > Example responses
 
-> 202 Response
+> 200 Response
 
 ```json
 [
   {
-    "id": "321654",
-    "name": "RMT 10 1-7 dias",
-    "country_code": "MX",
-    "budget": 120
+    "name": "Campañas de remarketing",
+    "country_code": "string",
+    "budget": 20000,
+    "objective": "CONVERSIONS"
   }
 ]
 ```
@@ -4975,7 +5033,7 @@ func main() {
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|202|[Accepted](https://tools.ietf.org/html/rfc7231#section-6.3.3)|Accepted|Inline|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Accepted|Inline|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
@@ -4985,14 +5043,14 @@ func main() {
 
 <h3 id="put__organizations_{organizationid}_draft-strategies_{draftstrategyid}_campaigns-responseschema">Response Schema</h3>
 
-Status Code **202**
+Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» id|string|false|none|none|
 |» name|string|false|none|none|
 |» country_code|string|false|none|none|
-|» budget|number|false|none|none|
+|» budget|integer|false|none|none|
+|» objective|string|false|none|none|
 
 Status Code **400**
 
@@ -5030,9 +5088,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 <h1 id="facebook-api-draft-budget">draft budget</h1>
 
@@ -5080,9 +5138,7 @@ $.ajax({
 ```javascript--nodejs
 const fetch = require('node-fetch');
 const inputBody = '{
-  "account": {
-    "id": 123456
-  },
+  "account_id": 123456,
   "budget": 100
 }';
 const headers = {
@@ -5167,7 +5223,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -5189,9 +5245,7 @@ func main() {
 
 ```json
 {
-  "account": {
-    "id": 123456
-  },
+  "account_id": 123456,
   "budget": 100
 }
 ```
@@ -5202,8 +5256,7 @@ func main() {
 |---|---|---|---|---|
 |organizationId|path|string|true|The Organization Id|
 |body|body|object|true|none|
-|» account|body|object|false|none|
-|»» id|body|integer|false|none|
+|» account_id|body|integer|false|none|
 |» budget|body|integer|false|none|
 
 > Example responses
@@ -5213,23 +5266,11 @@ func main() {
 ```json
 [
   {
-    "name": "Campaña de remarketing",
+    "id": "5e602dd4cf1ff689ff36d2b8",
+    "name": "Campañas de remarketing",
     "budget": 100,
     "objective": "CONVERSIONS",
-    "campaigns": [
-      {
-        "name": "RMKT Campaign",
-        "budget": 100,
-        "adsets": [
-          {
-            "name": "RMKT INTEREST 1",
-            "targeting": [
-              "12345678901234"
-            ]
-          }
-        ]
-      }
-    ]
+    "campaigns": "Purchase, Visit, Cart, Product View"
   }
 ]
 ```
@@ -5252,15 +5293,11 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|» id|string|false|none|none|
 |» name|string|false|none|none|
 |» budget|integer|false|none|none|
 |» objective|string|false|none|none|
-|» campaigns|[object]|false|none|none|
-|»» name|string|false|none|none|
-|»» budget|integer|false|none|none|
-|»» adsets|[object]|false|none|none|
-|»»» name|string|false|none|none|
-|»»» targeting|[string]|false|none|none|
+|» campaigns|string|false|none|none|
 
 Status Code **400**
 
@@ -5298,9 +5335,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## put__organizations_{organizationId}_strategy-proposal
 
@@ -5344,29 +5381,11 @@ $.ajax({
 ```javascript--nodejs
 const fetch = require('node-fetch');
 const inputBody = '{
-  "account": {
-    "id": 123456
-  },
+  "account_id": 123456,
   "campaign_collections": [
     {
       "name": "RMKT - CAMPAIGNS",
-      "budget": 100,
-      "campaigns": [
-        {
-          "name": "RMKT Visits",
-          "budget": 100,
-          "adsets": [
-            {
-              "name": "RMKT Visits 0-7 days",
-              "targeting": {
-                "interests": [
-                  "1234567890112"
-                ]
-              }
-            }
-          ]
-        }
-      ]
+      "budget": 100
     }
   ]
 }';
@@ -5452,7 +5471,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -5474,29 +5493,11 @@ func main() {
 
 ```json
 {
-  "account": {
-    "id": 123456
-  },
+  "account_id": 123456,
   "campaign_collections": [
     {
       "name": "RMKT - CAMPAIGNS",
-      "budget": 100,
-      "campaigns": [
-        {
-          "name": "RMKT Visits",
-          "budget": 100,
-          "adsets": [
-            {
-              "name": "RMKT Visits 0-7 days",
-              "targeting": {
-                "interests": [
-                  "1234567890112"
-                ]
-              }
-            }
-          ]
-        }
-      ]
+      "budget": 100
     }
   ]
 }
@@ -5508,18 +5509,10 @@ func main() {
 |---|---|---|---|---|
 |organizationId|path|string|true|The Organization Id|
 |body|body|object|true|none|
-|» account|body|object|false|none|
-|»» id|body|integer|false|none|
+|» account_id|body|integer|false|none|
 |» campaign_collections|body|[object]|false|none|
 |»» name|body|string|false|none|
 |»» budget|body|number|false|none|
-|»» campaigns|body|[object]|false|none|
-|»»» name|body|string|false|none|
-|»»» budget|body|number|false|none|
-|»»» adsets|body|[object]|false|none|
-|»»»» name|body|string|false|none|
-|»»»» targeting|body|object|false|none|
-|»»»»» interests|body|[string]|false|none|
 
 > Example responses
 
@@ -5613,9 +5606,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 <h1 id="facebook-api-strategy">strategy</h1>
 
@@ -5747,7 +5740,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -5847,9 +5840,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## get__organizations_{organizationId}_strategies
 
@@ -5968,7 +5961,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -6066,9 +6059,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## delete__organizations_{organizationId}_strategies_{strategyId}
 
@@ -6187,7 +6180,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -6272,9 +6265,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## put__organizations_{organizationId}_strategies_{strategyId}_status-paused
 
@@ -6393,7 +6386,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -6478,9 +6471,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## put__organizations_{organizationId}_strategies_{strategyId}_status-active
 
@@ -6599,7 +6592,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -6684,9 +6677,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 <h1 id="facebook-api-strategy-campaigns">strategy campaigns</h1>
 
@@ -6809,7 +6802,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -6841,23 +6834,9 @@ func main() {
 ```json
 [
   {
-    "name": "Campaña de remarketing",
+    "name": "Campañas de remarketing",
     "budget": 100,
-    "objective": "CONVERSIONS",
-    "campaigns": [
-      {
-        "name": "RMKT Campaign",
-        "budget": 100,
-        "adsets": [
-          {
-            "name": "RMKT INTEREST 1",
-            "targeting": [
-              "12345678901234"
-            ]
-          }
-        ]
-      }
-    ]
+    "objective": "CONVERSIONS"
   }
 ]
 ```
@@ -6883,12 +6862,6 @@ Status Code **200**
 |» name|string|false|none|none|
 |» budget|integer|false|none|none|
 |» objective|string|false|none|none|
-|» campaigns|[object]|false|none|none|
-|»» name|string|false|none|none|
-|»» budget|integer|false|none|none|
-|»» adsets|[object]|false|none|none|
-|»»» name|string|false|none|none|
-|»»» targeting|[string]|false|none|none|
 
 Status Code **400**
 
@@ -6926,9 +6899,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## put__organizations_{organizationId}_strategies_{strategyId}_campaigns
 
@@ -6973,24 +6946,9 @@ $.ajax({
 const fetch = require('node-fetch');
 const inputBody = '[
   {
-    "name": "RMKT - CAMPAIGNS",
+    "name": "Campañas de Remarketing",
     "budget": 100,
-    "campaigns": [
-      {
-        "name": "RMKT Visits",
-        "budget": 100,
-        "adsets": [
-          {
-            "name": "RMKT Visits 0-7 days",
-            "targeting": {
-              "interests": [
-                "1234567890112"
-              ]
-            }
-          }
-        ]
-      }
-    ]
+    "objective": "CONVERSIONS"
   }
 ]';
 const headers = {
@@ -7075,7 +7033,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -7098,24 +7056,9 @@ func main() {
 ```json
 [
   {
-    "name": "RMKT - CAMPAIGNS",
+    "name": "Campañas de Remarketing",
     "budget": 100,
-    "campaigns": [
-      {
-        "name": "RMKT Visits",
-        "budget": 100,
-        "adsets": [
-          {
-            "name": "RMKT Visits 0-7 days",
-            "targeting": {
-              "interests": [
-                "1234567890112"
-              ]
-            }
-          }
-        ]
-      }
-    ]
+    "objective": "CONVERSIONS"
   }
 ]
 ```
@@ -7137,21 +7080,7 @@ func main() {
   {
     "name": "Campaña de remarketing",
     "budget": 100,
-    "objective": "CONVERSIONS",
-    "campaigns": [
-      {
-        "name": "RMKT Campaign",
-        "budget": 100,
-        "adsets": [
-          {
-            "name": "RMKT INTEREST 1",
-            "targeting": [
-              "12345678901234"
-            ]
-          }
-        ]
-      }
-    ]
+    "objective": "CONVERSIONS"
   }
 ]
 ```
@@ -7177,12 +7106,6 @@ Status Code **200**
 |» name|string|false|none|none|
 |» budget|integer|false|none|none|
 |» objective|string|false|none|none|
-|» campaigns|[object]|false|none|none|
-|»» name|string|false|none|none|
-|»» budget|integer|false|none|none|
-|»» adsets|[object]|false|none|none|
-|»»» name|string|false|none|none|
-|»»» targeting|[string]|false|none|none|
 
 Status Code **400**
 
@@ -7220,9 +7143,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 <h1 id="facebook-api-strategy-creatives">strategy creatives</h1>
 
@@ -7353,7 +7276,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -7462,9 +7385,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## get__organizations_{organizationId}_strategies_{strategyId}_creatives
 
@@ -7583,7 +7506,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -7680,9 +7603,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## put__organizations_{organizationId}_strategies_{strategyId}_creatives_{creativeId}
 
@@ -7811,7 +7734,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -7921,9 +7844,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## get__organizations_{organizationId}_strategies_{strategyId}_creatives_{creativeId}
 
@@ -8042,7 +7965,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -8138,9 +8061,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## delete__organizations_{organizationId}_strategies_{strategyId}_creatives_{creativeId}
 
@@ -8259,7 +8182,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -8345,9 +8268,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 <h1 id="facebook-api-strategy-ads">strategy ads</h1>
 
@@ -8484,7 +8407,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -8601,9 +8524,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## get__organizations_{organizationId}_strategies_{strategyId}_ads
 
@@ -8722,7 +8645,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -8827,9 +8750,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## get__organizations_{organizationId}_strategies_{strategyId}_ads_{adId}
 
@@ -8948,7 +8871,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -9050,9 +8973,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## put__organizations_{organizationId}_strategies_{strategyId}_ads_{adId}
 
@@ -9185,7 +9108,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -9305,9 +9228,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## delete__organizations_{organizationId}_strategies_{strategyId}_ads_{adId}
 
@@ -9426,7 +9349,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -9512,9 +9435,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 <h1 id="facebook-api-strategy-locations">strategy locations</h1>
 
@@ -9658,7 +9581,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -9799,9 +9722,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## get__organizations_{organizationId}_strategies_{strategyId}_locations
 
@@ -9920,7 +9843,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -10031,9 +9954,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## put__organizations_{organizationId}_strategies_{strategyId}_locations
 
@@ -10175,7 +10098,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -10316,9 +10239,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
 
 ## delete__organizations_{organizationId}_strategies_{strategyId}_locations
 
@@ -10437,7 +10360,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-
+        
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -10522,6 +10445,7 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<!-- <aside class="success">
+<aside class="success">
 This operation does not require authentication
-</aside> -->
+</aside>
+
