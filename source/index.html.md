@@ -2488,6 +2488,223 @@ Status Code **500**
 This operation does not require authentication
 </aside>
 
+## get__organizations_{organizationId}_draft-strategies
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies',
+  method: 'get',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json'
+
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{organizationId}/draft-strategies`
+
+*Retrieve Facebook campaign draft strategy for given organziation*
+
+<h3 id="get__organizations_{organizationid}_draft-strategies-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "account_id": 1,
+  "name": "My draft strategy",
+  "budget": 0,
+  "created_at": "2020-03-04 16:38:12.317086461 -0600 CST m=+5532.901298845"
+}
+```
+
+<h3 id="get__organizations_{organizationid}_draft-strategies-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="get__organizations_{organizationid}_draft-strategies-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» account_id|string|false|none|none|
+|» name|string|false|none|none|
+|» budget|integer|false|none|none|
+|» created_at|string|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
 ## get__organizations_{organizationId}_draft-strategies_{draftStrategyId}
 
 > Code samples
