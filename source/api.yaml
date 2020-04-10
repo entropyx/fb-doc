@@ -516,7 +516,7 @@ paths:
                       items: 
                         type: object
                         properties:
-                          external_id:                
+                          id:                
                             type: string
                             example: "381490061931745"
                           name:
@@ -1705,7 +1705,7 @@ paths:
                   message:
                     type: string
                     example: Unknown error
-  /organizations/{organizationId}/draft-strategies/{draftStrategyId}/geo-locations:
+  /organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations:
     get:
       tags:
       - draft locations
@@ -1972,7 +1972,7 @@ paths:
                   message:
                     type: string
                     example: Unknown error
-  /organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives:
+  /organizations/{organizationId}/draft-strategies/{draftStrategyId}/creatives:
     get:
       tags:
       - "draft creatives"
@@ -1992,6 +1992,13 @@ paths:
             type: string
             example: 5e602dd4cf1ff689ff36d2b8
           description: The Draft Stratgy Id
+        - in: query
+          name: id
+          required: false
+          schema:
+            type: string
+            example: 5e7bab8b5ecb9ea374bf8a65
+          description: The Draft Creative Id
       responses:
         200:
           description: OK
