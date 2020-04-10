@@ -961,6 +961,182 @@ paths:
                   message:
                     type: string
                     example: Unknown error    
+  /organizations/{organizationId}/accounts/{accountId}/pages:
+    get:
+      tags:
+      - accounts
+      summary: GetFacebook account
+      parameters:
+        - in: path
+          name: organizationId
+          required: true
+          schema:
+            type: string
+            example: 00000000-000a-000a-0000-0000230ee1c1
+          description: The Organization Id
+        - in: path
+          name: accountId
+          description: The Account Id
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: 
+                    description: The facebook page id
+                    type: string
+                    example: "1023317097692584"
+                  name:
+                    description: Facebook page name
+                    type: string
+                    example: My Facebook Page
+                  url: 
+                    type: string
+                    description: The page profile picture url
+                    example: https://scontent.fmex3-1.fna.fbcdn.net/v/t1.0-1/cp0/p50x50/69990981_2541917302555666_6471452641946763264_o.jpg
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Please provide a valid code.
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Authentication is required for this operation.
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: You don't have enough permissions for this operation.
+        408:
+          description: Request Time Out
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Check your connection or try again later.
+        500:
+          description: Internal Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unknown error 
+  /organizations/{organizationId}/accounts/{accountId}/instagram:
+    get:
+      tags:
+      - accounts
+      summary: GetFacebook account
+      parameters:
+        - in: path
+          name: organizationId
+          required: true
+          schema:
+            type: string
+            example: 00000000-000a-000a-0000-0000230ee1c1
+          description: The Organization Id
+        - in: path
+          name: accountId
+          description: The Account Id
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: 
+                    description: The Instagram id
+                    type: string
+                    example: "1023317097692584"
+                  profile_pic: 
+                    type: string
+                    description: The instagram profile picture url
+                    example: https://scontent-qro1-1.xx.fbcdn.net/v/t51.2885-15/10358304_683009211734391_805233549_a.jpg?_nc_cat=111&_nc_sid=86c713&_nc_ohc=-BEh1CRhIDAAX_GlXcF&_nc_ht=scontent-qro1-1.xx&oh=51977412f1779267f8e6aa8b26d21bbd&oe=5EB3C9DE
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Please provide a valid code.
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Authentication is required for this operation.
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: You don't have enough permissions for this operation.
+        408:
+          description: Request Time Out
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Check your connection or try again later.
+        500:
+          description: Internal Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unknown error 
   /organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns:
     post:
       tags:
