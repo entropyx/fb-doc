@@ -1251,7 +1251,7 @@ func main() {
 
 `GET /organizations/{organizationId}/credentials/{credentialId}/adaccounts`
 
-*Retrieve adaccounts for credential*
+*Retrieve facebook adaccounts for credential with their linked pages and instagram accounts*
 
 <h3 id="get__organizations_{organizationid}_credentials_{credentialid}_adaccounts-parameters">Parameters</h3>
 
@@ -1268,7 +1268,20 @@ func main() {
 [
   {
     "id": "act_123456789101112",
-    "name": "Perros y Gatos Co."
+    "name": "Perros y Gatos Co.",
+    "pages": [
+      {
+        "external_id": "381490061931745",
+        "name": "My Fake Shop",
+        "url": "https://scontent.fmex3-1.fna.fbcdn.net/v/t1.0-1/cp0/p50x50/69990981_2541917302555666_6471452641946763264_o.jpg"
+      }
+    ],
+    "instagram_accounts": [
+      {
+        "id": "147797639624699",
+        "profile_picture": "https://scontent-qro1-1.xx.fbcdn.net/v/t51.2885-15/10358304_683009211734391_805233549_a.jpg?_nc_cat=111&_nc_sid=86c713&_nc_ohc=-BEh1CRhIDAAX_GlXcF&_nc_ht=scontent-qro1-1.xx&oh=51977412f1779267f8e6aa8b26d21bbd&oe=5EB3C9DE"
+      }
+    ]
   }
 ]
 ```
@@ -1293,6 +1306,13 @@ Status Code **200**
 |---|---|---|---|---|
 |» id|string|false|none|The adaccount id.|
 |» name|string|false|none|The adaccounts name.|
+|» pages|[object]|false|none|none|
+|»» external_id|string|false|none|none|
+|»» name|string|false|none|none|
+|»» url|string|false|none|Facebook page profile picture|
+|» instagram_accounts|[object]|false|none|none|
+|»» id|string|false|none|Instagram account id|
+|»» profile_picture|string|false|none|Instagram profile picture url|
 
 Status Code **400**
 
@@ -1383,11 +1403,7 @@ const inputBody = '{
   "extenal_id": "act_123456789101112",
   "credential_id": 1,
   "instagram_id": "1023317097692584",
-  "page": {
-    "external_id": "381490061931745",
-    "name": "My Fake Shop",
-    "url": "https://scontent.fmex3-1.fna.fbcdn.net/v/t1.0-1/cp0/p50x50/69990981_2541917302555666_6471452641946763264_o.jpg"
-  }
+  "page_id": "381490061931745"
 }';
 const headers = {
   'Content-Type':'application/json',
@@ -1496,11 +1512,7 @@ func main() {
   "extenal_id": "act_123456789101112",
   "credential_id": 1,
   "instagram_id": "1023317097692584",
-  "page": {
-    "external_id": "381490061931745",
-    "name": "My Fake Shop",
-    "url": "https://scontent.fmex3-1.fna.fbcdn.net/v/t1.0-1/cp0/p50x50/69990981_2541917302555666_6471452641946763264_o.jpg"
-  }
+  "page_id": "381490061931745"
 }
 ```
 
@@ -1513,10 +1525,7 @@ func main() {
 |» extenal_id|body|string|false|none|
 |» credential_id|body|integer|false|none|
 |» instagram_id|body|string|false|none|
-|» page|body|object|false|none|
-|»» external_id|body|string|false|none|
-|»» name|body|string|false|none|
-|»» url|body|string|false|none|
+|» page_id|body|string|false|none|
 
 > Example responses
 
@@ -5652,6 +5661,7 @@ func main() {
 ```json
 [
   {
+    "id": "5e602dd4cf1ff689ff36d2222",
     "name": "Campañas de remarketing",
     "budget": 10000,
     "objective": "CONVERSIONS"
@@ -5677,6 +5687,7 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|» id|string|false|none|none|
 |» name|string|false|none|none|
 |» budget|integer|false|none|none|
 |» objective|string|false|none|none|
@@ -5870,6 +5881,7 @@ func main() {
 ```json
 [
   {
+    "id": "5e602dd4cf1ff689ff36d2222",
     "name": "Campañas de remarketing",
     "budget": 10000,
     "objective": "CONVERSIONS"
@@ -5895,6 +5907,7 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|» id|string|false|none|none|
 |» name|string|false|none|none|
 |» budget|integer|false|none|none|
 |» objective|string|false|none|none|
@@ -5982,6 +5995,7 @@ $.ajax({
 const fetch = require('node-fetch');
 const inputBody = '[
   {
+    "id": "5e602dd4cf1ff689ff36d2222",
     "name": "Campañas de remarketing",
     "budget": 20000,
     "objective": "CONVERSIONS"
@@ -6092,6 +6106,7 @@ func main() {
 ```json
 [
   {
+    "id": "5e602dd4cf1ff689ff36d2222",
     "name": "Campañas de remarketing",
     "budget": 20000,
     "objective": "CONVERSIONS"
@@ -6114,6 +6129,7 @@ func main() {
 ```json
 [
   {
+    "id": "5e602dd4cf1ff689ff36d2222",
     "name": "Campañas de remarketing",
     "country_code": "string",
     "budget": 20000,
@@ -6140,528 +6156,11 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|» id|string|false|none|none|
 |» name|string|false|none|none|
 |» country_code|string|false|none|none|
 |» budget|integer|false|none|none|
 |» objective|string|false|none|none|
-
-Status Code **400**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **401**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **403**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **404**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **408**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **500**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-<h1 id="facebook-api-draft-budget">draft budget</h1>
-
-Entropy Facebook strategy generator
-
-## post__organizations_{organizationId}_strategy-proposal
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
-
-```
-
-```http
-POST https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal HTTP/1.1
-Host: pending.entropy.tech
-Content-Type: application/json
-Accept: application/json
-
-```
-
-```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal',
-  method: 'post',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "account_id": 123456,
-  "budget": 100
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
-}
-
-result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Content-Type": []string{"application/json"},
-        "Accept": []string{"application/json"},
-        
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("POST", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
-
-```
-
-`POST /organizations/{organizationId}/strategy-proposal`
-
-*Generate Facebook Strategy Proposal*
-
-> Body parameter
-
-```json
-{
-  "account_id": 123456,
-  "budget": 100
-}
-```
-
-<h3 id="post__organizations_{organizationid}_strategy-proposal-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|organizationId|path|string|true|The Organization Id|
-|body|body|object|true|none|
-|» account_id|body|integer|false|none|
-|» budget|body|integer|false|none|
-
-> Example responses
-
-> 200 Response
-
-```json
-[
-  {
-    "id": "5e602dd4cf1ff689ff36d2b8",
-    "name": "Campañas de remarketing",
-    "budget": 100,
-    "objective": "CONVERSIONS",
-    "campaigns": "Purchase, Visit, Cart, Product View"
-  }
-]
-```
-
-<h3 id="post__organizations_{organizationid}_strategy-proposal-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
-|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
-
-<h3 id="post__organizations_{organizationid}_strategy-proposal-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» id|string|false|none|none|
-|» name|string|false|none|none|
-|» budget|integer|false|none|none|
-|» objective|string|false|none|none|
-|» campaigns|string|false|none|none|
-
-Status Code **400**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **401**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **403**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **404**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **408**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **500**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-## put__organizations_{organizationId}_strategy-proposal
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
-
-```
-
-```http
-PUT https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal HTTP/1.1
-Host: pending.entropy.tech
-Content-Type: application/json
-Accept: application/json
-
-```
-
-```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal',
-  method: 'put',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "account_id": 123456,
-  "campaign_collections": [
-    {
-      "name": "RMKT - CAMPAIGNS",
-      "budget": 100
-    }
-  ]
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal',
-{
-  method: 'PUT',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
-}
-
-result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("PUT");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Content-Type": []string{"application/json"},
-        "Accept": []string{"application/json"},
-        
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("PUT", "https://pending.entropy.tech/v1/organizations/{organizationId}/strategy-proposal", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
-
-```
-
-`PUT /organizations/{organizationId}/strategy-proposal`
-
-*Generate Facebook Strategy Proposal*
-
-> Body parameter
-
-```json
-{
-  "account_id": 123456,
-  "campaign_collections": [
-    {
-      "name": "RMKT - CAMPAIGNS",
-      "budget": 100
-    }
-  ]
-}
-```
-
-<h3 id="put__organizations_{organizationid}_strategy-proposal-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|organizationId|path|string|true|The Organization Id|
-|body|body|object|true|none|
-|» account_id|body|integer|false|none|
-|» campaign_collections|body|[object]|false|none|
-|»» name|body|string|false|none|
-|»» budget|body|number|false|none|
-
-> Example responses
-
-> 200 Response
-
-```json
-[
-  {
-    "name": "Campaña de remarketing",
-    "budget": 100,
-    "objective": "CONVERSIONS",
-    "campaigns": [
-      {
-        "name": "RMKT Campaign",
-        "budget": 100,
-        "adsets": [
-          {
-            "name": "RMKT INTEREST 1",
-            "targeting": [
-              "12345678901234"
-            ]
-          }
-        ]
-      }
-    ]
-  }
-]
-```
-
-<h3 id="put__organizations_{organizationid}_strategy-proposal-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
-|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
-
-<h3 id="put__organizations_{organizationid}_strategy-proposal-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» name|string|false|none|none|
-|» budget|integer|false|none|none|
-|» objective|string|false|none|none|
-|» campaigns|[object]|false|none|none|
-|»» name|string|false|none|none|
-|»» budget|integer|false|none|none|
-|»» adsets|[object]|false|none|none|
-|»»» name|string|false|none|none|
-|»»» targeting|[string]|false|none|none|
 
 Status Code **400**
 
