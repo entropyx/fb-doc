@@ -1374,6 +1374,7 @@ func main() {
     "instagram_accounts": [
       {
         "id": "147797639624699",
+        "username": "fake_profile",
         "profile_picture": "https://scontent-qro1-1.xx.fbcdn.net/v/t51.2885-15/10358304_683009211734391_805233549_a.jpg?_nc_cat=111&_nc_sid=86c713&_nc_ohc=-BEh1CRhIDAAX_GlXcF&_nc_ht=scontent-qro1-1.xx&oh=51977412f1779267f8e6aa8b26d21bbd&oe=5EB3C9DE"
       }
     ]
@@ -1407,6 +1408,7 @@ Status Code **200**
 |»» url|string|false|none|Facebook page profile picture|
 |» instagram_accounts|[object]|false|none|none|
 |»» id|string|false|none|Instagram account id|
+|»» username|string|false|none|Insatagram username|
 |»» profile_picture|string|false|none|Instagram profile picture url|
 
 Status Code **400**
@@ -2762,6 +2764,7 @@ func main() {
 ```json
 {
   "id": "1023317097692584",
+  "username": "fake_profile",
   "profile_pic": "https://scontent-qro1-1.xx.fbcdn.net/v/t51.2885-15/10358304_683009211734391_805233549_a.jpg?_nc_cat=111&_nc_sid=86c713&_nc_ohc=-BEh1CRhIDAAX_GlXcF&_nc_ht=scontent-qro1-1.xx&oh=51977412f1779267f8e6aa8b26d21bbd&oe=5EB3C9DE"
 }
 ```
@@ -2784,6 +2787,7 @@ Status Code **200**
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» id|string|false|none|The Instagram id|
+|» username|string|false|none|Instagram username|
 |» profile_pic|string|false|none|The instagram profile picture url|
 
 Status Code **400**
@@ -7246,7 +7250,7 @@ func main() {
 |---|---|---|---|---|
 |organizationId|path|string|true|The Organization Id|
 |body|body|object|true|none|
-|» id|body|string|false|none|
+|» id|body|string|false|The Draft Strategy ID|
 
 > Example responses
 
