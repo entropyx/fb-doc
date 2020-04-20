@@ -2455,6 +2455,7 @@ curl -X GET https://pending.entropy.tech/v1/organizations/<span class="o">{</spa
     </span><span class="s2">"instagram_accounts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"147797639624699"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fake_profile"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"profile_picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://scontent-qro1-1.xx.fbcdn.net/v/t51.2885-15/10358304_683009211734391_805233549_a.jpg?_nc_cat=111&amp;_nc_sid=86c713&amp;_nc_ohc=-BEh1CRhIDAAX_GlXcF&amp;_nc_ht=scontent-qro1-1.xx&amp;oh=51977412f1779267f8e6aa8b26d21bbd&amp;oe=5EB3C9DE"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
@@ -2583,6 +2584,13 @@ curl -X GET https://pending.entropy.tech/v1/organizations/<span class="o">{</spa
 <td>false</td>
 <td>none</td>
 <td>Instagram account id</td>
+</tr>
+<tr>
+<td>»» username</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>Insatagram username</td>
 </tr>
 <tr>
 <td>»» profile_picture</td>
@@ -4681,6 +4689,7 @@ curl -X GET https://pending.entropy.tech/v1/organizations/<span class="o">{</spa
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1023317097692584"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fake_profile"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"profile_pic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://scontent-qro1-1.xx.fbcdn.net/v/t51.2885-15/10358304_683009211734391_805233549_a.jpg?_nc_cat=111&amp;_nc_sid=86c713&amp;_nc_ohc=-BEh1CRhIDAAX_GlXcF&amp;_nc_ht=scontent-qro1-1.xx&amp;oh=51977412f1779267f8e6aa8b26d21bbd&amp;oe=5EB3C9DE"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -4751,6 +4760,13 @@ curl -X GET https://pending.entropy.tech/v1/organizations/<span class="o">{</spa
 <td>false</td>
 <td>none</td>
 <td>The Instagram id</td>
+</tr>
+<tr>
+<td>» username</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>Instagram username</td>
 </tr>
 <tr>
 <td>» profile_pic</td>
@@ -12020,7 +12036,7 @@ curl -X POST https://pending.entropy.tech/v1/organizations/<span class="o">{</sp
 <td>body</td>
 <td>string</td>
 <td>false</td>
-<td>none</td>
+<td>The Draft Strategy ID</td>
 </tr>
 </tbody></table>
 
