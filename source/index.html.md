@@ -1,12 +1,12 @@
 ---
-title: Facebook API
+title: Facebook API v1.0.0
 language_tabs:
   - shell: Shell
   - http: HTTP
   - javascript: JavaScript
-  - javascript--nodejs: Node.JS
   - ruby: Ruby
   - python: Python
+  - php: PHP
   - java: Java
   - go: Go
 toc_footers: []
@@ -16,6 +16,8 @@ highlight_theme: darkula
 headingLevel: 2
 
 ---
+
+<!-- Generator: Widdershins v4.0.1 -->
 
 <h1 id="facebook-api">Facebook API v1.0.0</h1>
 
@@ -29,6 +31,10 @@ Base URLs:
 
 Email: <a href="mailto:karina@entropy.tech">Support</a> 
 
+# Authentication
+
+- HTTP Authentication, scheme: bearer 
+
 <h1 id="facebook-api-credentials">credentials</h1>
 
 Entropy Facebook credentials resource
@@ -41,7 +47,8 @@ Entropy Facebook credentials resource
 # You can also use wget
 curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/credentials \
   -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -54,34 +61,14 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials',
-  method: 'post',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 const inputBody = '{
   "code": "string",
   "state": "string"
 }';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials',
@@ -104,7 +91,8 @@ require 'json'
 
 headers = {
   'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials',
@@ -119,14 +107,46 @@ p JSON.parse(result)
 import requests
 headers = {
   'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials', params={
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('POST','https://pending.entropy.tech/v1/organizations/{organizationId}/credentials', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -160,7 +180,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -257,8 +277,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## get__organizations_{organizationId}_credentials
@@ -268,7 +289,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/credentials \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -280,29 +302,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials',
@@ -324,7 +327,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials',
@@ -338,14 +342,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials', params={
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/credentials', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -378,7 +413,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -458,8 +493,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## get__organizations_{organizationId}_credentials_{credentialId}
@@ -469,7 +505,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId} \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -481,29 +518,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}',
@@ -525,7 +543,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}',
@@ -539,14 +558,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}', params={
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -579,7 +629,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -672,8 +722,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## delete__organizations_{organizationId}_credentials_{credentialId}
@@ -683,7 +734,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId} \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -695,29 +747,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}',
-  method: 'delete',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}',
@@ -739,7 +772,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.delete 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}',
@@ -753,14 +787,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}', params={
+r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('DELETE','https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -793,7 +858,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -878,8 +943,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## put__organizations_{organizationId}_credentials_{credentialId}
@@ -890,7 +956,8 @@ This operation does not require authentication
 # You can also use wget
 curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId} \
   -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -903,34 +970,14 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}',
-  method: 'put',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 const inputBody = '{
   "code": "string",
   "state": "string"
 }';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}',
@@ -953,7 +1000,8 @@ require 'json'
 
 headers = {
   'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}',
@@ -968,14 +1016,46 @@ p JSON.parse(result)
 import requests
 headers = {
   'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}', params={
+r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('PUT','https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -1009,7 +1089,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -1114,8 +1194,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## get__organizations_{organizationId}_credentials_{credentialId}_adaccounts
@@ -1125,7 +1206,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -1137,29 +1219,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts',
@@ -1181,7 +1244,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts',
@@ -1195,14 +1259,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts', params={
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -1235,7 +1330,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -1350,8 +1445,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 <h1 id="facebook-api-accounts">accounts</h1>
@@ -1366,7 +1462,8 @@ Entropy Facebook accounts resource
 # You can also use wget
 curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/accounts \
   -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -1379,26 +1476,6 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/accounts',
-  method: 'post',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 const inputBody = '{
   "extenal_id": "act_123456789101112",
   "credential_id": 1,
@@ -1407,8 +1484,8 @@ const inputBody = '{
 }';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts',
@@ -1431,7 +1508,8 @@ require 'json'
 
 headers = {
   'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/accounts',
@@ -1446,14 +1524,46 @@ p JSON.parse(result)
 import requests
 headers = {
   'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts', params={
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('POST','https://pending.entropy.tech/v1/organizations/{organizationId}/accounts', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -1487,7 +1597,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -1590,8 +1700,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## get__organizations_{organizationId}_accounts
@@ -1601,7 +1712,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/accounts \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -1613,29 +1725,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/accounts',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts',
@@ -1657,7 +1750,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/accounts',
@@ -1671,14 +1765,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts', params={
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/accounts', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -1711,7 +1836,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -1798,8 +1923,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## get__organizations_{organizationId}_accounts_{accountId}
@@ -1809,7 +1935,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId} \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -1821,29 +1948,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}',
@@ -1865,7 +1973,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}',
@@ -1879,14 +1988,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}', params={
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -1919,7 +2059,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -2016,8 +2156,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## delete__organizations_{organizationId}_accounts_{accountId}
@@ -2027,7 +2168,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId} \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -2039,29 +2181,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}',
-  method: 'delete',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}',
@@ -2083,7 +2206,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.delete 'https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}',
@@ -2097,14 +2221,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}', params={
+r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('DELETE','https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -2137,7 +2292,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -2215,8 +2370,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## get__organizations_{organizationId}_accounts_{accountId}_pages
@@ -2226,7 +2382,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/pages \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -2238,29 +2395,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/pages',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/pages',
@@ -2282,7 +2420,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/pages',
@@ -2296,14 +2435,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/pages', params={
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/pages', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/pages', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -2336,7 +2506,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -2424,8 +2594,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## get__organizations_{organizationId}_accounts_{accountId}_instagram
@@ -2435,7 +2606,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -2447,29 +2619,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram',
@@ -2491,7 +2644,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram',
@@ -2505,14 +2659,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram', params={
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -2545,7 +2730,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -2631,85 +2816,41 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
-<h1 id="facebook-api-draft-strategies">draft strategies</h1>
-
-Entropy Facebook draft strategies resource
-
-## post__organizations_{organizationId}_draft-strategies
+## post__organizations_{organizationId}_accounts_{accountId}_draft-strategies
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
+curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/draft-strategies \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-POST https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies HTTP/1.1
+POST https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/draft-strategies HTTP/1.1
 Host: pending.entropy.tech
-Content-Type: application/json
 Accept: application/json
 
 ```
 
 ```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
 
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies',
-  method: 'post',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "account_id": 1234567,
-  "geo_locations": {
-    "countries": [
-      "MX"
-    ],
-    "regions": [
-      {
-        "key": "3843"
-      }
-    ],
-    "cities": [
-      {
-        "key": "2420605",
-        "radius": 10,
-        "distance_unit": "mile"
-      }
-    ]
-  }
-}';
 const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
-fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies',
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/draft-strategies',
 {
   method: 'POST',
-  body: inputBody,
+
   headers: headers
 })
 .then(function(res) {
@@ -2725,11 +2866,11 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
-result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies',
+result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/draft-strategies',
   params: {
   }, headers: headers
 
@@ -2740,20 +2881,50 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies', params={
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/draft-strategies', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('POST','https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/draft-strategies', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
 ```java
-URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies");
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/draft-strategies");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("POST");
 int responseCode = con.getResponseCode();
@@ -2780,13 +2951,12 @@ import (
 func main() {
 
     headers := map[string][]string{
-        "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("POST", "https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies", data)
+    req, err := http.NewRequest("POST", "https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/draft-strategies", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -2796,52 +2966,16 @@ func main() {
 
 ```
 
-`POST /organizations/{organizationId}/draft-strategies`
+`POST /organizations/{organizationId}/accounts/{accountId}/draft-strategies`
 
-*Create new Facebook draft strategy*
+*Create draft strategy*
 
-This creates a new Facebook strategy
-
-> Body parameter
-
-```json
-{
-  "account_id": 1234567,
-  "geo_locations": {
-    "countries": [
-      "MX"
-    ],
-    "regions": [
-      {
-        "key": "3843"
-      }
-    ],
-    "cities": [
-      {
-        "key": "2420605",
-        "radius": 10,
-        "distance_unit": "mile"
-      }
-    ]
-  }
-}
-```
-
-<h3 id="post__organizations_{organizationid}_draft-strategies-parameters">Parameters</h3>
+<h3 id="post__organizations_{organizationid}_accounts_{accountid}_draft-strategies-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |organizationId|path|string|true|The Organization Id|
-|body|body|object|true|none|
-|» account_id|body|integer|false|none|
-|» geo_locations|body|object|false|none|
-|»» countries|body|[string]|false|none|
-|»» regions|body|[object]|false|none|
-|»»» key|body|string|false|none|
-|»» cities|body|[object]|false|none|
-|»»» key|body|string|false|none|
-|»»» radius|body|integer|false|none|
-|»»» distance_unit|body|string|false|none|
+|accountId|path|integer|true|The Account Id|
 
 > Example responses
 
@@ -2853,7 +2987,7 @@ This creates a new Facebook strategy
 }
 ```
 
-<h3 id="post__organizations_{organizationid}_draft-strategies-responses">Responses</h3>
+<h3 id="post__organizations_{organizationid}_accounts_{accountid}_draft-strategies-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -2865,7 +2999,7 @@ This creates a new Facebook strategy
 |408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
 
-<h3 id="post__organizations_{organizationid}_draft-strategies-responseschema">Response Schema</h3>
+<h3 id="post__organizations_{organizationid}_accounts_{accountid}_draft-strategies-responseschema">Response Schema</h3>
 
 Status Code **201**
 
@@ -2909,9 +3043,14 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
+
+<h1 id="facebook-api-draft-strategies">draft strategies</h1>
+
+Entropy Facebook draft strategies resource
 
 ## get__organizations_{organizationId}_draft-strategies
 
@@ -2920,7 +3059,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -2932,29 +3072,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies',
@@ -2976,7 +3097,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies',
@@ -2990,14 +3112,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies', params={
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -3030,7 +3183,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -3126,226 +3279,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-## get__organizations_{organizationId}_draft-strategies_{draftStrategyId}
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId} \
-  -H 'Accept: application/json'
-
-```
-
-```http
-GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId} HTTP/1.1
-Host: pending.entropy.tech
-Accept: application/json
-
-```
-
-```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json'
-
-};
-
-fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json'
-}
-
-result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json'
-}
-
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Accept": []string{"application/json"},
-        
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
-
-```
-
-`GET /organizations/{organizationId}/draft-strategies/{draftStrategyId}`
-
-*Retrieve Facebook campaign draft strategy*
-
-<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|organizationId|path|string|true|The Organization Id|
-|draftStrategyId|path|string|true|The Draft Stratgy Id|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "account_id": 1,
-  "name": "My draft strategy",
-  "budget": 0,
-  "created_at": "2020-03-04 16:38:12.317086461 -0600 CST m=+5532.901298845"
-}
-```
-
-<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
-|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
-
-<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» account_id|string|false|none|none|
-|» name|string|false|none|none|
-|» budget|integer|false|none|none|
-|» created_at|string|false|none|none|
-
-Status Code **400**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **401**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **403**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **404**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **408**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **500**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## delete__organizations_{organizationId}_draft-strategies_{draftStrategyId}
@@ -3355,7 +3291,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId} \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -3367,29 +3304,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}',
-  method: 'delete',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}',
@@ -3411,7 +3329,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.delete 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}',
@@ -3425,14 +3344,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}', params={
+r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('DELETE','https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -3465,7 +3415,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -3556,8 +3506,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 <h1 id="facebook-api-draft-ads">draft ads</h1>
@@ -3572,7 +3523,8 @@ Entropy Facebook Draft Strategy Ads
 # You can also use wget
 curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads \
   -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -3585,26 +3537,6 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
-  method: 'post',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 const inputBody = '[
   {
     "name": "My draft ad",
@@ -3615,8 +3547,8 @@ const inputBody = '[
 ]';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
@@ -3639,7 +3571,8 @@ require 'json'
 
 headers = {
   'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
@@ -3654,14 +3587,46 @@ p JSON.parse(result)
 import requests
 headers = {
   'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads', params={
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('POST','https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -3695,7 +3660,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -3810,8 +3775,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## get__organizations_{organizationId}_draft-strategies_{draftStrategyId}_ads
@@ -3821,7 +3787,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -3833,29 +3800,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
@@ -3877,7 +3825,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
@@ -3891,14 +3840,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads', params={
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -3931,7 +3911,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -4030,8 +4010,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## put__organizations_{organizationId}_draft-strategies_{draftStrategyId}_ads
@@ -4042,7 +4023,8 @@ This operation does not require authentication
 # You can also use wget
 curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads \
   -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -4055,26 +4037,6 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
-  method: 'put',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 const inputBody = '[
   {
     "id": "5e602ac3cf1ff689ff36d2b5",
@@ -4086,8 +4048,8 @@ const inputBody = '[
 ]';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
@@ -4110,7 +4072,8 @@ require 'json'
 
 headers = {
   'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
@@ -4125,14 +4088,46 @@ p JSON.parse(result)
 import requests
 headers = {
   'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads', params={
+r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('PUT','https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -4166,7 +4161,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -4282,8 +4277,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## delete__organizations_{organizationId}_draft-strategies_{draftStrategyId}_ads
@@ -4293,7 +4289,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -4305,29 +4302,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
-  method: 'delete',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
@@ -4349,7 +4327,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.delete 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads',
@@ -4363,14 +4342,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads', params={
+r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('DELETE','https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/ads', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -4403,7 +4413,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -4488,13 +4498,319 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 <h1 id="facebook-api-draft-locations">draft locations</h1>
 
 Entropy Facebook location resource
+
+## post__organizations_{organizationId}_draft-strategies_{draftStrategyId}_geolocations
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+POST https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations HTTP/1.1
+Host: pending.entropy.tech
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+const inputBody = '{
+  "countries": [
+    "MX"
+  ],
+  "regions": [
+    {
+      "key": "3843"
+    }
+  ],
+  "cities": [
+    {
+      "key": "2420605",
+      "radius": 10,
+      "distance_unit": "mile"
+    }
+  ]
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('POST','https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations`
+
+*Create new Facebook draft strategy*
+
+This creates a new Facebook strategy
+
+> Body parameter
+
+```json
+{
+  "countries": [
+    "MX"
+  ],
+  "regions": [
+    {
+      "key": "3843"
+    }
+  ],
+  "cities": [
+    {
+      "key": "2420605",
+      "radius": 10,
+      "distance_unit": "mile"
+    }
+  ]
+}
+```
+
+<h3 id="post__organizations_{organizationid}_draft-strategies_{draftstrategyid}_geolocations-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|draftStrategyId|path|string|true|The Draft Stratgy Id|
+|body|body|object|true|none|
+|» countries|body|[string]|false|none|
+|» regions|body|[object]|false|none|
+|»» key|body|string|false|none|
+|» cities|body|[object]|false|none|
+|»» key|body|string|false|none|
+|»» radius|body|integer|false|none|
+|»» distance_unit|body|string|false|none|
+
+> Example responses
+
+> 201 Response
+
+```json
+{
+  "geo_locations": {
+    "countries": [
+      "MX"
+    ],
+    "regions": [
+      {
+        "key": "3843"
+      }
+    ],
+    "cities": [
+      {
+        "key": "2420605",
+        "radius": 10,
+        "distance_unit": "mile"
+      }
+    ]
+  }
+}
+```
+
+<h3 id="post__organizations_{organizationid}_draft-strategies_{draftstrategyid}_geolocations-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="post__organizations_{organizationid}_draft-strategies_{draftstrategyid}_geolocations-responseschema">Response Schema</h3>
+
+Status Code **201**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» geo_locations|object|false|none|none|
+|»» countries|[string]|false|none|none|
+|»» regions|[object]|false|none|none|
+|»»» key|string|false|none|none|
+|»» cities|[object]|false|none|none|
+|»»» key|string|false|none|none|
+|»»» radius|integer|false|none|none|
+|»»» distance_unit|string|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
 
 ## get__organizations_{organizationId}_draft-strategies_{draftStrategyId}_geolocations
 
@@ -4503,7 +4819,8 @@ Entropy Facebook location resource
 ```shell
 # You can also use wget
 curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -4515,29 +4832,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations',
@@ -4559,7 +4857,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations',
@@ -4573,14 +4872,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations', params={
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -4613,7 +4943,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -4724,8 +5054,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## put__organizations_{organizationId}_draft-strategies_{draftStrategyId}_geolocations
@@ -4736,7 +5067,8 @@ This operation does not require authentication
 # You can also use wget
 curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations \
   -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -4749,26 +5081,6 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations',
-  method: 'put',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 const inputBody = '{
   "countries": [
     "MX"
@@ -4788,8 +5100,8 @@ const inputBody = '{
 }';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations',
@@ -4812,7 +5124,8 @@ require 'json'
 
 headers = {
   'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations',
@@ -4827,14 +5140,46 @@ p JSON.parse(result)
 import requests
 headers = {
   'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations', params={
+r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('PUT','https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/geolocations', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -4868,7 +5213,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -5009,8 +5354,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 <h1 id="facebook-api-draft-creatives">draft creatives</h1>
@@ -5024,7 +5370,8 @@ Entropy Facebook draft creatives resource
 ```shell
 # You can also use wget
 curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/creatives \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -5036,29 +5383,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/creatives',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/creatives',
@@ -5080,7 +5408,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/creatives',
@@ -5094,14 +5423,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/creatives', params={
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/creatives', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/creatives', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -5134,7 +5494,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -5232,8 +5592,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## post__organizations_{organizationId}_draft-strategies_{draftStrategyId}_creatives
@@ -5244,7 +5605,8 @@ This operation does not require authentication
 # You can also use wget
 curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/creatives \
   -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -5257,34 +5619,14 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/creatives',
-  method: 'post',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 const inputBody = '{
   "name": "My Creative",
   "creative_uri": "images.google.com/epy/creatives/123456ffdf"
 }';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/creatives',
@@ -5307,7 +5649,8 @@ require 'json'
 
 headers = {
   'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/creatives',
@@ -5322,14 +5665,46 @@ p JSON.parse(result)
 import requests
 headers = {
   'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/creatives', params={
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/creatives', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('POST','https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/creatives', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -5363,7 +5738,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -5472,8 +5847,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## get__organizations_{organizationId}_draft-strategies_{draftStrategyId}_draft-creatives_{draftCreativeId}
@@ -5483,7 +5859,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId} \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -5495,29 +5872,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}',
@@ -5539,7 +5897,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}',
@@ -5553,14 +5912,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}', params={
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -5593,7 +5983,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -5689,8 +6079,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## delete__organizations_{organizationId}_draft-strategies_{draftStrategyId}_draft-creatives_{draftCreativeId}
@@ -5700,7 +6091,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId} \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -5712,29 +6104,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}',
-  method: 'delete',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}',
@@ -5756,7 +6129,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.delete 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}',
@@ -5770,14 +6144,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}', params={
+r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('DELETE','https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -5810,7 +6215,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -5902,8 +6307,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 <h1 id="facebook-api-draft-campaigns">draft campaigns</h1>
@@ -5918,7 +6324,8 @@ Entropy Facebook draft campaigns
 # You can also use wget
 curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns \
   -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -5931,33 +6338,13 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns',
-  method: 'post',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 const inputBody = '{
   "budget": 600
 }';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns',
@@ -5980,7 +6367,8 @@ require 'json'
 
 headers = {
   'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns',
@@ -5995,14 +6383,46 @@ p JSON.parse(result)
 import requests
 headers = {
   'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns', params={
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('POST','https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -6036,7 +6456,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -6145,8 +6565,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## get__organizations_{organizationId}_draft-strategies_{draftStrategyId}_campaigns
@@ -6156,7 +6577,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -6168,29 +6590,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns',
@@ -6212,7 +6615,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns',
@@ -6226,14 +6630,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns', params={
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -6266,7 +6701,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -6365,8 +6800,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## put__organizations_{organizationId}_draft-strategies_{draftStrategyId}_campaigns
@@ -6377,7 +6813,8 @@ This operation does not require authentication
 # You can also use wget
 curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns \
   -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -6390,26 +6827,6 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns',
-  method: 'put',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 const inputBody = '[
   {
     "id": "5e602dd4cf1ff689ff36d2222",
@@ -6420,8 +6837,8 @@ const inputBody = '[
 ]';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns',
@@ -6444,7 +6861,8 @@ require 'json'
 
 headers = {
   'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns',
@@ -6459,14 +6877,46 @@ p JSON.parse(result)
 import requests
 headers = {
   'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns', params={
+r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('PUT','https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/campaigns', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -6500,7 +6950,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -6615,8 +7065,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 <h1 id="facebook-api-strategy">strategy</h1>
@@ -6631,7 +7082,8 @@ Entropy Facebook strategies resource
 # You can also use wget
 curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/strategies \
   -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -6644,33 +7096,13 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies',
-  method: 'post',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 const inputBody = '{
   "id": "5e7bab8b5ecb9ea374bf8a65"
 }';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies',
@@ -6693,7 +7125,8 @@ require 'json'
 
 headers = {
   'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies',
@@ -6708,14 +7141,46 @@ p JSON.parse(result)
 import requests
 headers = {
   'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies', params={
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('POST','https://pending.entropy.tech/v1/organizations/{organizationId}/strategies', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -6749,7 +7214,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -6849,8 +7314,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## get__organizations_{organizationId}_strategies
@@ -6860,7 +7326,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/strategies \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -6872,29 +7339,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies',
@@ -6916,7 +7364,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies',
@@ -6930,14 +7379,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies', params={
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/strategies', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -6970,7 +7450,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -7068,8 +7548,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## delete__organizations_{organizationId}_strategies_{strategyId}
@@ -7079,7 +7560,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId} \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -7091,29 +7573,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}',
-  method: 'delete',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}',
@@ -7135,7 +7598,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.delete 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}',
@@ -7149,14 +7613,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}', params={
+r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('DELETE','https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -7189,7 +7684,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -7274,8 +7769,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## put__organizations_{organizationId}_strategies_{strategyId}_status-paused
@@ -7285,7 +7781,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-paused \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -7297,29 +7794,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-paused',
-  method: 'put',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-paused',
@@ -7341,7 +7819,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-paused',
@@ -7355,14 +7834,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-paused', params={
+r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-paused', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('PUT','https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-paused', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -7395,7 +7905,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -7480,8 +7990,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## put__organizations_{organizationId}_strategies_{strategyId}_status-active
@@ -7491,7 +8002,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-active \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -7503,29 +8015,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-active',
-  method: 'put',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-active',
@@ -7547,7 +8040,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-active',
@@ -7561,14 +8055,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-active', params={
+r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-active', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('PUT','https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/status-active', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -7601,7 +8126,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -7686,8 +8211,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 <h1 id="facebook-api-strategy-campaigns">strategy campaigns</h1>
@@ -7701,7 +8227,8 @@ Entropy Facebook strategy campaigns
 ```shell
 # You can also use wget
 curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -7713,29 +8240,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns',
@@ -7757,7 +8265,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns',
@@ -7771,14 +8280,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns', params={
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -7811,7 +8351,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -7908,8 +8448,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## put__organizations_{organizationId}_strategies_{strategyId}_campaigns
@@ -7920,7 +8461,8 @@ This operation does not require authentication
 # You can also use wget
 curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns \
   -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -7933,26 +8475,6 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns',
-  method: 'put',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 const inputBody = '[
   {
     "name": "Campañas de Remarketing",
@@ -7962,8 +8484,8 @@ const inputBody = '[
 ]';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns',
@@ -7986,7 +8508,8 @@ require 'json'
 
 headers = {
   'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns',
@@ -8001,14 +8524,46 @@ p JSON.parse(result)
 import requests
 headers = {
   'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns', params={
+r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('PUT','https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/campaigns', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -8042,7 +8597,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -8152,8 +8707,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 <h1 id="facebook-api-strategy-creatives">strategy creatives</h1>
@@ -8166,7 +8722,8 @@ This operation does not require authentication
 # You can also use wget
 curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives \
   -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -8179,34 +8736,14 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives',
-  method: 'post',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 const inputBody = '{
   "name": "My Creative",
   "creative_uri": "images.google.com/epy/creatives/123456ffdf"
 }';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives',
@@ -8229,7 +8766,8 @@ require 'json'
 
 headers = {
   'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives',
@@ -8244,14 +8782,46 @@ p JSON.parse(result)
 import requests
 headers = {
   'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives', params={
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('POST','https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -8285,7 +8855,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -8394,8 +8964,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## get__organizations_{organizationId}_strategies_{strategyId}_creatives
@@ -8405,7 +8976,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -8417,29 +8989,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives',
@@ -8461,7 +9014,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives',
@@ -8475,14 +9029,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives', params={
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -8515,7 +9100,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -8612,8 +9197,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## put__organizations_{organizationId}_strategies_{strategyId}_creatives_{creativeId}
@@ -8624,7 +9210,8 @@ This operation does not require authentication
 # You can also use wget
 curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId} \
   -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -8637,34 +9224,14 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}',
-  method: 'put',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 const inputBody = '{
   "name": "My Second Creative",
   "creative_uri": "images.google.com/epy/creatives/123456ffdf"
 }';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}',
@@ -8687,7 +9254,8 @@ require 'json'
 
 headers = {
   'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}',
@@ -8702,14 +9270,46 @@ p JSON.parse(result)
 import requests
 headers = {
   'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}', params={
+r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('PUT','https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -8743,7 +9343,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -8853,8 +9453,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## get__organizations_{organizationId}_strategies_{strategyId}_creatives_{creativeId}
@@ -8864,7 +9465,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId} \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -8876,29 +9478,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}',
@@ -8920,7 +9503,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}',
@@ -8934,14 +9518,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}', params={
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -8974,7 +9589,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -9070,8 +9685,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## delete__organizations_{organizationId}_strategies_{strategyId}_creatives_{creativeId}
@@ -9081,7 +9697,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId} \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -9093,29 +9710,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}',
-  method: 'delete',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}',
@@ -9137,7 +9735,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.delete 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}',
@@ -9151,14 +9750,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}', params={
+r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('DELETE','https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/creatives/{creativeId}', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -9191,7 +9821,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -9277,8 +9907,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 <h1 id="facebook-api-strategy-ads">strategy ads</h1>
@@ -9291,7 +9922,8 @@ This operation does not require authentication
 # You can also use wget
 curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads \
   -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -9304,26 +9936,6 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads',
-  method: 'post',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 const inputBody = '[
   {
     "name": "My ad name",
@@ -9336,8 +9948,8 @@ const inputBody = '[
 ]';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads',
@@ -9360,7 +9972,8 @@ require 'json'
 
 headers = {
   'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads',
@@ -9375,14 +9988,46 @@ p JSON.parse(result)
 import requests
 headers = {
   'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads', params={
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('POST','https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -9416,7 +10061,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -9533,8 +10178,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## get__organizations_{organizationId}_strategies_{strategyId}_ads
@@ -9544,7 +10190,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -9556,29 +10203,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads',
@@ -9600,7 +10228,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads',
@@ -9614,14 +10243,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads', params={
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -9654,7 +10314,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -9759,8 +10419,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## get__organizations_{organizationId}_strategies_{strategyId}_ads_{adId}
@@ -9770,7 +10431,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId} \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -9782,29 +10444,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}',
@@ -9826,7 +10469,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}',
@@ -9840,14 +10484,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}', params={
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -9880,7 +10555,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -9982,8 +10657,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## put__organizations_{organizationId}_strategies_{strategyId}_ads_{adId}
@@ -9994,7 +10670,8 @@ This operation does not require authentication
 # You can also use wget
 curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId} \
   -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -10007,26 +10684,6 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}',
-  method: 'put',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 const inputBody = '{
   "name": "My ad name",
   "title": "My ad title",
@@ -10037,8 +10694,8 @@ const inputBody = '{
 }';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}',
@@ -10061,7 +10718,8 @@ require 'json'
 
 headers = {
   'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}',
@@ -10076,14 +10734,46 @@ p JSON.parse(result)
 import requests
 headers = {
   'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}', params={
+r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('PUT','https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -10117,7 +10807,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -10237,8 +10927,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## delete__organizations_{organizationId}_strategies_{strategyId}_ads_{adId}
@@ -10248,7 +10939,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId} \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -10260,29 +10952,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}',
-  method: 'delete',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}',
@@ -10304,7 +10977,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.delete 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}',
@@ -10318,14 +10992,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}', params={
+r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('DELETE','https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/ads/{adId}', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -10358,7 +11063,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -10444,8 +11149,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 <h1 id="facebook-api-strategy-locations">strategy locations</h1>
@@ -10458,7 +11164,8 @@ This operation does not require authentication
 # You can also use wget
 curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations \
   -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -10471,26 +11178,6 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
-  method: 'post',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 const inputBody = '{
   "countries": [
     "MX"
@@ -10510,8 +11197,8 @@ const inputBody = '{
 }';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
@@ -10534,7 +11221,8 @@ require 'json'
 
 headers = {
   'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
@@ -10549,14 +11237,46 @@ p JSON.parse(result)
 import requests
 headers = {
   'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations', params={
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('POST','https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -10590,7 +11310,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -10731,8 +11451,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## get__organizations_{organizationId}_strategies_{strategyId}_locations
@@ -10742,7 +11463,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -10754,29 +11476,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
-  method: 'get',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
@@ -10798,7 +11501,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
@@ -10812,14 +11516,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations', params={
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -10852,7 +11587,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -10963,8 +11698,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## put__organizations_{organizationId}_strategies_{strategyId}_locations
@@ -10975,7 +11711,8 @@ This operation does not require authentication
 # You can also use wget
 curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations \
   -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -10988,26 +11725,6 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
-  method: 'put',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 const inputBody = '{
   "countries": [
     "MX"
@@ -11027,8 +11744,8 @@ const inputBody = '{
 }';
 const headers = {
   'Content-Type':'application/json',
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
@@ -11051,7 +11768,8 @@ require 'json'
 
 headers = {
   'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
@@ -11066,14 +11784,46 @@ p JSON.parse(result)
 import requests
 headers = {
   'Content-Type': 'application/json',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations', params={
+r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('PUT','https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -11107,7 +11857,7 @@ func main() {
     headers := map[string][]string{
         "Content-Type": []string{"application/json"},
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -11248,8 +11998,9 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
 ## delete__organizations_{organizationId}_strategies_{strategyId}_locations
@@ -11259,7 +12010,8 @@ This operation does not require authentication
 ```shell
 # You can also use wget
 curl -X DELETE https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations \
-  -H 'Accept: application/json'
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -11271,29 +12023,10 @@ Accept: application/json
 ```
 
 ```javascript
-var headers = {
-  'Accept':'application/json'
-
-};
-
-$.ajax({
-  url: 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
-  method: 'delete',
-
-  headers: headers,
-  success: function(data) {
-    console.log(JSON.stringify(data));
-  }
-})
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
 
 const headers = {
-  'Accept':'application/json'
-
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
 };
 
 fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
@@ -11315,7 +12048,8 @@ require 'rest-client'
 require 'json'
 
 headers = {
-  'Accept' => 'application/json'
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.delete 'https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations',
@@ -11329,14 +12063,45 @@ p JSON.parse(result)
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations', params={
+r = requests.delete('https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations', headers = headers)
 
-}, headers = headers)
+print(r.json())
 
-print r.json()
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('DELETE','https://pending.entropy.tech/v1/organizations/{organizationId}/strategies/{strategyId}/locations', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
 
 ```
 
@@ -11369,7 +12134,7 @@ func main() {
 
     headers := map[string][]string{
         "Accept": []string{"application/json"},
-        
+        "Authorization": []string{"Bearer {access-token}"},
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
@@ -11454,7 +12219,8 @@ Status Code **500**
 |---|---|---|---|---|
 |» message|string|false|none|none|
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
 </aside>
 
