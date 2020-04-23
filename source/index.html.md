@@ -1646,8 +1646,7 @@ func main() {
 ```json
 {
   "id": 1,
-  "name": "My facebook account",
-  "url": "https://scontent.fmex3-1.fna.fbcdn.net/v/t1.0-1/cp0/p50x50/69990981_2541917302555666_6471452641946763264_o.jpg"
+  "name": "My facebook account"
 }
 ```
 
@@ -1670,7 +1669,6 @@ Status Code **201**
 |---|---|---|---|---|
 |» id|integer|false|none|The account ID.|
 |» name|string|false|none|The account name.|
-|» url|string|false|none|none|
 
 Status Code **400**
 
@@ -1868,8 +1866,7 @@ func main() {
 [
   {
     "id": 1,
-    "name": "My facebook account",
-    "url": "https://scontent.fmex3-1.fna.fbcdn.net/v/t1.0-1/cp0/p50x50/69990981_2541917302555666_6471452641946763264_o.jpg"
+    "name": "My facebook account"
   }
 ]
 ```
@@ -1893,7 +1890,6 @@ Status Code **200**
 |---|---|---|---|---|
 |» id|integer|false|none|The account ID.|
 |» name|string|false|none|The account name.|
-|» url|string|false|none|none|
 
 Status Code **401**
 
@@ -1908,239 +1904,6 @@ Status Code **403**
 |» message|string|false|none|none|
 
 Status Code **404**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **408**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **500**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-bearerAuth
-</aside>
-
-## get__organizations_{organizationId}_accounts_{accountId}
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId} \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-```http
-GET https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId} HTTP/1.1
-Host: pending.entropy.tech
-Accept: application/json
-
-```
-
-```javascript
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}', headers = headers)
-
-print(r.json())
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-);
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```java
-URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Accept": []string{"application/json"},
-        "Authorization": []string{"Bearer {access-token}"},
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
-
-```
-
-`GET /organizations/{organizationId}/accounts/{accountId}`
-
-*GetFacebook account*
-
-<h3 id="get__organizations_{organizationid}_accounts_{accountid}-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|organizationId|path|string|true|The Organization Id|
-|accountId|path|integer|true|The Account Id|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "id": 1,
-  "external_id": "act_123456789101112",
-  "name": "My facebook account",
-  "instagram_id": "1023317097692584",
-  "page": {
-    "id": "1023317097692584",
-    "url": "https://scontent.fmex3-1.fna.fbcdn.net/v/t1.0-1/cp0/p50x50/69990981_2541917302555666_6471452641946763264_o.jpg"
-  }
-}
-```
-
-<h3 id="get__organizations_{organizationid}_accounts_{accountid}-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
-|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
-
-<h3 id="get__organizations_{organizationid}_accounts_{accountid}-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» id|integer|false|none|The account ID.|
-|» external_id|string|false|none|The adaccount id|
-|» name|string|false|none|The account name.|
-|» instagram_id|string|false|none|The instagram id|
-|» page|object|false|none|none|
-|»» id|string|false|none|The facebook page id|
-|»» url|string|false|none|The page profile picture url|
-
-Status Code **400**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **401**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **403**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -2565,6 +2328,230 @@ Status Code **200**
 |» id|string|false|none|The facebook page id|
 |» name|string|false|none|Facebook page name|
 |» url|string|false|none|The page profile picture url|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
+## post__organizations_{organizationId}_accounts_{accountId}_instagram
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+POST https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram',
+{
+  method: 'POST',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('POST','https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /organizations/{organizationId}/accounts/{accountId}/instagram`
+
+*GetFacebook account*
+
+<h3 id="post__organizations_{organizationid}_accounts_{accountid}_instagram-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|accountId|path|integer|true|The Account Id|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "id": "1023317097692584",
+  "username": "fake_profile",
+  "profile_pic": "https://scontent-qro1-1.xx.fbcdn.net/v/t51.2885-15/10358304_683009211734391_805233549_a.jpg?_nc_cat=111&_nc_sid=86c713&_nc_ohc=-BEh1CRhIDAAX_GlXcF&_nc_ht=scontent-qro1-1.xx&oh=51977412f1779267f8e6aa8b26d21bbd&oe=5EB3C9DE"
+}
+```
+
+<h3 id="post__organizations_{organizationid}_accounts_{accountid}_instagram-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="post__organizations_{organizationid}_accounts_{accountid}_instagram-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|string|false|none|The Instagram id|
+|» username|string|false|none|Instagram username|
+|» profile_pic|string|false|none|The instagram profile picture url|
 
 Status Code **400**
 
@@ -3541,14 +3528,13 @@ Accept: application/json
 ```
 
 ```javascript
-const inputBody = '[
-  {
-    "name": "My draft ad",
-    "title": "My draft title",
-    "body": "Buy this product",
-    "visible_uri:": "https://entropy.tech"
-  }
-]';
+const inputBody = '{
+  "name": "My draft ad",
+  "headline": "Lo mejor en zapatos",
+  "primary_text": "Nuestros pasos bla bla bla",
+  "description": "Descuentos de hasta 30%",
+  "display_link": "https://entropy"
+}';
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
@@ -3685,14 +3671,13 @@ func main() {
 > Body parameter
 
 ```json
-[
-  {
-    "name": "My draft ad",
-    "title": "My draft title",
-    "body": "Buy this product",
-    "visible_uri:": "https://entropy.tech"
-  }
-]
+{
+  "name": "My draft ad",
+  "headline": "Lo mejor en zapatos",
+  "primary_text": "Nuestros pasos bla bla bla",
+  "description": "Descuentos de hasta 30%",
+  "display_link": "https://entropy"
+}
 ```
 
 <h3 id="post__organizations_{organizationid}_draft-strategies_{draftstrategyid}_ads-parameters">Parameters</h3>
@@ -3701,7 +3686,12 @@ func main() {
 |---|---|---|---|---|
 |organizationId|path|string|true|The Organization Id|
 |draftStrategyId|path|string|true|The Draft Strategy Id|
-|body|body|array[object]|true|none|
+|body|body|object|true|none|
+|» name|body|string|false|The draft ad name.|
+|» headline|body|string|false|The draft ad headline.|
+|» primary_text|body|string|false|The draft ad primary text.|
+|» description|body|string|false|The draft ad body.|
+|» display_link|body|string|false|The draft ad visible link.|
 
 > Example responses
 
@@ -3710,11 +3700,11 @@ func main() {
 ```json
 [
   {
-    "id": "5e602ac3cf1ff689ff36d2b5",
     "name": "My draft ad",
-    "title": "My draft title",
-    "body": "Buy this ad product",
-    "visible_uri": "https://entropy.tech"
+    "headline": "Lo mejor en zapatos",
+    "primary_text": "Nuestros pasos bla bla bla",
+    "description": "Descuentos de hasta 30%",
+    "display_link": "https://entropy.tech"
   }
 ]
 ```
@@ -3737,11 +3727,11 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» id|string|false|none|The draft ad Id.|
 |» name|string|false|none|The draft ad name.|
-|» title|string|false|none|The draft ad title.|
-|» body|string|false|none|The draft ad body.|
-|» visible_uri|string|false|none|The draft ad visible link.|
+|» headline|string|false|none|The draft ad headline.|
+|» primary_text|string|false|none|The draft ad primary text.|
+|» description|string|false|none|The draft ad body.|
+|» display_link|string|false|none|The draft ad visible link.|
 
 Status Code **400**
 
@@ -3946,11 +3936,11 @@ func main() {
 
 ```json
 {
-  "id": "5e602ac3cf1ff689ff36d2b5",
   "name": "My draft ad",
-  "title": "My draft title",
-  "body": "Buy this ad product",
-  "visible_uri:": "https://entropy.tech"
+  "headline": "Lo mejor en zapatos",
+  "primary_text": "Nuestros pasos bla bla bla",
+  "description": "Descuentos de hasta 30%",
+  "display_link": "https://entropy.tech"
 }
 ```
 
@@ -3972,11 +3962,11 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» id|string|false|none|The draft ad Id.|
 |» name|string|false|none|The draft ad name.|
-|» title|string|false|none|The draft ad title.|
-|» body|string|false|none|The draft ad body.|
-|» visible_uri:|string|false|none|The draft ad visible link.|
+|» headline|string|false|none|The draft ad headline.|
+|» primary_text|string|false|none|The draft ad primary text.|
+|» description|string|false|none|The draft ad body.|
+|» display_link|string|false|none|The draft ad visible link.|
 
 Status Code **400**
 
@@ -4041,15 +4031,13 @@ Accept: application/json
 ```
 
 ```javascript
-const inputBody = '[
-  {
-    "id": "5e602ac3cf1ff689ff36d2b5",
-    "name": "My draft ad",
-    "title": "My draft title",
-    "body": "Buy this ad product",
-    "visible_uri": "https://entropy.tech"
-  }
-]';
+const inputBody = '{
+  "name": "My draft ad",
+  "headline": "Lo mejor en zapatos",
+  "primary_text": "Nuestros pasos bla bla bla",
+  "description": "Descuentos de hasta 30%",
+  "display_link": "https://entropy.tech"
+}';
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
@@ -4186,15 +4174,13 @@ func main() {
 > Body parameter
 
 ```json
-[
-  {
-    "id": "5e602ac3cf1ff689ff36d2b5",
-    "name": "My draft ad",
-    "title": "My draft title",
-    "body": "Buy this ad product",
-    "visible_uri": "https://entropy.tech"
-  }
-]
+{
+  "name": "My draft ad",
+  "headline": "Lo mejor en zapatos",
+  "primary_text": "Nuestros pasos bla bla bla",
+  "description": "Descuentos de hasta 30%",
+  "display_link": "https://entropy.tech"
+}
 ```
 
 <h3 id="put__organizations_{organizationid}_draft-strategies_{draftstrategyid}_ads-parameters">Parameters</h3>
@@ -4203,22 +4189,25 @@ func main() {
 |---|---|---|---|---|
 |organizationId|path|string|true|The Organization Id|
 |draftStrategyId|path|string|true|The Draft Strategy Id|
-|body|body|array[object]|true|none|
+|body|body|object|true|none|
+|» name|body|string|false|The draft ad name.|
+|» headline|body|string|false|The draft ad headline.|
+|» primary_text|body|string|false|The draft ad primary text.|
+|» description|body|string|false|The draft ad body.|
+|» display_link|body|string|false|The draft ad visible link.|
 
 > Example responses
 
 > 200 Response
 
 ```json
-[
-  {
-    "id": "5e602ac3cf1ff689ff36d2b5",
-    "name": "My draft ad",
-    "title": "My draft title",
-    "body": "Buy this ad product",
-    "visible_uri": "https://entropy.tech"
-  }
-]
+{
+  "name": "My draft ad",
+  "headline": "Lo mejor en zapatos",
+  "primary_text": "Nuestros pasos bla bla bla",
+  "description": "Descuentos de hasta 30%",
+  "display_link": "https://entropy.tech"
+}
 ```
 
 <h3 id="put__organizations_{organizationid}_draft-strategies_{draftstrategyid}_ads-responses">Responses</h3>
@@ -4239,11 +4228,11 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» id|string|false|none|The draft ad Id.|
 |» name|string|false|none|The draft ad name.|
-|» title|string|false|none|The draft ad title.|
-|» body|string|false|none|The draft ad body.|
-|» visible_uri|string|false|none|The draft ad visible link.|
+|» headline|string|false|none|The draft ad headline.|
+|» primary_text|string|false|none|The draft ad primary text.|
+|» description|string|false|none|The draft ad body.|
+|» display_link|string|false|none|The draft ad visible link.|
 
 Status Code **400**
 
@@ -5812,238 +5801,6 @@ Status Code **201**
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» id|string|false|none|The draft creative Id.|
-|» name|string|false|none|none|
-|» creative_uri|string|false|none|none|
-
-Status Code **400**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **401**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **403**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **404**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **408**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **500**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-bearerAuth
-</aside>
-
-## get__organizations_{organizationId}_draft-strategies_{draftStrategyId}_draft-creatives_{draftCreativeId}
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId} \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-```http
-GET https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId} HTTP/1.1
-Host: pending.entropy.tech
-Accept: application/json
-
-```
-
-```javascript
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}', headers = headers)
-
-print(r.json())
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-);
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```java
-URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Accept": []string{"application/json"},
-        "Authorization": []string{"Bearer {access-token}"},
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
-
-```
-
-`GET /organizations/{organizationId}/draft-strategies/{draftStrategyId}/draft-creatives/{draftCreativeId}`
-
-*Retrieve Facebook campaign strategy creative*
-
-<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}_draft-creatives_{draftcreativeid}-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|organizationId|path|string|true|The Organization Id|
-|draftStrategyId|path|string|true|The Draft Strategy Id|
-|draftCreativeId|path|string|true|The Draft Creative Id|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "id": "123456",
-  "name": "My Creative",
-  "creative_uri": "images.google.com/epy/creatives/123456ffdf"
-}
-```
-
-<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}_draft-creatives_{draftcreativeid}-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
-|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
-
-<h3 id="get__organizations_{organizationid}_draft-strategies_{draftstrategyid}_draft-creatives_{draftcreativeid}-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» id|string|false|none|The draft strategy ID.|
 |» name|string|false|none|none|
 |» creative_uri|string|false|none|none|
 
