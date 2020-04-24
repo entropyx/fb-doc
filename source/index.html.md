@@ -3039,6 +3039,211 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
+## post__organizations_{organizationId}_accounts_{accountId}_facebook-locations
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/facebook-locations?q=mexico \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+POST https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/facebook-locations?q=mexico HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/facebook-locations?q=mexico',
+{
+  method: 'POST',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/facebook-locations',
+  params: {
+  'q' => 'string'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/facebook-locations', params={
+  'q': 'mexico'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('POST','https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/facebook-locations', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/facebook-locations?q=mexico");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/facebook-locations", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /organizations/{organizationId}/accounts/{accountId}/facebook-locations`
+
+*Search facebok locations*
+
+<h3 id="post__organizations_{organizationid}_accounts_{accountid}_facebook-locations-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|accountId|path|integer|true|The Account Id|
+|q|query|string|true|the searched location|
+|locale|query|string|false|ISO 639-1 language code|
+|type|query|string|false|Searched location type. Accepts country, region, city|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "key": "15020915",
+    "name": "Estado de México",
+    "type": "city",
+    "country_code": "MX",
+    "country_name": "México",
+    "region": "State of Mexico",
+    "region_id": 2519
+  }
+]
+```
+
+<h3 id="post__organizations_{organizationid}_accounts_{accountid}_facebook-locations-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+
+<h3 id="post__organizations_{organizationid}_accounts_{accountid}_facebook-locations-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» key|string|false|none|none|
+|» name|string|false|none|none|
+|» type|string|false|none|none|
+|» country_code|string|false|none|none|
+|» country_name|string|false|none|none|
+|» region|string|false|none|none|
+|» region_id|number|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
 <h1 id="facebook-api-draft-strategies">draft strategies</h1>
 
 Entropy Facebook draft strategies resource
@@ -5613,8 +5818,10 @@ Accept: application/json
 
 ```javascript
 const inputBody = '{
+  "id": "creative",
   "name": "My Creative",
-  "creative_uri": "images.google.com/epy/creatives/123456ffdf"
+  "creative_uri": "images.google.com/epy/creatives/123456ffdf",
+  "type": "video"
 }';
 const headers = {
   'Content-Type':'application/json',
@@ -5755,8 +5962,10 @@ This creates a new Facebook campaign creative
 
 ```json
 {
+  "id": "creative",
   "name": "My Creative",
-  "creative_uri": "images.google.com/epy/creatives/123456ffdf"
+  "creative_uri": "images.google.com/epy/creatives/123456ffdf",
+  "type": "video"
 }
 ```
 
@@ -5767,8 +5976,10 @@ This creates a new Facebook campaign creative
 |organizationId|path|string|true|The Organization Id|
 |draftStrategyId|path|string|true|The Draft Strategy Id|
 |body|body|object|true|none|
+|» id|body|string|false|none|
 |» name|body|string|false|none|
 |» creative_uri|body|string|false|none|
+|» type|body|string|false|Creative type (video, story, etc)|
 
 > Example responses
 
@@ -6004,11 +6215,11 @@ func main() {
 
 > Example responses
 
-> 200 Response
+> 400 Response
 
 ```json
 {
-  "message": "creative deleted"
+  "message": "string"
 }
 ```
 
@@ -6016,7 +6227,7 @@ func main() {
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|No content|None|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
@@ -6025,12 +6236,6 @@ func main() {
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
 
 <h3 id="delete__organizations_{organizationid}_draft-strategies_{draftstrategyid}_draft-creatives_{draftcreativeid}-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|.|
 
 Status Code **400**
 
