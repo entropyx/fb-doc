@@ -222,7 +222,7 @@ func main() {
 
 ```json
 {
-  "id": 1,
+  "external_id": "12341234",
   "name": "My facebook credential"
 }
 ```
@@ -244,7 +244,7 @@ Status Code **201**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» id|integer|false|none|The credential ID.|
+|» external_id|string|false|none|The credential ID.|
 |» name|string|false|none|The credential name.|
 
 Status Code **400**
@@ -444,8 +444,9 @@ func main() {
 ```json
 [
   {
-    "id": 1,
-    "name": "My facebook credential"
+    "external_id": "12341234",
+    "name": "My facebook credential",
+    "provider_name": "facebook"
   }
 ]
 ```
@@ -466,8 +467,9 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» id|integer|false|none|The credential ID.|
+|» external_id|string|false|none|The credential ID.|
 |» name|string|false|none|The credential name.|
+|» provider_name|string|false|none|The credential provider,|
 
 Status Code **401**
 
@@ -476,235 +478,6 @@ Status Code **401**
 |» message|string|false|none|none|
 
 Status Code **403**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **408**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **500**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-bearerAuth
-</aside>
-
-## get__organizations_{organizationId}_credentials_{credentialId}
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId} \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-```http
-GET https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId} HTTP/1.1
-Host: pending.entropy.tech
-Accept: application/json
-
-```
-
-```javascript
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}', headers = headers)
-
-print(r.json())
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-);
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```java
-URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Accept": []string{"application/json"},
-        "Authorization": []string{"Bearer {access-token}"},
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
-
-```
-
-`GET /organizations/{organizationId}/credentials/{credentialId}`
-
-*Get credential by credential id*
-
-<h3 id="get__organizations_{organizationid}_credentials_{credentialid}-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|organizationId|path|string|true|The Organization Id|
-|credentialId|path|integer|true|none|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "id": 1,
-  "name": "My facebook credential"
-}
-```
-
-<h3 id="get__organizations_{organizationid}_credentials_{credentialid}-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
-|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
-
-<h3 id="get__organizations_{organizationid}_credentials_{credentialid}-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» id|integer|false|none|The credential ID.|
-|» name|string|false|none|The credential name.|
-
-Status Code **400**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **401**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **403**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **404**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -881,7 +654,7 @@ func main() {
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |organizationId|path|string|true|The Organization Id|
-|credentialId|path|integer|true|none|
+|credentialId|path|string|true|none|
 
 > Example responses
 
@@ -1121,7 +894,7 @@ func main() {
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |organizationId|path|string|true|The Organization Id|
-|credentialId|path|integer|true|none|
+|credentialId|path|string|true|none|
 |body|body|object|true|none|
 |» code|body|string|false|none|
 |» state|body|string|false|none|
@@ -1157,6 +930,246 @@ Status Code **200**
 |---|---|---|---|---|
 |» id|integer|false|none|The credential ID.|
 |» name|string|false|none|The credential name.|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
+## get__organizations_{organizationId}_credentials_{credentialId}_businesses
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/businesses \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/businesses HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/businesses',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/businesses',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/businesses', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/businesses', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/businesses");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/businesses", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{organizationId}/credentials/{credentialId}/businesses`
+
+*Retrieve facebook businesses*
+
+<h3 id="get__organizations_{organizationid}_credentials_{credentialid}_businesses-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|credentialId|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "id": "107406950975265",
+    "role": "ADMIN",
+    "business": {
+      "name": "My BM",
+      "profile_picture_url": "string",
+      "id": "103752451344000"
+    }
+  }
+]
+```
+
+<h3 id="get__organizations_{organizationid}_credentials_{credentialid}_businesses-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="get__organizations_{organizationid}_credentials_{credentialid}_businesses-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id|string|false|none|The user scoped business id.|
+|» role|string|false|none|The user role in business|
+|» business|object|false|none|none|
+|»» name|string|false|none|Business manager name|
+|»» profile_picture_url|string|false|none|Business Manager profile picture|
+|»» id|string|false|none|Business Manager ID|
 
 Status Code **400**
 
@@ -1452,6 +1465,211 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
+## post__organizations_{organizationId}_credentials_{credentialId}_facebook-locations
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/facebook-locations?q=mexico \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+POST https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/facebook-locations?q=mexico HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/facebook-locations?q=mexico',
+{
+  method: 'POST',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/facebook-locations',
+  params: {
+  'q' => 'string'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/facebook-locations', params={
+  'q': 'mexico'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('POST','https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/facebook-locations', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/facebook-locations?q=mexico");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/facebook-locations", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /organizations/{organizationId}/credentials/{credentialId}/facebook-locations`
+
+*Search facebok locations*
+
+<h3 id="post__organizations_{organizationid}_credentials_{credentialid}_facebook-locations-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|credentialId|path|string|true|The Credential Id|
+|q|query|string|true|the searched location|
+|locale|query|string|false|ISO 639-1 language code|
+|type|query|string|false|Searched location type. Accepts country, region, city|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "key": "15020915",
+    "name": "Estado de México",
+    "type": "city",
+    "country_code": "MX",
+    "country_name": "México",
+    "region": "State of Mexico",
+    "region_id": 2519
+  }
+]
+```
+
+<h3 id="post__organizations_{organizationid}_credentials_{credentialid}_facebook-locations-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+
+<h3 id="post__organizations_{organizationid}_credentials_{credentialid}_facebook-locations-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» key|string|false|none|none|
+|» name|string|false|none|none|
+|» type|string|false|none|none|
+|» country_code|string|false|none|none|
+|» country_name|string|false|none|none|
+|» region|string|false|none|none|
+|» region_id|number|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
 <h1 id="facebook-api-accounts">accounts</h1>
 
 Entropy Facebook accounts resource
@@ -1646,7 +1864,8 @@ func main() {
 ```json
 {
   "id": 1,
-  "name": "My facebook account"
+  "name": "My facebook account",
+  "currency": "MXN"
 }
 ```
 
@@ -1669,6 +1888,7 @@ Status Code **201**
 |---|---|---|---|---|
 |» id|integer|false|none|The account ID.|
 |» name|string|false|none|The account name.|
+|» currency|string|false|none|The account currency|
 
 Status Code **400**
 
@@ -1866,7 +2086,8 @@ func main() {
 [
   {
     "id": 1,
-    "name": "My facebook account"
+    "name": "My facebook account",
+    "currency": "MXN"
   }
 ]
 ```
@@ -1890,6 +2111,7 @@ Status Code **200**
 |---|---|---|---|---|
 |» id|integer|false|none|The account ID.|
 |» name|string|false|none|The account name.|
+|» currency|string|false|none|The adaccount currency|
 
 Status Code **401**
 
@@ -3033,211 +3255,6 @@ Status Code **500**
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» message|string|false|none|none|
-
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-bearerAuth
-</aside>
-
-## post__organizations_{organizationId}_accounts_{accountId}_facebook-locations
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/facebook-locations?q=mexico \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-```http
-POST https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/facebook-locations?q=mexico HTTP/1.1
-Host: pending.entropy.tech
-Accept: application/json
-
-```
-
-```javascript
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/facebook-locations?q=mexico',
-{
-  method: 'POST',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/facebook-locations',
-  params: {
-  'q' => 'string'
-}, headers: headers
-
-p JSON.parse(result)
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/facebook-locations', params={
-  'q': 'mexico'
-}, headers = headers)
-
-print(r.json())
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-);
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/facebook-locations', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```java
-URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/facebook-locations?q=mexico");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Accept": []string{"application/json"},
-        "Authorization": []string{"Bearer {access-token}"},
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("POST", "https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/facebook-locations", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
-
-```
-
-`POST /organizations/{organizationId}/accounts/{accountId}/facebook-locations`
-
-*Search facebok locations*
-
-<h3 id="post__organizations_{organizationid}_accounts_{accountid}_facebook-locations-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|organizationId|path|string|true|The Organization Id|
-|accountId|path|integer|true|The Account Id|
-|q|query|string|true|the searched location|
-|locale|query|string|false|ISO 639-1 language code|
-|type|query|string|false|Searched location type. Accepts country, region, city|
-
-> Example responses
-
-> 200 Response
-
-```json
-[
-  {
-    "key": "15020915",
-    "name": "Estado de México",
-    "type": "city",
-    "country_code": "MX",
-    "country_name": "México",
-    "region": "State of Mexico",
-    "region_id": 2519
-  }
-]
-```
-
-<h3 id="post__organizations_{organizationid}_accounts_{accountid}_facebook-locations-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
-
-<h3 id="post__organizations_{organizationid}_accounts_{accountid}_facebook-locations-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» key|string|false|none|none|
-|» name|string|false|none|none|
-|» type|string|false|none|none|
-|» country_code|string|false|none|none|
-|» country_name|string|false|none|none|
-|» region|string|false|none|none|
-|» region_id|number|false|none|none|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
@@ -6304,9 +6321,7 @@ Accept: application/json
 ```
 
 ```javascript
-const inputBody = '{
-  "budget": 600
-}';
+const inputBody = '600';
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
@@ -6443,9 +6458,7 @@ func main() {
 > Body parameter
 
 ```json
-{
-  "budget": 600
-}
+600
 ```
 
 <h3 id="post__organizations_{organizationid}_draft-strategies_{draftstrategyid}_campaigns-parameters">Parameters</h3>
@@ -6454,8 +6467,7 @@ func main() {
 |---|---|---|---|---|
 |organizationId|path|string|true|The organization Id|
 |draftStrategyId|path|string|true|The Draft Strategy Id|
-|body|body|object|true|none|
-|» budget|body|integer|false|none|
+|body|body|number|true|none|
 
 > Example responses
 
