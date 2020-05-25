@@ -444,6 +444,7 @@ func main() {
 
 ```json
 {
+  "id": 1,
   "external_id": "12341234",
   "name": "My facebook credential"
 }
@@ -466,7 +467,8 @@ Status Code **201**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» external_id|string|false|none|The credential ID.|
+|» id|integer|false|none|Credential ID|
+|» external_id|string|false|none|The credential ExternalID.|
 |» name|string|false|none|The credential name.|
 
 Status Code **400**
@@ -666,8 +668,9 @@ func main() {
 ```json
 [
   {
-    "external_id": "12341234",
+    "id": "1",
     "name": "My facebook credential",
+    "external_id": "12341234",
     "provider_name": "facebook"
   }
 ]
@@ -689,8 +692,9 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» external_id|string|false|none|The credential ID.|
+|» id|integer|false|none|The credential ID.|
 |» name|string|false|none|The credential name.|
+|» external_id|string|false|none|The credential external ID.|
 |» provider_name|string|false|none|The credential provider,|
 
 Status Code **401**
@@ -876,7 +880,7 @@ func main() {
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |organizationId|path|string|true|The Organization Id|
-|credentialId|path|string|true|none|
+|credentialId|path|integer|true|none|
 
 > Example responses
 
@@ -943,13 +947,13 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## put__organizations_{organizationId}_credentials_{credentialId}
+## put__organizations_{organizationId}_credentials_{credentialId}_tokens
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId} \
+curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/tokens \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
@@ -957,7 +961,7 @@ curl -X PUT https://pending.entropy.tech/v1/organizations/{organizationId}/crede
 ```
 
 ```http
-PUT https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId} HTTP/1.1
+PUT https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/tokens HTTP/1.1
 Host: pending.entropy.tech
 Content-Type: application/json
 Accept: application/json
@@ -975,7 +979,7 @@ const headers = {
   'Authorization':'Bearer {access-token}'
 };
 
-fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}',
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/tokens',
 {
   method: 'PUT',
   body: inputBody,
@@ -999,7 +1003,7 @@ headers = {
   'Authorization' => 'Bearer {access-token}'
 }
 
-result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}',
+result = RestClient.put 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/tokens',
   params: {
   }, headers: headers
 
@@ -1015,7 +1019,7 @@ headers = {
   'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}', headers = headers)
+r = requests.put('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/tokens', headers = headers)
 
 print(r.json())
 
@@ -1038,7 +1042,7 @@ $client = new \GuzzleHttp\Client();
 $request_body = array();
 
 try {
-    $response = $client->request('PUT','https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}', array(
+    $response = $client->request('PUT','https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/tokens', array(
         'headers' => $headers,
         'json' => $request_body,
        )
@@ -1055,7 +1059,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}");
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/tokens");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("PUT");
 int responseCode = con.getResponseCode();
@@ -1088,7 +1092,7 @@ func main() {
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("PUT", "https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}", data)
+    req, err := http.NewRequest("PUT", "https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/tokens", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -1098,7 +1102,7 @@ func main() {
 
 ```
 
-`PUT /organizations/{organizationId}/credentials/{credentialId}`
+`PUT /organizations/{organizationId}/credentials/{credentialId}/tokens`
 
 *Update organization credential*
 
@@ -1111,12 +1115,12 @@ func main() {
 }
 ```
 
-<h3 id="put__organizations_{organizationid}_credentials_{credentialid}-parameters">Parameters</h3>
+<h3 id="put__organizations_{organizationid}_credentials_{credentialid}_tokens-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |organizationId|path|string|true|The Organization Id|
-|credentialId|path|string|true|none|
+|credentialId|path|integer|true|none|
 |body|body|object|true|none|
 |» code|body|string|false|none|
 |» state|body|string|false|none|
@@ -1128,11 +1132,12 @@ func main() {
 ```json
 {
   "id": 1,
-  "name": "My facebook credential"
+  "name": "My facebook credential",
+  "external_id": "12341234"
 }
 ```
 
-<h3 id="put__organizations_{organizationid}_credentials_{credentialid}-responses">Responses</h3>
+<h3 id="put__organizations_{organizationid}_credentials_{credentialid}_tokens-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -1144,7 +1149,7 @@ func main() {
 |408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
 
-<h3 id="put__organizations_{organizationid}_credentials_{credentialid}-responseschema">Response Schema</h3>
+<h3 id="put__organizations_{organizationid}_credentials_{credentialid}_tokens-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -1152,6 +1157,7 @@ Status Code **200**
 |---|---|---|---|---|
 |» id|integer|false|none|The credential ID.|
 |» name|string|false|none|The credential name.|
+|» external_id|string|false|none|Credential external id|
 
 Status Code **400**
 
@@ -1348,7 +1354,7 @@ func main() {
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |organizationId|path|string|true|The Organization Id|
-|credentialId|path|string|true|none|
+|credentialId|path|integer|true|none|
 
 > Example responses
 
@@ -1360,9 +1366,9 @@ func main() {
     "id": "107406950975265",
     "role": "ADMIN",
     "business": {
+      "id": "103752451344000",
       "name": "My BM",
-      "profile_picture_url": "string",
-      "id": "103752451344000"
+      "profile_picture_url": "string"
     }
   }
 ]
@@ -1389,9 +1395,9 @@ Status Code **200**
 |» id|string|false|none|The user scoped business id.|
 |» role|string|false|none|The user role in business|
 |» business|object|false|none|none|
+|»» id|string|false|none|Business Manager ID|
 |»» name|string|false|none|Business manager name|
 |»» profile_picture_url|string|false|none|Business Manager profile picture|
-|»» id|string|false|none|Business Manager ID|
 
 Status Code **400**
 
@@ -1440,14 +1446,14 @@ bearerAuth
 
 ```shell
 # You can also use wget
-curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts \
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts?businessId=123412341234000000000 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-GET https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts HTTP/1.1
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts?businessId=123412341234000000000 HTTP/1.1
 Host: pending.entropy.tech
 Accept: application/json
 
@@ -1460,7 +1466,7 @@ const headers = {
   'Authorization':'Bearer {access-token}'
 };
 
-fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts',
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts?businessId=123412341234000000000',
 {
   method: 'GET',
 
@@ -1485,7 +1491,8 @@ headers = {
 
 result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts',
   params: {
-  }, headers: headers
+  'businessId' => 'string'
+}, headers: headers
 
 p JSON.parse(result)
 
@@ -1498,7 +1505,9 @@ headers = {
   'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts', headers = headers)
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts', params={
+  'businessId': '123412341234000000000'
+}, headers = headers)
 
 print(r.json())
 
@@ -1537,7 +1546,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts");
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/adaccounts?businessId=123412341234000000000");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("GET");
 int responseCode = con.getResponseCode();
@@ -1588,7 +1597,8 @@ func main() {
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |organizationId|path|string|true|The Organization Id|
-|credentialId|path|string|true|none|
+|credentialId|path|integer|true|none|
+|businessId|query|string|true|none|
 
 > Example responses
 
@@ -1819,7 +1829,7 @@ func main() {
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |organizationId|path|string|true|The Organization Id|
-|credentialId|path|string|true|none|
+|credentialId|path|integer|true|none|
 
 > Example responses
 
@@ -2055,7 +2065,7 @@ func main() {
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |organizationId|path|string|true|The Organization Id|
-|credentialId|path|string|true|none|
+|credentialId|path|integer|true|none|
 |page|query|string|true|The page id|
 
 > Example responses
@@ -2296,6 +2306,7 @@ func main() {
 |q|query|string|true|the searched location|
 |locale|query|string|false|ISO 639-1 language code|
 |type|query|string|false|Searched location type. Accepts country, region, city|
+|limit|query|integer|false|Response limit. Accepted values go from 1-25|
 
 > Example responses
 
@@ -2340,17 +2351,13 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-<h1 id="facebook-api-accounts">accounts</h1>
-
-Entropy Facebook accounts resource
-
-## post__organizations_{organizationId}_accounts
+## post__organizations_{organizationId}_credentials_{credentialId}_accounts
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/accounts \
+curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/accounts \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
@@ -2358,7 +2365,7 @@ curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/acco
 ```
 
 ```http
-POST https://pending.entropy.tech/v1/organizations/{organizationId}/accounts HTTP/1.1
+POST https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/accounts HTTP/1.1
 Host: pending.entropy.tech
 Content-Type: application/json
 Accept: application/json
@@ -2368,9 +2375,9 @@ Accept: application/json
 ```javascript
 const inputBody = '{
   "extenal_id": "act_123456789101112",
-  "credential_id": 1,
+  "page_id": "381490061931745",
   "instagram_id": "1023317097692584",
-  "page_id": "381490061931745"
+  "business_id": "1234123400000000"
 }';
 const headers = {
   'Content-Type':'application/json',
@@ -2378,7 +2385,7 @@ const headers = {
   'Authorization':'Bearer {access-token}'
 };
 
-fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts',
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/accounts',
 {
   method: 'POST',
   body: inputBody,
@@ -2402,7 +2409,7 @@ headers = {
   'Authorization' => 'Bearer {access-token}'
 }
 
-result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/accounts',
+result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/accounts',
   params: {
   }, headers: headers
 
@@ -2418,7 +2425,7 @@ headers = {
   'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts', headers = headers)
+r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/accounts', headers = headers)
 
 print(r.json())
 
@@ -2441,7 +2448,7 @@ $client = new \GuzzleHttp\Client();
 $request_body = array();
 
 try {
-    $response = $client->request('POST','https://pending.entropy.tech/v1/organizations/{organizationId}/accounts', array(
+    $response = $client->request('POST','https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/accounts', array(
         'headers' => $headers,
         'json' => $request_body,
        )
@@ -2458,7 +2465,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/accounts");
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/accounts");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("POST");
 int responseCode = con.getResponseCode();
@@ -2491,7 +2498,7 @@ func main() {
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("POST", "https://pending.entropy.tech/v1/organizations/{organizationId}/accounts", data)
+    req, err := http.NewRequest("POST", "https://pending.entropy.tech/v1/organizations/{organizationId}/credentials/{credentialId}/accounts", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -2501,7 +2508,7 @@ func main() {
 
 ```
 
-`POST /organizations/{organizationId}/accounts`
+`POST /organizations/{organizationId}/credentials/{credentialId}/accounts`
 
 *Create entropy facebook account*
 
@@ -2510,22 +2517,23 @@ func main() {
 ```json
 {
   "extenal_id": "act_123456789101112",
-  "credential_id": 1,
+  "page_id": "381490061931745",
   "instagram_id": "1023317097692584",
-  "page_id": "381490061931745"
+  "business_id": "1234123400000000"
 }
 ```
 
-<h3 id="post__organizations_{organizationid}_accounts-parameters">Parameters</h3>
+<h3 id="post__organizations_{organizationid}_credentials_{credentialid}_accounts-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |organizationId|path|string|true|The Organization Id|
+|credentialId|path|integer|true|The entropy credential id|
 |body|body|object|true|none|
 |» extenal_id|body|string|false|none|
-|» credential_id|body|integer|false|none|
-|» instagram_id|body|string|false|none|
 |» page_id|body|string|false|none|
+|» instagram_id|body|string|false|none|
+|» business_id|body|string|false|none|
 
 > Example responses
 
@@ -2535,11 +2543,12 @@ func main() {
 {
   "id": 1,
   "name": "My facebook account",
-  "currency": "MXN"
+  "currency": "MXN",
+  "external_id": "act_123412341234"
 }
 ```
 
-<h3 id="post__organizations_{organizationid}_accounts-responses">Responses</h3>
+<h3 id="post__organizations_{organizationid}_credentials_{credentialid}_accounts-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -2550,7 +2559,7 @@ func main() {
 |408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
 
-<h3 id="post__organizations_{organizationid}_accounts-responseschema">Response Schema</h3>
+<h3 id="post__organizations_{organizationid}_credentials_{credentialid}_accounts-responseschema">Response Schema</h3>
 
 Status Code **201**
 
@@ -2559,6 +2568,7 @@ Status Code **201**
 |» id|integer|false|none|The account ID.|
 |» name|string|false|none|The account name.|
 |» currency|string|false|none|The account currency|
+|» external_id|string|false|none|The adaccount ID|
 
 Status Code **400**
 
@@ -2594,6 +2604,10 @@ Status Code **500**
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
+
+<h1 id="facebook-api-accounts">accounts</h1>
+
+Entropy Facebook accounts resource
 
 ## get__organizations_{organizationId}_accounts
 
@@ -3196,7 +3210,8 @@ func main() {
 {
   "id": "1023317097692584",
   "name": "My Facebook Page",
-  "url": "https://scontent.fmex3-1.fna.fbcdn.net/v/t1.0-1/cp0/p50x50/69990981_2541917302555666_6471452641946763264_o.jpg"
+  "instagram_id": "123412341234",
+  "username": "instaprofile123"
 }
 ```
 
@@ -3219,455 +3234,8 @@ Status Code **200**
 |---|---|---|---|---|
 |» id|string|false|none|The facebook page id|
 |» name|string|false|none|Facebook page name|
-|» url|string|false|none|The page profile picture url|
-
-Status Code **400**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **401**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **403**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **408**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **500**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-bearerAuth
-</aside>
-
-## post__organizations_{organizationId}_accounts_{accountId}_instagram
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X POST https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-```http
-POST https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram HTTP/1.1
-Host: pending.entropy.tech
-Accept: application/json
-
-```
-
-```javascript
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram',
-{
-  method: 'POST',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram', headers = headers)
-
-print(r.json())
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-);
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```java
-URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Accept": []string{"application/json"},
-        "Authorization": []string{"Bearer {access-token}"},
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("POST", "https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
-
-```
-
-`POST /organizations/{organizationId}/accounts/{accountId}/instagram`
-
-*GetFacebook account*
-
-<h3 id="post__organizations_{organizationid}_accounts_{accountid}_instagram-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|organizationId|path|string|true|The Organization Id|
-|accountId|path|integer|true|The Account Id|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "id": "1023317097692584",
-  "username": "fake_profile",
-  "profile_pic": "https://scontent-qro1-1.xx.fbcdn.net/v/t51.2885-15/10358304_683009211734391_805233549_a.jpg?_nc_cat=111&_nc_sid=86c713&_nc_ohc=-BEh1CRhIDAAX_GlXcF&_nc_ht=scontent-qro1-1.xx&oh=51977412f1779267f8e6aa8b26d21bbd&oe=5EB3C9DE"
-}
-```
-
-<h3 id="post__organizations_{organizationid}_accounts_{accountid}_instagram-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
-|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
-
-<h3 id="post__organizations_{organizationid}_accounts_{accountid}_instagram-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» id|string|false|none|The Instagram id|
-|» username|string|false|none|Instagram username|
-|» profile_pic|string|false|none|The instagram profile picture url|
-
-Status Code **400**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **401**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **403**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **408**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-Status Code **500**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» message|string|false|none|none|
-
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-bearerAuth
-</aside>
-
-## get__organizations_{organizationId}_accounts_{accountId}_instagram
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-```http
-GET https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram HTTP/1.1
-Host: pending.entropy.tech
-Accept: application/json
-
-```
-
-```javascript
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-};
-
-fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram', headers = headers)
-
-print(r.json())
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-);
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```java
-URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Accept": []string{"application/json"},
-        "Authorization": []string{"Bearer {access-token}"},
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/instagram", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
-
-```
-
-`GET /organizations/{organizationId}/accounts/{accountId}/instagram`
-
-*GetFacebook account*
-
-<h3 id="get__organizations_{organizationid}_accounts_{accountid}_instagram-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|organizationId|path|string|true|The Organization Id|
-|accountId|path|integer|true|The Account Id|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "id": "1023317097692584",
-  "username": "fake_profile",
-  "profile_pic": "https://scontent-qro1-1.xx.fbcdn.net/v/t51.2885-15/10358304_683009211734391_805233549_a.jpg?_nc_cat=111&_nc_sid=86c713&_nc_ohc=-BEh1CRhIDAAX_GlXcF&_nc_ht=scontent-qro1-1.xx&oh=51977412f1779267f8e6aa8b26d21bbd&oe=5EB3C9DE"
-}
-```
-
-<h3 id="get__organizations_{organizationid}_accounts_{accountid}_instagram-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
-|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
-
-<h3 id="get__organizations_{organizationid}_accounts_{accountid}_instagram-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» id|string|false|none|The Instagram id|
-|» username|string|false|none|Instagram username|
-|» profile_pic|string|false|none|The instagram profile picture url|
+|» instagram_id|string|false|none|The instagram profile id|
+|» username|integer|false|none|The instagram profile username|
 
 Status Code **400**
 
