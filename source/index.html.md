@@ -3499,6 +3499,543 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
+<h1 id="facebook-api-metrics">metrics</h1>
+
+Entropy Facebook metrics
+
+## get__organizations_{organizationId}_metrics
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/metrics?days%2Dago=7 \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/metrics?days%2Dago=7 HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/metrics?days%2Dago=7',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/metrics',
+  params: {
+  'days-ago' => 'number'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/metrics', params={
+  'days-ago': '7'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/metrics', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/metrics?days%2Dago=7");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/metrics", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{organizationId}/metrics`
+
+*Get organization metrics*
+
+<h3 id="get__organizations_{organizationid}_metrics-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|days-ago|query|number|true|number of days before previous date to retrieve metrics|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "current": [
+    {
+      "date": "2020-06-08",
+      "metrics": {
+        "clicks": 255,
+        "cost": 1000,
+        "revenue": 2500,
+        "roas": 2.5,
+        "cpc": 3.921
+      }
+    }
+  ],
+  "previous": [
+    {
+      "date": "2020-06-07",
+      "metrics": {
+        "clicks": 255,
+        "cost": 1000,
+        "revenue": 2500,
+        "roas": 2.5,
+        "cpc": 3.921
+      }
+    }
+  ],
+  "aggregates": {
+    "clicks": {
+      "value": 2500,
+      "percentage": -94
+    },
+    "cost": {
+      "value": 2345.42,
+      "percentage": -83.42
+    },
+    "cpc": {
+      "value": 0.938,
+      "percentage": 178.06
+    },
+    "revenue": {
+      "value": 1464.34,
+      "percentage": -97.234
+    },
+    "roas": {
+      "value": 0.6245,
+      "percentage": -84.234
+    }
+  }
+}
+```
+
+<h3 id="get__organizations_{organizationid}_metrics-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="get__organizations_{organizationid}_metrics-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» current|[object]|false|none|current range metrics|
+|»» date|string|false|none|The date of the metric|
+|»» metrics|object|false|none|none|
+|»»» clicks|number|false|none|none|
+|»»» cost|number|false|none|none|
+|»»» revenue|number|false|none|none|
+|»»» roas|number|false|none|none|
+|»»» cpc|number|false|none|none|
+|» previous|[object]|false|none|previous range metrics|
+|»» date|string|false|none|The date of the metric|
+|»» metrics|object|false|none|none|
+|»»» clicks|number|false|none|none|
+|»»» cost|number|false|none|none|
+|»»» revenue|number|false|none|none|
+|»»» roas|number|false|none|none|
+|»»» cpc|number|false|none|none|
+|» aggregates|object|false|none|aggregated metrics for organization|
+|»» clicks|object|false|none|none|
+|»»» value|number|false|none|none|
+|»»» percentage|number|false|none|none|
+|»» cost|object|false|none|none|
+|»»» value|number|false|none|none|
+|»»» percentage|number|false|none|none|
+|»» cpc|object|false|none|none|
+|»»» value|number|false|none|none|
+|»»» percentage|number|false|none|none|
+|»» revenue|object|false|none|none|
+|»»» value|number|false|none|none|
+|»»» percentage|number|false|none|none|
+|»» roas|object|false|none|none|
+|»»» value|number|false|none|none|
+|»»» percentage|number|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
+## get__organizations_{organizationId}_metrics_strategies
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/metrics/strategies?days%2Dago=7 \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/metrics/strategies?days%2Dago=7 HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/metrics/strategies?days%2Dago=7',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/metrics/strategies',
+  params: {
+  'days-ago' => 'number'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/metrics/strategies', params={
+  'days-ago': '7'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/metrics/strategies', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/metrics/strategies?days%2Dago=7");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/metrics/strategies", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{organizationId}/metrics/strategies`
+
+*Get organization metrics*
+
+<h3 id="get__organizations_{organizationid}_metrics_strategies-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|days-ago|query|number|true|number of days before previous date to retrieve metrics|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "strategy_id": 1,
+    "budget": 134134,
+    "name": "My FB strategy",
+    "aggregates": {
+      "clicks": {
+        "value": 2500,
+        "percentage": 0,
+        "example": null
+      },
+      "cost": {
+        "value": 2345.42,
+        "percentage": -83.42
+      },
+      "cpc": {
+        "value": 0.938,
+        "percentage": 178.06
+      },
+      "revenue": {
+        "value": 1464.34,
+        "percentage": -97.234
+      },
+      "roas": {
+        "value": 0.6245,
+        "percentage": -84.234
+      }
+    }
+  }
+]
+```
+
+<h3 id="get__organizations_{organizationid}_metrics_strategies-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+
+<h3 id="get__organizations_{organizationid}_metrics_strategies-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» strategy_id|number|false|none|none|
+|» budget|number|false|none|strategy budget * 100|
+|» name|string|false|none|none|
+|» aggregates|object|false|none|none|
+|»» clicks|object|false|none|none|
+|»»» value|number|false|none|none|
+|»»» percentage|number|false|none|none|
+|»»» example|any|false|none|none|
+|»» cost|object|false|none|none|
+|»»» value|number|false|none|none|
+|»»» percentage|number|false|none|none|
+|»» cpc|object|false|none|none|
+|»»» value|number|false|none|none|
+|»»» percentage|number|false|none|none|
+|»» revenue|object|false|none|none|
+|»»» value|number|false|none|none|
+|»»» percentage|number|false|none|none|
+|»» roas|object|false|none|none|
+|»»» value|number|false|none|none|
+|»»» percentage|number|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
 <h1 id="facebook-api-draft-strategies">draft strategies</h1>
 
 Entropy Facebook draft strategies resource
