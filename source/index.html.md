@@ -3971,11 +3971,11 @@ func main() {
     "strategy_id": 1,
     "budget": 134134,
     "name": "My FB strategy",
+    "currency": "MXN",
     "aggregates": {
       "clicks": {
         "value": 2500,
-        "percentage": 0,
-        "example": null
+        "percentage": -94
       },
       "cost": {
         "value": 2345.42,
@@ -4013,11 +4013,11 @@ Status Code **200**
 |» strategy_id|number|false|none|none|
 |» budget|number|false|none|strategy budget * 100|
 |» name|string|false|none|none|
+|» currency|string|false|none|none|
 |» aggregates|object|false|none|none|
 |»» clicks|object|false|none|none|
 |»»» value|number|false|none|none|
 |»»» percentage|number|false|none|none|
-|»»» example|any|false|none|none|
 |»» cost|object|false|none|none|
 |»»» value|number|false|none|none|
 |»»» percentage|number|false|none|none|
