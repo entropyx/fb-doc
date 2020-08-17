@@ -6441,7 +6441,7 @@ curl -X GET https://pending.entropy.tech/v1/organizations/<span class="o">{</spa
 </span></code></pre>
 <p><code>GET /organizations/{organizationId}/fb-campaigns</code></p>
 
-<p><em>GetFacebook account</em></p>
+<p><em>GetFacebook campaigns avialable to import</em></p>
 
 <h3 id="get__organizations_{organizationid}_fb-campaigns-parameters">Parameters</h3>
 
@@ -6816,7 +6816,7 @@ curl -X GET https://pending.entropy.tech/v1/organizations/<span class="o">{</spa
 </span></code></pre>
 <p><code>GET /organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests</code></p>
 
-<p><em>GetFacebook account</em></p>
+<p><em>GetFacebook campaign adsets</em></p>
 
 <h3 id="get__organizations_{organizationid}_fb-campaigns_{fbcampaignid}_adsests-parameters">Parameters</h3>
 
@@ -6846,7 +6846,7 @@ curl -X GET https://pending.entropy.tech/v1/organizations/<span class="o">{</spa
 <tr>
 <td>fbCampaignId</td>
 <td>path</td>
-<td>integer</td>
+<td>string</td>
 <td>true</td>
 <td>The Facebook Campaign Id</td>
 </tr>
@@ -6860,7 +6860,7 @@ curl -X GET https://pending.entropy.tech/v1/organizations/<span class="o">{</spa
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my adset"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123412341234"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123412341235"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ads"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"987654321"</span><span class="p">,</span><span class="w">
