@@ -3272,6 +3272,228 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
+## get__organizations_{organizationId}_accounts_{accountId}_business-manager
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/business-manager \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/business-manager HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/business-manager',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/business-manager',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/business-manager', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/business-manager', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/business-manager");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/accounts/{accountId}/business-manager", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{organizationId}/accounts/{accountId}/business-manager`
+
+*GetFacebook account*
+
+<h3 id="get__organizations_{organizationid}_accounts_{accountid}_business-manager-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|accountId|path|integer|true|The Account Id|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "business_id": "1023317097692584",
+  "name": "My Business Manager"
+}
+```
+
+<h3 id="get__organizations_{organizationid}_accounts_{accountid}_business-manager-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="get__organizations_{organizationid}_accounts_{accountid}_business-manager-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» business_id|string|false|none|The Business Manager ID|
+|» name|string|false|none|The Business Manager name|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
 ## post__organizations_{organizationId}_accounts_{accountId}_draft-strategies
 
 > Code samples
@@ -3493,6 +3715,446 @@ Status Code **500**
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» message|string|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
+<h1 id="facebook-api-facebook-campaigns">facebook campaigns</h1>
+
+Facebook campaigns available for import
+
+## get__organizations_{organizationId}_fb-campaigns
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns?account=1 \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns?account=1 HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns?account=1',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns',
+  params: {
+  'account' => 'integer'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns', params={
+  'account': '1'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns?account=1");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{organizationId}/fb-campaigns`
+
+*GetFacebook campaigns avialable to import*
+
+<h3 id="get__organizations_{organizationid}_fb-campaigns-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|account|query|integer|true|The Account Id|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "id_facebook": "123412341234",
+    "name": "Mi campaña de intereses"
+  }
+]
+```
+
+<h3 id="get__organizations_{organizationid}_fb-campaigns-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|Inline|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found|Inline|
+|408|[Request Timeout](https://tools.ietf.org/html/rfc7231#section-6.5.7)|Request Time Out|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server error|Inline|
+
+<h3 id="get__organizations_{organizationid}_fb-campaigns-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» id_facebook|string|false|none|none|
+|» name|string|false|none|none|
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **401**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **403**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **404**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **408**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+Status Code **500**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» message|string|false|none|none|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+
+## get__organizations_{organizationId}_fb-campaigns_{fbCampaignId}_adsests
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests?account=1 \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```http
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests?account=1 HTTP/1.1
+Host: pending.entropy.tech
+Accept: application/json
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+};
+
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests?account=1',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests',
+  params: {
+  'account' => 'integer'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests', params={
+  'account': '1'
+}, headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests?account=1");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests`
+
+*GetFacebook campaign adsets*
+
+<h3 id="get__organizations_{organizationid}_fb-campaigns_{fbcampaignid}_adsests-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|organizationId|path|string|true|The Organization Id|
+|account|query|integer|true|The Account Id|
+|fbCampaignId|path|string|true|The Facebook Campaign Id|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "name": "my adset",
+    "id": "123412341235",
+    "ads": [
+      {
+        "id": "987654321",
+        "name": "my ad"
+      }
+    ]
+  }
+]
+```
+
+<h3 id="get__organizations_{organizationid}_fb-campaigns_{fbcampaignid}_adsests-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
+
+<h3 id="get__organizations_{organizationid}_fb-campaigns_{fbcampaignid}_adsests-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» name|string|false|none|none|
+|» id|string|false|none|none|
+|» ads|[object]|false|none|none|
+|»» id|string|false|none|none|
+|»» name|string|false|none|none|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:
