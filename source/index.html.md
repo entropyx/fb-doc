@@ -3959,20 +3959,20 @@ To perform this operation, you must be authenticated by means of one of the foll
 bearerAuth
 </aside>
 
-## get__organizations_{organizationId}_fb-campaigns_{fbCampaignId}_adsests
+## get__organizations_{organizationId}_fb-campaigns_{fbCampaignId}_adsets
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests?account=1 \
+curl -X GET https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsets?account=1 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 ```http
-GET https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests?account=1 HTTP/1.1
+GET https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsets?account=1 HTTP/1.1
 Host: pending.entropy.tech
 Accept: application/json
 
@@ -3985,7 +3985,7 @@ const headers = {
   'Authorization':'Bearer {access-token}'
 };
 
-fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests?account=1',
+fetch('https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsets?account=1',
 {
   method: 'GET',
 
@@ -4008,7 +4008,7 @@ headers = {
   'Authorization' => 'Bearer {access-token}'
 }
 
-result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests',
+result = RestClient.get 'https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsets',
   params: {
   'account' => 'integer'
 }, headers: headers
@@ -4024,7 +4024,7 @@ headers = {
   'Authorization': 'Bearer {access-token}'
 }
 
-r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests', params={
+r = requests.get('https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsets', params={
   'account': '1'
 }, headers = headers)
 
@@ -4048,7 +4048,7 @@ $client = new \GuzzleHttp\Client();
 $request_body = array();
 
 try {
-    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests', array(
+    $response = $client->request('GET','https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsets', array(
         'headers' => $headers,
         'json' => $request_body,
        )
@@ -4065,7 +4065,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests?account=1");
+URL obj = new URL("https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsets?account=1");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("GET");
 int responseCode = con.getResponseCode();
@@ -4097,7 +4097,7 @@ func main() {
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests", data)
+    req, err := http.NewRequest("GET", "https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsets", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -4107,11 +4107,11 @@ func main() {
 
 ```
 
-`GET /organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests`
+`GET /organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsets`
 
 *GetFacebook campaign adsets*
 
-<h3 id="get__organizations_{organizationid}_fb-campaigns_{fbcampaignid}_adsests-parameters">Parameters</h3>
+<h3 id="get__organizations_{organizationid}_fb-campaigns_{fbcampaignid}_adsets-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -4138,13 +4138,13 @@ func main() {
 ]
 ```
 
-<h3 id="get__organizations_{organizationid}_fb-campaigns_{fbcampaignid}_adsests-responses">Responses</h3>
+<h3 id="get__organizations_{organizationid}_fb-campaigns_{fbcampaignid}_adsets-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|Inline|
 
-<h3 id="get__organizations_{organizationid}_fb-campaigns_{fbcampaignid}_adsests-responseschema">Response Schema</h3>
+<h3 id="get__organizations_{organizationid}_fb-campaigns_{fbcampaignid}_adsets-responseschema">Response Schema</h3>
 
 Status Code **200**
 
