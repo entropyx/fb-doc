@@ -301,7 +301,7 @@
                     <a href="#get_organizations-organizationid-_fb-campaigns" class="toc-h2 toc-link" data-title="get_organizations{organizationId}_fb-campaigns">get_<em>organizations</em>{organizationId}_fb-campaigns</a>
                   </li>
                   <li>
-                    <a href="#get_organizations-organizationid-fb-campaigns-fbcampaignid-_adsests" class="toc-h2 toc-link" data-title="get_organizations{organizationId}fb-campaigns{fbCampaignId}_adsests">get_<em>organizations</em>{organizationId}<em>fb-campaigns</em>{fbCampaignId}_adsests</a>
+                    <a href="#get_organizations-organizationid-fb-campaigns-fbcampaignid-_adsets" class="toc-h2 toc-link" data-title="get_organizations{organizationId}fb-campaigns{fbCampaignId}_adsets">get_<em>organizations</em>{organizationId}<em>fb-campaigns</em>{fbCampaignId}_adsets</a>
                   </li>
               </ul>
           </li>
@@ -6689,16 +6689,16 @@ curl -X GET https://pending.entropy.tech/v1/organizations/<span class="o">{</spa
 To perform this operation, you must be authenticated by means of one of the following methods:
 bearerAuth
 </aside>
-<h2 id='get_organizations-organizationid-fb-campaigns-fbcampaignid-_adsests'>get_<em>organizations</em>{organizationId}<em>fb-campaigns</em>{fbCampaignId}_adsests</h2>
+<h2 id='get_organizations-organizationid-fb-campaigns-fbcampaignid-_adsets'>get_<em>organizations</em>{organizationId}<em>fb-campaigns</em>{fbCampaignId}_adsets</h2>
 <blockquote>
 <p>Code samples</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># You can also use wget</span>
-curl -X GET https://pending.entropy.tech/v1/organizations/<span class="o">{</span>organizationId<span class="o">}</span>/fb-campaigns/<span class="o">{</span>fbCampaignId<span class="o">}</span>/adsests?account<span class="o">=</span>1 <span class="se">\</span>
+curl -X GET https://pending.entropy.tech/v1/organizations/<span class="o">{</span>organizationId<span class="o">}</span>/fb-campaigns/<span class="o">{</span>fbCampaignId<span class="o">}</span>/adsets?account<span class="o">=</span>1 <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'Authorization: Bearer {access-token}'</span>
 
-</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests?account=1</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsets?account=1</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">pending.entropy.tech</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
 
@@ -6708,7 +6708,7 @@ curl -X GET https://pending.entropy.tech/v1/organizations/<span class="o">{</spa
   <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'Bearer {access-token}'</span>
 <span class="p">};</span>
 
-<span class="nx">fetch</span><span class="p">(</span><span class="s1">'https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests?account=1'</span><span class="p">,</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="s1">'https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsets?account=1'</span><span class="p">,</span>
 <span class="p">{</span>
   <span class="na">method</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
 
@@ -6728,7 +6728,7 @@ curl -X GET https://pending.entropy.tech/v1/organizations/<span class="o">{</spa
   <span class="s1">'Authorization'</span> <span class="o">=&gt;</span> <span class="s1">'Bearer {access-token}'</span>
 <span class="p">}</span>
 
-<span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests'</span><span class="p">,</span>
+<span class="n">result</span> <span class="o">=</span> <span class="no">RestClient</span><span class="p">.</span><span class="nf">get</span> <span class="s1">'https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsets'</span><span class="p">,</span>
   <span class="ss">params: </span><span class="p">{</span>
   <span class="s1">'account'</span> <span class="o">=&gt;</span> <span class="s1">'integer'</span>
 <span class="p">},</span> <span class="ss">headers: </span><span class="n">headers</span>
@@ -6741,7 +6741,7 @@ curl -X GET https://pending.entropy.tech/v1/organizations/<span class="o">{</spa
   <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer {access-token}'</span>
 <span class="p">}</span>
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsets'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
   <span class="s">'account'</span><span class="p">:</span> <span class="s">'1'</span>
 <span class="p">},</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
 
@@ -6762,7 +6762,7 @@ curl -X GET https://pending.entropy.tech/v1/organizations/<span class="o">{</spa
 </span><span class="nv">$request_body</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
 
 <span class="k">try</span> <span class="p">{</span>
-    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">'GET'</span><span class="p">,</span><span class="s1">'https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">request</span><span class="p">(</span><span class="s1">'GET'</span><span class="p">,</span><span class="s1">'https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsets'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
         <span class="s1">'headers'</span> <span class="o">=&gt;</span> <span class="nv">$headers</span><span class="p">,</span>
         <span class="s1">'json'</span> <span class="o">=&gt;</span> <span class="nv">$request_body</span><span class="p">,</span>
        <span class="p">)</span>
@@ -6776,7 +6776,7 @@ curl -X GET https://pending.entropy.tech/v1/organizations/<span class="o">{</spa
 
  <span class="c1">// ...
 </span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">URL</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URL</span><span class="o">(</span><span class="s">"https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests?account=1"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">URL</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URL</span><span class="o">(</span><span class="s">"https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsets?account=1"</span><span class="o">);</span>
 <span class="n">HttpURLConnection</span> <span class="n">con</span> <span class="o">=</span> <span class="o">(</span><span class="n">HttpURLConnection</span><span class="o">)</span> <span class="n">obj</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
 <span class="n">con</span><span class="o">.</span><span class="na">setRequestMethod</span><span class="o">(</span><span class="s">"GET"</span><span class="o">);</span>
 <span class="kt">int</span> <span class="n">responseCode</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="na">getResponseCode</span><span class="o">();</span>
@@ -6805,7 +6805,7 @@ curl -X GET https://pending.entropy.tech/v1/organizations/<span class="o">{</spa
     </span><span class="p">}</span><span class="x">
 
     </span><span class="n">data</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">bytes</span><span class="o">.</span><span class="n">NewBuffer</span><span class="p">([]</span><span class="kt">byte</span><span class="p">{</span><span class="n">jsonReq</span><span class="p">})</span><span class="x">
-    </span><span class="n">req</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">http</span><span class="o">.</span><span class="n">NewRequest</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span><span class="x"> </span><span class="s">"https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests"</span><span class="p">,</span><span class="x"> </span><span class="n">data</span><span class="p">)</span><span class="x">
+    </span><span class="n">req</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">http</span><span class="o">.</span><span class="n">NewRequest</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span><span class="x"> </span><span class="s">"https://pending.entropy.tech/v1/organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsets"</span><span class="p">,</span><span class="x"> </span><span class="n">data</span><span class="p">)</span><span class="x">
     </span><span class="n">req</span><span class="o">.</span><span class="n">Header</span><span class="x"> </span><span class="o">=</span><span class="x"> </span><span class="n">headers</span><span class="x">
 
     </span><span class="n">client</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="o">&amp;</span><span class="n">http</span><span class="o">.</span><span class="n">Client</span><span class="p">{}</span><span class="x">
@@ -6814,11 +6814,11 @@ curl -X GET https://pending.entropy.tech/v1/organizations/<span class="o">{</spa
 </span><span class="p">}</span><span class="x">
 
 </span></code></pre>
-<p><code>GET /organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsests</code></p>
+<p><code>GET /organizations/{organizationId}/fb-campaigns/{fbCampaignId}/adsets</code></p>
 
 <p><em>GetFacebook campaign adsets</em></p>
 
-<h3 id="get__organizations_{organizationid}_fb-campaigns_{fbcampaignid}_adsests-parameters">Parameters</h3>
+<h3 id="get__organizations_{organizationid}_fb-campaigns_{fbcampaignid}_adsets-parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -6870,7 +6870,7 @@ curl -X GET https://pending.entropy.tech/v1/organizations/<span class="o">{</spa
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-<h3 id="get__organizations_{organizationid}_fb-campaigns_{fbcampaignid}_adsests-responses">Responses</h3>
+<h3 id="get__organizations_{organizationid}_fb-campaigns_{fbcampaignid}_adsets-responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -6888,7 +6888,7 @@ curl -X GET https://pending.entropy.tech/v1/organizations/<span class="o">{</spa
 </tr>
 </tbody></table>
 
-<h3 id="get__organizations_{organizationid}_fb-campaigns_{fbcampaignid}_adsests-responseschema">Response Schema</h3>
+<h3 id="get__organizations_{organizationid}_fb-campaigns_{fbcampaignid}_adsets-responseschema">Response Schema</h3>
 
 <p>Status Code <strong>200</strong></p>
 
